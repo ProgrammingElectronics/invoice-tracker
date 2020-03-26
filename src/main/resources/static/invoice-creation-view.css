@@ -5,7 +5,7 @@
 
 html {
     color: rgb(6, 14, 138);
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(6, 14, 138);
 }
 
 p {
@@ -13,7 +13,7 @@ p {
 }
 
 body {
-    background-color: #ccd0d8;
+    background-color: #b1b3b9;
     margin: 1em 1em;
     border: 5px solid rgb(129, 212, 19);
     border-radius: 1em;
@@ -38,36 +38,45 @@ body h2 {
 p{
     background-color: whitesmoke;
 }
-
+/* container hierarchy is dertermined outside in */
 .container {
     margin: auto;
     padding: 2%;
     display: flex;
     flex-direction: column;
     width: 90%;
-    
 }
+
 input {
     width: 80%;
 }
 
-.container2{
+.container2 {
     padding: 1em;
     display: flex;
-    justify-content: space-between;
+   
     flex-direction: row;
     
 }
 
-.container3{
+.container3 {
     padding: .25em;
     display: flex;
     flex-direction: column;
-
     width: 50%;
 }
 
-.container4{
+#invoiceIdandDateContainer {
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+#invoiceIdandDateContainer div{
+    display: flex;
+    padding: 1em;
+}
+
+.container4 {
     width: 30%;
     height: 1.5em;
     display: flex;
@@ -97,29 +106,50 @@ input {
     width: 85px;
 }
 
+/* .container5 is for lower section */
 .container5 {
+    margin: 0%;
+    padding: 0%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    
+    
 }
 
-.container5b div{
+#serviceLables label {
     display: flex;
-    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0%;
+    padding: 0%;
+    width: 16.66%;
+    height: 1.5em;
+}
+
+#serviceInfo {
+    display: flex;
     flex-wrap: wrap;
 }
 
-.container5b div input {
-    margin: 0%;
-    padding: 0%;
-    width: 24.5%;
+.serviceInfoSet {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.container5b div p{
+#serviceInfo div input {
+    margin: 0%;
+    padding: 0%;
+    width: 16.22%;
+    height: 1.5em;
+}
+
+/* .container5b div p{
     margin: .25%;
     padding: 0%;
     width: 24%;
-}
+} */
+
+/* buttons */
 
 button {
     width: 120px;
@@ -127,4 +157,25 @@ button {
     margin-top: .5em;
     padding: .25;
     border-radius: .5em .5em;
+}
+
+#addServBtn {
+    margin-right: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-self: flex-end;
+}
+
+#deleteServBtn {
+    margin-right: -2em;
+    margin-top: 0em;
+    width: 2em;
+}
+
+#submitBtn {
+    
+    background-color: navy;
+    color: yellow;
+    font-size: larger;
+    font-style: italic;
 }

@@ -27,9 +27,15 @@
                     <label for="contractorPhone">Phone</label>
                     <input type="text" name="" id="contractorPhone">
                 </div>
-                <div class="container4" id="invoiceNumberContainer">
-                    <label for="invoiceNumber">Invoice Number</label>
-                    <input type="text" id="invoiceNumber">
+                <div class="container3" id="invoiceIdandDateContainer">
+                    <div class="container4">
+                        <label for="invoiceNumber">Invoice Number</label>
+                        <input type="text" id="invoiceNumber">
+                    </div>
+                    <div class="container4">
+                        <label for="invoiceDate">Invoice Date</label>
+                        <input type="text" id="invoiceDate">
+                    </div>
                 </div>
             </div>
             <div class="container2" name="" id="middleContainer">
@@ -41,35 +47,48 @@
                     <label for="agencyPhone">Phone</label>
                     <input type="text" name="" id="agencyPhone">
                 </div>
-                <div class="container4" id="invoiceTermsContainer">
-                    <label for="invoiceTerm">Terms</label>
-                    <input type="text" id="invoiceTerm">
+                <div class="container3" id="invoiceIdandDateContainer">
+                    <div class="container4" id="invoiceTermsContainer">
+                        <label for="invoiceTerm">Terms</label>
+                        <input type="text" id="invoiceTerm">
+                    </div>
                 </div>
             </div>
+
         </div>
-        <div class="container">
-            <div class="container5">
+
+        <button type="button" onclick="addService('serviceInfo')" class="servBtnSet" id="addServBtn">Add New
+            Service</button>
+
+        <div class="container" id="bottomContainer">
+            <div class="container5" id="serviceLables">
                 <label for="clientName">Client</label>
                 <label for="serviceName">Service</label>
                 <label for="serviceDate">Date</label>
-                <label for="serviceTime">Hours AM/PM</label>
+                <label for="serviceTime">Hours</label>
+                <label for="hourlyRate">Hourly Rate</label>
+                <label for="amountDue">Amount Due</label>
             </div>
             <!-- this is the section that should be added with a function tied to the addServBtn -->
-            <div class="container5b" id="serviceInfo">
-                <div>
-                    <input type="text" name="" id="clientName">
+            <div class="container5" id="serviceInfo">
+                <div class="serviceInfoSet" id="">
+                    <input type="text" id="clientName">
                     <input type="text" id="serviceName">
                     <input type="date" id="serviceDate">
-                    <input type="time" id="serviceTime">
+                    <input type="number" id="serviceTime">
+                    <input type="number" id="hourlyRate">
+                    <input type="number" id="amountDue">
+                    <button type="button" onclick="deleteServ()" id="deleteServBtn">X</button>
                 </div>
             </div>
+
 
             <label for="serviceNotes">Notes</label>
             <textarea type="text" id="serviceNotes"></textarea>
         </div>
     </form>
 
-    <button type="button" onclick="addService('serviceInfo')" id="addServBtn">Add New Service</button>
+
     <button type="submit" id="submitBtn">SUBMIT</button>
 
 </body>
