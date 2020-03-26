@@ -3,7 +3,7 @@ package com.invoicetracker.models;
 public abstract class User {
 
 	
-	/************************ Field Values****************/
+	/************************ Field Values ****************/
 	
 	/* Contact Info */
 	private String firstName;
@@ -18,6 +18,8 @@ public abstract class User {
 	private String state;
 	private String zip;
 	private String country;
+	
+	private GenericInvoice invoices;
 	
 	/************************ Getters and Setters ****************/
 	
@@ -99,6 +101,14 @@ public abstract class User {
 	
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public GenericInvoice getInvoices() {
+		return invoices;
+	}
+
+	public void setInvoices(GenericInvoice invoices) {
+		this.invoices = invoices;
 	}
 	
 }
