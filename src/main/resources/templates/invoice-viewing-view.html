@@ -16,55 +16,70 @@
     <header text="Pro">ProJo</header>
     <h2 id="invoiceTitle">INVOICE</h2>
 
-    <section class="invoiceInfo">
+    <form action="invoice">
         <div class="container">
             <div class="container2" name="" id="topContainer">
                 <div class="container3" name="from" id="contractorInfo">
                     <label for="contractorName">Contractor</label>
-                    <p type="text" id="contractorName">sample name</p>
+                    <input type="text" id="contractorName">
                     <label for="contractorAddress">Address</label>
-                    <p type="text" id="contractorAddress">sample address</p>
+                    <input type="text" id="contractorAddress">
                     <label for="contractorPhone">Phone</label>
-                    <p type="text" name="" id="contractorPhone">sample phone</p>
+                    <input type="text" name="" id="contractorPhone">
                 </div>
-                <div class="container4b">
-                    <div class="container4bb" id="invoiceNumberContainer">
+                <div class="container3" id="invoiceIdandDateContainer">
+                    <div class="container4">
                         <label for="invoiceNumber">Invoice Number</label>
-                        <p type="text" id="invoiceNumber">sample number</p>
+                        <input type="text" id="invoiceNumber">
                     </div>
-                    <div class="container4bb" id="invoiceTermsContainer">
-                        <label for="invoiceTerm">Terms</label>
-                        <p type="text" id="invoiceTerm">sample term</p>
-                    </div>
-                    <div class="container4bb" id="invoicePaid">
-                        <button type="button" onclick="payInvoice('invoicePaid')" id="payBtn">Paid</button>
+                    <div class="container4">
+                        <label for="invoiceDate">Invoice Date</label>
+                        <input type="text" id="invoiceDate">
                     </div>
                 </div>
             </div>
+
         </div>
-        <div class="container">
-            <div class="container5">
+        </div>
+
+
+        <div class="container" id="bottomContainer">
+            <div class="container5" id="serviceLables">
                 <label for="clientName">Client</label>
                 <label for="serviceName">Service</label>
                 <label for="serviceDate">Date</label>
-                <label for="serviceTime">Hours AM/PM</label>
+                <label for="serviceTime">Hours</label>
+                <label for="hourlyRate">Hourly Rate</label>
+                <label for="amountDue">Amount Due</label>
+            </div>
+            <!-- this is the section that should be added with a function tied to the addServBtn -->
+            <div class="container5" id="serviceInfo">
+                <div class="serviceInfoSet" id="">
+                    <input type="text" id="clientName">
+                    <input type="text" id="serviceName">
+                    <input type="date" id="serviceDate">
+                    <input type="number" id="serviceTime">
+                    <input type="number" id="hourlyRate">
+                    <input type="number" id="amountDue">
+
+                </div>
             </div>
 
-            <div class="container5b" id="serviceInfo">
-                <div>
-                    <p type="text" name="" id="clientName">sample client name</p>
-                    <p type="text" id="serviceName">sample service name</p>
-                    <p type="date" id="serviceDate">sample service date</p>
-                    <p type="time" id="serviceTime">sample service time</p>
-                </div>
+            <div class="container4" id="totalsBeforeNotes">
+                <label for="totalAmountDue" id="totalAmountDueLabel">Total Amount Due</label>
+                <p id="totalAmountDue">0.0</p>
             </div>
 
             <label for="serviceNotes">Notes</label>
             <textarea type="text" id="serviceNotes"></textarea>
         </div>
-    </section>
+    </form>
 
 
+
+    <div class="container4bb" id="invoicePaid">
+        <button type="button" onclick="payInvoice('invoicePaid')" id="payBtn">Paid</button>
+    </div>
 </body>
 
 </html>

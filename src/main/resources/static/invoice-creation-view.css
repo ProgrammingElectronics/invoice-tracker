@@ -36,6 +36,9 @@ body h2 {
 }
 
 p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: whitesmoke;
 }
 /* container hierarchy is dertermined outside in */
@@ -77,6 +80,7 @@ input {
 }
 
 .container4 {
+    margin: 0.5em;
     width: 30%;
     height: 1.5em;
     display: flex;
@@ -143,6 +147,21 @@ input {
     height: 1.5em;
 }
 
+#totalsBeforeNotes{
+    margin-left: auto;
+    margin-right: 3%;
+}
+
+#totalAmountDueLabel{
+    width: 500px;
+}
+
+#totalAmountDue{
+    width: 300px;
+    height: 1.5em;
+    border: solid black 3px;
+}
+
 /* .container5b div p{
     margin: .25%;
     padding: 0%;
@@ -167,6 +186,7 @@ button {
 }
 
 #deleteServBtn {
+    margin-left: 0%;
     margin-right: -2em;
     margin-top: 0em;
     width: 2em;
