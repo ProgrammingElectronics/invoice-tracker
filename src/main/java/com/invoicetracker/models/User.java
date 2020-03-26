@@ -1,5 +1,7 @@
 package com.invoicetracker.models;
 
+
+
 public abstract class User {
 
 	
@@ -20,6 +22,8 @@ public abstract class User {
 	private String country;
 	
 	private GenericInvoice invoices;
+	
+	
 	
 	/************************ Getters and Setters ****************/
 	
