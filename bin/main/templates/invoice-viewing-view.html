@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProJo Invoice</title>
+    <!-- when moved the href for stylesheets and jsript will have to be updated -->
+    <link rel="stylesheet" href="/invoice-creation-view.css">
+    <script src="/invoice-creation-view.js"></script>
+
+</head>
+
+<body>
+
+    <header text="Pro">ProJo</header>
+    <h2 id="invoiceTitle">INVOICE</h2>
+
+    <section class="invoiceInfo">
+        <div class="container">
+            <div class="container2" name="" id="topContainer">
+                <div class="container3" name="from" id="contractorInfo">
+                    <label for="contractorName">Contractor</label>
+                    <p type="text" id="contractorName">sample name</p>
+                    <label for="contractorAddress">Address</label>
+                    <p type="text" id="contractorAddress">sample address</p>
+                    <label for="contractorPhone">Phone</label>
+                    <p type="text" name="" id="contractorPhone">sample phone</p>
+                </div>
+                <div class="container4b">
+                    <div class="container4bb" id="invoiceNumberContainer">
+                        <label for="invoiceNumber">Invoice Number</label>
+                        <p type="text" id="invoiceNumber">sample number</p>
+                    </div>
+                    <div class="container4bb" id="invoiceTermsContainer">
+                        <label for="invoiceTerm">Terms</label>
+                        <p type="text" id="invoiceTerm">sample term</p>
+                    </div>
+                    <div class="container4bb" id="invoicePaid">
+                        <button type="button" onclick="payInvoice('invoicePaid')" id="payBtn">Paid</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="container5">
+                <label for="clientName">Client</label>
+                <label for="serviceName">Service</label>
+                <label for="serviceDate">Date</label>
+                <label for="serviceTime">Hours</label>
+            </div>
+
+            <div class="container5b" id="serviceInfo">
+                <div>
+                    <p type="text" name="" id="clientName">sample client name</p>
+                    <p type="text" id="serviceName">sample service name</p>
+                    <p type="date" id="serviceDate">sample service date</p>
+                    <p type="time" id="serviceTime">sample service time</p>
+                </div>
+            </div>
+
+            <label for="serviceNotes">Notes</label>
+            <textarea type="text" id="serviceNotes"></textarea>
+        </div>
+    </section>
+
+
+</body>
+
+</html>
