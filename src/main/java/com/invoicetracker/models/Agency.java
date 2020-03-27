@@ -13,6 +13,8 @@ public class Agency extends User {
 
 	/************************ Field Values ****************/
 	
+	private String businessName;
+	
 	@ManyToMany(mappedBy = "agencies")
 	private Collection<Contractor> contractors;
 	
@@ -22,7 +24,16 @@ public class Agency extends User {
 	@OneToMany(mappedBy = "agency")
 	private Collection<CustomerImp> customers;
 	
+
 	/************************ Getters and Setters ****************/
+	
+	public String getBusinessName() {
+		return businessName;
+	}
+	
+	public void setBusinessName(String businessName) {
+		this.businessName = businessName;
+	}
 	
 	public Collection<Contractor> getContractors() {
 		return contractors;
@@ -36,4 +47,12 @@ public class Agency extends User {
 		return customers;
 	}
 
+	/************************ Constructor ****************/
+	
+	public Agency(String businessName) {
+		this.businessName = businessName;
+	}
+	
+	public Agency() {}
+	
 }

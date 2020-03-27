@@ -13,6 +13,10 @@ public class Contractor extends User {
 
 	/************************ Field Values ****************/
 
+	private String firstName;
+	private String lastName;
+	private String payPalId;
+	
 	@OneToMany(mappedBy = "contractor")
 	private Collection<InvoiceImp> invoices;
 	
@@ -21,12 +25,24 @@ public class Contractor extends User {
 	
 	@ManyToMany(mappedBy = "contractors")
 	private Collection<CustomerImp> customers;
-	
-	private String payPalId;
-	
 
 	/************************ Getters and Setters ****************/
 
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	public String getPayPalId() {
 		return payPalId;
 	}
@@ -53,7 +69,7 @@ public class Contractor extends User {
 	public Contractor() {}
 	
 	public Contractor(String firstName) {
-		super(firstName);
+		this.firstName = firstName;
 	}
 
 }
