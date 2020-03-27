@@ -33,7 +33,26 @@ public class JPAMappingsTest {
 	private ContractorRepository contractorRepo;
 	
 	@Test
-	public void shouldSaveAndLoadContractor() {
+	public void shouldSaveAndLoadContractorPayPalId() {
+		//Arrange
+		Contractor contractor = contractorRepo.save(new Contractor("firstName"));
+		contractor.setPayPalId("payPalId");
+		long contractorId = contractor.getId();
+		
+		//Act
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<Contractor> result = contractorRepo.findById(contractorId);
+		contractor = result.get();
+				
+		//Assert
+		assertEquals(contractor.getPayPalId(), "payPalId");
+
+	}
+	
+	@Test
+	public void shouldSaveAndLoadContractorFirstName() {
 		//Arrange
 		Contractor contractor = contractorRepo.save(new Contractor("firstName"));
 		long contractorId = contractor.getId();
@@ -44,13 +63,10 @@ public class JPAMappingsTest {
 		
 		Optional<Contractor> result = contractorRepo.findById(contractorId);
 		contractor = result.get();
-		
-		
-		System.out.println("***************" + contractor.getFirstName());
 				
 		//Assert
 		assertEquals(contractor.getFirstName(), "firstName");
-
 	}
+	
 
 }
