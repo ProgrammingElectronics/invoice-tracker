@@ -42,6 +42,8 @@ public abstract class Customer {
 		this.accountNumber = accountNumber;
 	}
 
+	/************************ Overrides ****************/
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -8,8 +8,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-public class Agency extends User {
 @PrimaryKeyJoinColumn(name = "agencyId")
+public class Agency extends User {
+
 	/************************ Field Values ****************/
 	
 	@ManyToMany(mappedBy = "agencies")
