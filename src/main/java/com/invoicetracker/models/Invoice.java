@@ -2,14 +2,21 @@ package com.invoicetracker.models;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 
 public abstract class Invoice {
 
 	/************************ Field Values ****************/
+	
 	private LocalDate dateOfService;
 	private float payRateOfAService;
 	private float serviceHours;
-	private GenericCustomer customers;
+	private CustomerImp customers;
 	private float amountDue;
 	private int invoiceNumber;
 	private boolean isPaid;
@@ -40,11 +47,11 @@ public abstract class Invoice {
 		this.serviceHours = serviceHours;
 	}
 	
-	public GenericCustomer getCustomers() {
+	public CustomerImp getCustomers() {
 		return customers;
 	}
 	
-	public void setCustomers(GenericCustomer customers) {
+	public void setCustomers(CustomerImp customers) {
 		this.customers = customers;
 	}
 	

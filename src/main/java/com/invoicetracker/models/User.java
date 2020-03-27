@@ -1,11 +1,19 @@
 package com.invoicetracker.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 
 public abstract class User {
 
-	
 	/************************ Field Values ****************/
+	
+	@Id
+	@GeneratedValue
+	private long id;
 	
 	/* Contact Info */
 	private String firstName;
@@ -21,10 +29,7 @@ public abstract class User {
 	private String zip;
 	private String country;
 	
-	private GenericInvoice invoices;
-	
-	
-	
+
 	/************************ Getters and Setters ****************/
 	
 	public String getFirstName() {
@@ -106,13 +111,13 @@ public abstract class User {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-	public GenericInvoice getInvoices() {
-		return invoices;
-	}
-
-	public void setInvoices(GenericInvoice invoices) {
-		this.invoices = invoices;
+	
+	/************************ Constructors ****************/
+	
+	public User() {}
+	
+	public User(String firstName) {
+		this.firstName = firstName;	
 	}
 	
 }
