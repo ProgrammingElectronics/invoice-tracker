@@ -8,20 +8,28 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Invoice {
 
 	/************************ Field Values ****************/
 	
+	@Id
+	@GeneratedValue
+	private long id;
+	
 	private LocalDate dateOfService;
 	private float payRateOfAService;
 	private float serviceHours;
-	private CustomerImp customers;
 	private float amountDue;
 	private int invoiceNumber;
 	private boolean isPaid;
 	
 	/************************ Getters and Setters ****************/
+	
+	public long getId() {
+		return id;
+	}
 	
 	public LocalDate getDateOfService() {
 		return dateOfService;
@@ -47,14 +55,6 @@ public abstract class Invoice {
 		this.serviceHours = serviceHours;
 	}
 	
-	public CustomerImp getCustomers() {
-		return customers;
-	}
-	
-	public void setCustomers(CustomerImp customers) {
-		this.customers = customers;
-	}
-	
 	public float getAmountDue() {
 		return amountDue;
 	}
@@ -78,5 +78,29 @@ public abstract class Invoice {
 	public void setPaid(boolean isPaid) {
 		this.isPaid = isPaid;
 	}
+
+	/************************ Overrides ****************/
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Invoice other = (Invoice) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+		
 }

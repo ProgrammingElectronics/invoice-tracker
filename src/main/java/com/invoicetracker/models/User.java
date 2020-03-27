@@ -10,9 +10,6 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
 
-	public long getId() {
-		return id;
-	}
 
 	/************************ Field Values ****************/
 	
@@ -36,6 +33,10 @@ public abstract class User {
 	
 
 	/************************ Getters and Setters ****************/
+	
+	public long getId() {
+		return id;
+	}
 	
 	public String getFirstName() {
 		return firstName;
