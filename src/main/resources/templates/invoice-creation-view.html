@@ -13,7 +13,9 @@
 
 <body>
 
-    <header text="Pro">ProJo</header>
+    <header text="ProJo">
+        <img src="../static/images/projo.png" alt="ProJo">
+    </header>
     <h2 id="invoiceTitle">INVOICE</h2>
 
     <form action="invoice">
@@ -70,14 +72,14 @@
             </div>
             <!-- this is the section that should be added with a function tied to the addServBtn -->
             <div class="container5" id="serviceInfo">
-                <div class="serviceInfoSet" id="">
+                <div class="serviceInfoSet" id="1">
                     <input type="text" id="clientName">
                     <input type="text" id="serviceName">
                     <input type="date" id="serviceDate">
                     <input type="number" id="serviceTime">
                     <input type="number" id="hourlyRate">
                     <input type="number" id="amountDue">
-                    <button type="button" onclick="deleteServ()" id="deleteServBtn">X</button>
+                    <button type="button" onclick="deleteServ(1)" id="deleteServBtn">X</button>
                 </div>
             </div>
 

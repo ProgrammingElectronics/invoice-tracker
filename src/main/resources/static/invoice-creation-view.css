@@ -24,10 +24,17 @@ body {
     align-content: space-around;
 }
 header {
-    font-size: 3em;
+    font-size: 2em;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-left: auto;
     margin-right: auto;
+    border: orange solid 5px;
+    border-radius: 5em;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    background-color: navy;
+    color: orange;
 }
 
 body h2 {
