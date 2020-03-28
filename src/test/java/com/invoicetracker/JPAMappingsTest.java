@@ -36,7 +36,7 @@ public class JPAMappingsTest {
 
 	@Resource
 	private ContractorRepository contractorRepo;
-	
+
 	@Resource
 	private AgencyRespository agencyRepo;
 
@@ -81,116 +81,133 @@ public class JPAMappingsTest {
 
 	@Test
 	public void shouldGenrateContractorId() {
-		//Arrange
+		// Arrange
 		Contractor contractor = contractorRepo.save(new Contractor("firstName"));
 		long contractorId = contractor.getId();
-		
-		//Act
+
+		// Act
 		entityManager.flush();
 		entityManager.clear();
-		
+
 		Optional<Contractor> result = contractorRepo.findById(contractorId);
 		contractor = result.get();
-		
-		//Assert
+
+		// Assert
 		assertThat(contractor.getId(), is(greaterThan(0L)));
 	}
 
 	@Test
 	public void shouldSaveAndLoadAgencyBusinessName() {
-		
+
 		// Arrange
 		Agency agency = agencyRepo.save(new Agency("businessName"));
 		Long agencyId = agency.getId();
-		
-		//Act
+
+		// Act
 		entityManager.flush();
 		entityManager.clear();
-		
+
 		Optional<Agency> result = agencyRepo.findById(agencyId);
 		agency = result.get();
-		
-		//Assert
+
+		// Assert
 		assertEquals(agency.getBusinessName(), "businessName");
 	}
 
 	@Test
 	public void shouldGenerateAgencyId() {
-		
+
 		// Arrange
 		Agency agency = agencyRepo.save(new Agency("businessName"));
 		Long agencyId = agency.getId();
-		
-		//Act
+
+		// Act
 		entityManager.flush();
 		entityManager.clear();
-		
+
 		Optional<Agency> result = agencyRepo.findById(agencyId);
 		agency = result.get();
-		
-		//Assert
+
+		// Assert
 		assertThat(agency.getId(), is(greaterThan(0L)));
 	}
-	
+
 	@Test
 	public void shouldEstablishContractorToAgencyRelationship() {
-		//Arrange
+		// Arrange
 		Agency agency = agencyRepo.save(new Agency("test"));
 		Contractor contractor = contractorRepo.save(new Contractor("testContractor", agency));
-		
+
 		Long contractorId = contractor.getId();
-		
-		//Act
+
+		// Act
 		entityManager.flush();
 		entityManager.clear();
-		
+
 		Optional<Contractor> result = contractorRepo.findById(contractorId);
 		contractor = result.get();
-		
-		//Assert
+
+		// Assert
 		assertThat(contractor.getAgencies(), containsInAnyOrder(agency));
-		
+
 	}
 
 	@Test
 	public void shouldEstablishAgencyToContractorRelationship() {
-		//Arrange
+		// Arrange
 		Contractor contractorOne = contractorRepo.save(new Contractor("testContractorOne"));
 		Contractor contractorTwo = contractorRepo.save(new Contractor("testContractorTwo"));
 		Agency agency = agencyRepo.save(new Agency("test", contractorOne, contractorTwo));
 		Long agencyId = agency.getId();
-		
-		//Act
+
+		// Act
 		entityManager.flush();
 		entityManager.clear();
-		
+
 		Optional<Agency> result = agencyRepo.findById(agencyId);
 		agency = result.get();
-		
-		//Assert
+
+		// Assert
 		assertThat(agency.getContractors(), containsInAnyOrder(contractorOne, contractorTwo));
-		
+
 	}
-	
+
 	@Test
 	public void shouldSaveAndLoadInvoiceDateOfService() {
-		//Arrange
+		// Arrange
 		LocalDate date = LocalDate.of(2020, 03, 28);
 		InvoiceImp invoice = invoiceRepo.save(new InvoiceImp(date));
 		Long invoiceId = invoice.getId();
-		
-		//Act
+
+		// Act
 		entityManager.flush();
 		entityManager.clear();
-		
+
 		Optional<InvoiceImp> result = invoiceRepo.findById(invoiceId);
 		invoice = result.get();
-		
-		//Assert
+
+		// Assert
 		assertEquals(invoice.getDateOfInvoice(), date);
 	}
+
+	@Test
+	public void shouldGenerateInvoiceId() {
+		// Arrange
+		LocalDate date = LocalDate.of(2020, 03, 28);
+		InvoiceImp invoice = invoiceRepo.save(new InvoiceImp(date));
+		Long invoiceId = invoice.getId();
+
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+
+		Optional<InvoiceImp> result = invoiceRepo.findById(invoiceId);
+		invoice = result.get();
+
+		// Assert
+		assertThat(invoice.getId(), is(greaterThan(0L)));
+	}
 	
-//	@Test
-//	public void 
 	
+
 }
