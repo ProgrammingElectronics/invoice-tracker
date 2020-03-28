@@ -17,6 +17,7 @@ public abstract class Invoice {
 	@Id
 	@GeneratedValue
 	private long id;
+	
 	private int invoiceNumber;
 	private LocalDate dateOfInvoice;
 	private boolean isPaid;

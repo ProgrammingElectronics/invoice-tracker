@@ -239,7 +239,6 @@ public class JPAMappingsTest {
 		long serviceItemId = serviceItem.getId();
 		
 		//Act
-		// Act
 		entityManager.flush();
 		entityManager.clear();
 		
@@ -248,6 +247,29 @@ public class JPAMappingsTest {
 		
 		// Assert
 		assertEquals(serviceItem.getDateOfService(), date);
+	}
+	
+	@Test
+	public void shouldEstablishInvoiceToServiceItemRelationship() {
+		//Arrange
+		LocalDate dateServiceOne = LocalDate.of(2020, 03, 28);
+		LocalDate dateServiceTwo = LocalDate.of(2020, 03, 29);
+		ServiceItem serviceOne = serviceItemRepo.save(new ServiceItem(dateServiceOne));
+		ServiceItem serviceTwo = serviceItemRepo.save(new ServiceItem(dateServiceTwo));
+		LocalDate dateOfInvoice = LocalDate.of(2020, 03, 29);
+		InvoiceImp invoice = invoiceRepo.save(new InvoiceImp(dateOfInvoice, serviceOne, serviceTwo));
+		long invoiceId = invoice.getId();
+		
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+
+		Optional<InvoiceImp> result = invoiceRepo.findById(invoiceId);
+		invoice = result.get();
+
+		// Assert
+		assertThat(invoice.getServiceItems(), containsInAnyOrder(serviceOne, serviceTwo));
+		
 	}
 	
 

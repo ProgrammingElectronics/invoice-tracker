@@ -1,7 +1,9 @@
 package com.invoicetracker.models;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -36,6 +38,10 @@ public class InvoiceImp extends Invoice {
 		return agency;
 	}
 
+	public Collection<ServiceItem> getServiceItems() {
+		return serviceItems;
+	}
+	
 	/************************ Constructors ****************/
 
 	public InvoiceImp() {
@@ -43,6 +49,11 @@ public class InvoiceImp extends Invoice {
 
 	public InvoiceImp(LocalDate dateOfInvoice) {
 		super(dateOfInvoice);
+	}
+
+	public InvoiceImp(LocalDate dateOfInvoice, ServiceItem...serviceItems) {
+		super(dateOfInvoice);
+		this.serviceItems = new HashSet<>(Arrays.asList(serviceItems));
 	}
 
 }
