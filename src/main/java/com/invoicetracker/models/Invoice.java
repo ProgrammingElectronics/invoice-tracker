@@ -79,6 +79,15 @@ public abstract class Invoice {
 		this.isPaid = isPaid;
 	}
 
+	/************************ Constructors ****************/
+	
+	protected Invoice() {}
+	
+	protected Invoice(LocalDate dateOfService) {
+		this.dateOfService = dateOfService;
+	}
+	
+	
 	/************************ Overrides ****************/
 	
 	@Override

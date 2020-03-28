@@ -1,5 +1,6 @@
 package com.invoicetracker;
 
+import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
@@ -23,6 +24,8 @@ import com.invoicetracker.Repositories.AgencyRespository;
 import com.invoicetracker.Repositories.ContractorRepository;
 import com.invoicetracker.models.Agency;
 import com.invoicetracker.models.Contractor;
+import com.invoicetracker.models.Invoice;
+import com.invoicetracker.models.InvoiceImp;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
@@ -36,6 +39,9 @@ public class JPAMappingsTest {
 	
 	@Resource
 	private AgencyRespository agencyRepo;
+
+	@Resource
+	private InvoiceImpRespository invoiceRepo;
 
 	@Test
 	public void shouldSaveAndLoadContractorPayPalId() {
@@ -164,6 +170,24 @@ public class JPAMappingsTest {
 		//Assert
 		assertThat(agency.getContractors(), containsInAnyOrder(contractorOne, contractorTwo));
 		
+	}
+	
+	@Test
+	public void shouldSaveAndLoadInvoiceDateOfService() {
+		//Arrange
+		LocalDate date = LocalDate.of(2020, 03, 28);
+		InvoiceImp invoice = invoiceRepo.save(new InvoiceImp(date));
+		Long invoiceId = invoice.getId();
+		
+		//Act
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<InvoiceImp> result = invoiceRepo.findById(invoiceId);
+		invoice = result.get();
+		
+		//Assert
+		assertEquals(invoice.getDateOfService(), date);
 	}
 	
 }
