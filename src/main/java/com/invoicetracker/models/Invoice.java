@@ -13,7 +13,7 @@ import javax.persistence.InheritanceType;
 public abstract class Invoice {
 
 	/************************ Field Values ****************/
-	
+
 	@Id
 	@GeneratedValue
 	private long id;
@@ -21,63 +21,25 @@ public abstract class Invoice {
 	private LocalDate dateOfInvoice;
 	private boolean isPaid;
 	private float totalAmountDue;
-	
-	
-//	private LocalDate dateOfService;
-//	private float payRateOfAService;
-//	private float serviceHours;
-//	private float amountDue;
-	
+
 	/************************ Getters and Setters ****************/
-	
+
 	public long getId() {
 		return id;
 	}
-	
-//	public LocalDate getDateOfService() {
-//		return dateOfService;
-//	}
-//	
-//	public void setDateOfService(LocalDate dateOfService) {
-//		this.dateOfService = dateOfService;
-//	}
-//	
-//	public float getPayRateOfAService() {
-//		return payRateOfAService;
-//	}
-//	
-//	public void setPayRateOfAService(float payRateOfAService) {
-//		this.payRateOfAService = payRateOfAService;
-//	}
-//	
-//	public float getServiceHours() {
-//		return serviceHours;
-//	}
-//	
-//	public void setServiceHours(float serviceHours) {
-//		this.serviceHours = serviceHours;
-//	}
-//	
-//	public float getAmountDue() {
-//		return amountDue;
-//	}
-//	
-//	public void setAmountDue(float amountDue) {
-//		this.amountDue = amountDue;
-//	}
-	
+
 	public int getInvoiceNumber() {
 		return invoiceNumber;
 	}
-	
+
 	public void setInvoiceNumber(int invoiceNumber) {
 		this.invoiceNumber = invoiceNumber;
 	}
-	
+
 	public boolean isPaid() {
 		return isPaid;
 	}
-	
+
 	public void setPaid(boolean isPaid) {
 		this.isPaid = isPaid;
 	}
@@ -85,7 +47,7 @@ public abstract class Invoice {
 	public LocalDate getDateOfInvoice() {
 		return dateOfInvoice;
 	}
-	
+
 	public void setDateOfInvoice(LocalDate dateOfInvoice) {
 		this.dateOfInvoice = dateOfInvoice;
 	}
@@ -93,22 +55,22 @@ public abstract class Invoice {
 	public float getTotalAmountDue() {
 		return totalAmountDue;
 	}
-	
+
 	public void setTotalAmountDue(float totalAmountDue) {
 		this.totalAmountDue = totalAmountDue;
 	}
-	
+
 	/************************ Constructors ****************/
-	
-	protected Invoice() {}
-	
+
+	protected Invoice() {
+	}
+
 	protected Invoice(LocalDate dateOfInvoice) {
 		this.dateOfInvoice = dateOfInvoice;
 	}
-	
-	
+
 	/************************ Overrides ****************/
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -131,6 +93,4 @@ public abstract class Invoice {
 		return true;
 	}
 
-
-		
 }

@@ -24,7 +24,6 @@ public class ServiceItem {
 	@ManyToOne
 	private InvoiceImp invoice;
 	
-
 	public InvoiceImp getInvoice() {
 		return invoice;
 	}
