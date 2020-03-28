@@ -22,8 +22,8 @@ public class InvoiceImp extends Invoice {
 	@ManyToOne
 	Agency agency;
 
-	@ManyToMany
-	private Collection<Customer> customers;
+//	@ManyToMany
+//	private Collection<Customer> customers;
 
 	/************************ Getters and Setter ****************/
 
@@ -40,8 +40,8 @@ public class InvoiceImp extends Invoice {
 	public InvoiceImp() {
 	}
 
-	public InvoiceImp(LocalDate dateOfService) {
-		super(dateOfService);
+	public InvoiceImp(LocalDate dateOfInvoice) {
+		super(dateOfInvoice);
 	}
 
 }

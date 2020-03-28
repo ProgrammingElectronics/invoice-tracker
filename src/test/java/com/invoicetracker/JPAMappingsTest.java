@@ -187,7 +187,7 @@ public class JPAMappingsTest {
 		invoice = result.get();
 		
 		//Assert
-		assertEquals(invoice.getDateOfService(), date);
+		assertEquals(invoice.getDateOfInvoice(), date);
 	}
 	
 //	@Test

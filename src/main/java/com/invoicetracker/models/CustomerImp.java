@@ -20,7 +20,7 @@ public class CustomerImp extends Customer {
 	private Agency agency;
 	
 	@ManyToMany
-	private Collection<InvoiceImp> invoices;
+	private Collection<ServiceItem> ServiceItems;
 	
 	/************************ Getters and Setters ****************/
 

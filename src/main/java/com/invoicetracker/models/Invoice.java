@@ -23,10 +23,10 @@ public abstract class Invoice {
 	private float totalAmountDue;
 	
 	
-	private LocalDate dateOfService;
-	private float payRateOfAService;
-	private float serviceHours;
-	private float amountDue;
+//	private LocalDate dateOfService;
+//	private float payRateOfAService;
+//	private float serviceHours;
+//	private float amountDue;
 	
 	/************************ Getters and Setters ****************/
 	
@@ -34,37 +34,37 @@ public abstract class Invoice {
 		return id;
 	}
 	
-	public LocalDate getDateOfService() {
-		return dateOfService;
-	}
-	
-	public void setDateOfService(LocalDate dateOfService) {
-		this.dateOfService = dateOfService;
-	}
-	
-	public float getPayRateOfAService() {
-		return payRateOfAService;
-	}
-	
-	public void setPayRateOfAService(float payRateOfAService) {
-		this.payRateOfAService = payRateOfAService;
-	}
-	
-	public float getServiceHours() {
-		return serviceHours;
-	}
-	
-	public void setServiceHours(float serviceHours) {
-		this.serviceHours = serviceHours;
-	}
-	
-	public float getAmountDue() {
-		return amountDue;
-	}
-	
-	public void setAmountDue(float amountDue) {
-		this.amountDue = amountDue;
-	}
+//	public LocalDate getDateOfService() {
+//		return dateOfService;
+//	}
+//	
+//	public void setDateOfService(LocalDate dateOfService) {
+//		this.dateOfService = dateOfService;
+//	}
+//	
+//	public float getPayRateOfAService() {
+//		return payRateOfAService;
+//	}
+//	
+//	public void setPayRateOfAService(float payRateOfAService) {
+//		this.payRateOfAService = payRateOfAService;
+//	}
+//	
+//	public float getServiceHours() {
+//		return serviceHours;
+//	}
+//	
+//	public void setServiceHours(float serviceHours) {
+//		this.serviceHours = serviceHours;
+//	}
+//	
+//	public float getAmountDue() {
+//		return amountDue;
+//	}
+//	
+//	public void setAmountDue(float amountDue) {
+//		this.amountDue = amountDue;
+//	}
 	
 	public int getInvoiceNumber() {
 		return invoiceNumber;
@@ -102,8 +102,8 @@ public abstract class Invoice {
 	
 	protected Invoice() {}
 	
-	protected Invoice(LocalDate dateOfService) {
-		this.dateOfService = dateOfService;
+	protected Invoice(LocalDate dateOfInvoice) {
+		this.dateOfInvoice = dateOfInvoice;
 	}
 	
 	
