@@ -17,13 +17,16 @@ public abstract class Invoice {
 	@Id
 	@GeneratedValue
 	private long id;
+	private int invoiceNumber;
+	private LocalDate dateOfInvoice;
+	private boolean isPaid;
+	private float totalAmountDue;
+	
 	
 	private LocalDate dateOfService;
 	private float payRateOfAService;
 	private float serviceHours;
 	private float amountDue;
-	private int invoiceNumber;
-	private boolean isPaid;
 	
 	/************************ Getters and Setters ****************/
 	
@@ -79,6 +82,22 @@ public abstract class Invoice {
 		this.isPaid = isPaid;
 	}
 
+	public LocalDate getDateOfInvoice() {
+		return dateOfInvoice;
+	}
+	
+	public void setDateOfInvoice(LocalDate dateOfInvoice) {
+		this.dateOfInvoice = dateOfInvoice;
+	}
+
+	public float getTotalAmountDue() {
+		return totalAmountDue;
+	}
+	
+	public void setTotalAmountDue(float totalAmountDue) {
+		this.totalAmountDue = totalAmountDue;
+	}
+	
 	/************************ Constructors ****************/
 	
 	protected Invoice() {}
@@ -111,5 +130,7 @@ public abstract class Invoice {
 			return false;
 		return true;
 	}
+
+
 		
 }
