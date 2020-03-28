@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import net.bytebuddy.implementation.bind.annotation.Super;
@@ -22,8 +23,8 @@ public class InvoiceImp extends Invoice {
 	@ManyToOne
 	Agency agency;
 
-//	@ManyToMany
-//	private Collection<Customer> customers;
+	@OneToMany
+	private Collection<ServiceItem> serviceItems;
 
 	/************************ Getters and Setter ****************/
 

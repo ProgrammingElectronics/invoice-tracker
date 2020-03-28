@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ServiceItem {
@@ -20,12 +21,36 @@ public class ServiceItem {
 	@ManyToMany
 	private Collection<CustomerImp> customers;
 	
+	@ManyToOne
+	private InvoiceImp invoice;
+	
+
+	public InvoiceImp getInvoice() {
+		return invoice;
+	}
+
+	public void setInvoice(InvoiceImp invoice) {
+		this.invoice = invoice;
+	}
+
 	private LocalDate dateOfService;
 	private float hourlyPayRate;
 	private float serviceHours;
 	private float amountDue;
 	
 	/************************ Getters and Setters ****************/
+	
+	public long getId() {
+		return id;
+	}
+	
+	public Collection<CustomerImp> getCustomers() {
+		return customers;
+	}
+	
+	public void setCustomers(Collection<CustomerImp> customers) {
+		this.customers = customers;
+	}
 	
 	public LocalDate getDateOfService() {
 		return dateOfService;
