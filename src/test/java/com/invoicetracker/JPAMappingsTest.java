@@ -280,7 +280,7 @@ public class JPAMappingsTest {
 		LocalDate dateOfInvoice = LocalDate.of(2020, 03, 29);
 		InvoiceImp invoice = invoiceRepo.save(new InvoiceImp(dateOfInvoice));
 		LocalDate dateOfService = LocalDate.of(2020, 03, 29);
-		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(dateOfService,invoice));
+		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(dateOfService, invoice));
 		long serviceItemId = serviceItem.getId();
 
 		// Act
@@ -293,37 +293,56 @@ public class JPAMappingsTest {
 		// Assert
 		assertEquals(serviceItem.getInvoice(), invoice);
 	}
-	
+
 	@Test
 	public void shouldGenerateCustomerId() {
-		//Arrange
+		// Arrange
 		CustomerImp customer = customerRepo.save(new CustomerImp("testName"));
 		long customerId = customer.getId();
-		
-		//Act
+
+		// Act
 		entityManager.flush();
 		entityManager.clear();
-		
+
 		Optional<CustomerImp> result = customerRepo.findById(customerId);
 		customer = result.get();
-		
+
 		assertThat(customer.getId(), is(greaterThan(0L)));
 	}
 
 	@Test
 	public void shouldSaveAndLoadCustomerName() {
-		//Arrange
+		// Arrange
 		CustomerImp customer = customerRepo.save(new CustomerImp("testName"));
 		long customerId = customer.getId();
-		
-		//Act
+
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+
+		Optional<CustomerImp> result = customerRepo.findById(customerId);
+		customer = result.get();
+
+		assertEquals(customer.getCustomerName(), "testName");
+	}
+
+	@Test
+	public void shouldEstablishServiceItemToCustomerRelationship() {
+		// Arrange
+		CustomerImp customerOne = customerRepo.save(new CustomerImp("testNameOne"));
+		CustomerImp customerTwo = customerRepo.save(new CustomerImp("testNameTwo"));
+		LocalDate dateOfService = LocalDate.of(2020, 03, 29);
+		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(dateOfService, customerOne, customerTwo));
+		long serviceId = serviceItem.getId();
+
+		// Act
 		entityManager.flush();
 		entityManager.clear();
 		
-		Optional<CustomerImp> result = customerRepo.findById(customerId);
-		customer = result.get();
+		Optional<ServiceItem> result = serviceItemRepo.findById(serviceId);
+		serviceItem = result.get();
 		
-		assertEquals(customer.getCustomerName(), "testName");
+		assertThat(serviceItem.getCustomers(), containsInAnyOrder(customerOne, customerTwo));
 	}
 
 }
