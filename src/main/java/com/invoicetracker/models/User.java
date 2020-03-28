@@ -1,14 +1,23 @@
 package com.invoicetracker.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
 
-	
+
 	/************************ Field Values ****************/
 	
+	@Id
+	@GeneratedValue
+	private long id;
+	
 	/* Contact Info */
-	private String firstName;
-	private String lastName;
-	private String businessName;
 	private String email;
 	
 	/* Address */
@@ -19,32 +28,11 @@ public abstract class User {
 	private String zip;
 	private String country;
 	
-	private GenericInvoice invoices;
-	
+
 	/************************ Getters and Setters ****************/
 	
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	public String getBusinessName() {
-		return businessName;
-	}
-	
-	public void setBusinessName(String businessName) {
-		this.businessName = businessName;
+	public long getId() {
+		return id;
 	}
 	
 	public String getEmail() {
@@ -102,13 +90,39 @@ public abstract class User {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-	public GenericInvoice getInvoices() {
-		return invoices;
+	
+	/************************ Constructors ****************/
+	
+	public User() {}
+	
+	public User(String email) {
+		this.email = email;	
 	}
 
-	public void setInvoices(GenericInvoice invoices) {
-		this.invoices = invoices;
+	/************************ Overrides ****************/
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	
+	
 	
 }
