@@ -18,20 +18,12 @@ public class ServiceItem {
 	@GeneratedValue
 	private long id;
 	
+	@ManyToOne
+	private InvoiceImp invoice;
+
 	@ManyToMany
 	private Collection<CustomerImp> customers;
 	
-	@ManyToOne
-	private InvoiceImp invoice;
-	
-	public InvoiceImp getInvoice() {
-		return invoice;
-	}
-
-	public void setInvoice(InvoiceImp invoice) {
-		this.invoice = invoice;
-	}
-
 	private LocalDate dateOfService;
 	private float hourlyPayRate;
 	private float serviceHours;
@@ -41,6 +33,14 @@ public class ServiceItem {
 	
 	public long getId() {
 		return id;
+	}
+
+	public InvoiceImp getInvoice() {
+		return invoice;
+	}
+	
+	public void setInvoice(InvoiceImp invoice) {
+		this.invoice = invoice;
 	}
 	
 	public Collection<CustomerImp> getCustomers() {
@@ -83,6 +83,15 @@ public class ServiceItem {
 		this.amountDue = amountDue;
 	}
 
+	/********************* Constructors ****************/
+	
+	public ServiceItem() {
+	}
+	
+	public ServiceItem(LocalDate date) {
+		// TODO Auto-generated constructor stub
+	}
+	
 	/************************ Overrides ****************/
 	
 	@Override

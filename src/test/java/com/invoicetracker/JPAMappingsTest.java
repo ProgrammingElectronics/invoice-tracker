@@ -26,6 +26,7 @@ import com.invoicetracker.models.Agency;
 import com.invoicetracker.models.Contractor;
 import com.invoicetracker.models.Invoice;
 import com.invoicetracker.models.InvoiceImp;
+import com.invoicetracker.models.ServiceItem;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
@@ -42,6 +43,9 @@ public class JPAMappingsTest {
 
 	@Resource
 	private InvoiceImpRespository invoiceRepo;
+
+	@Resource
+	private ServiceItemRespository serviceItemRepo;
 
 	@Test
 	public void shouldSaveAndLoadContractorPayPalId() {
@@ -208,6 +212,24 @@ public class JPAMappingsTest {
 		assertThat(invoice.getId(), is(greaterThan(0L)));
 	}
 	
+	@Test
+	public void shouldGenerateServiceItemId() {
+		//Arrange
+		LocalDate date = LocalDate.of(2020, 03, 28);
+		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(date));
+		long serviceItemId = serviceItem.getId();
+		
+		//Act
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+
+		Optional<ServiceItem> result = serviceItemRepo.findById(serviceItemId);
+		serviceItem = result.get();
+
+		// Assert
+		assertThat(serviceItem.getId(), is(greaterThan(0L)));
+	}
 	
 
 }
