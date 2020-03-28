@@ -92,6 +92,11 @@ public class ServiceItem {
 		this.dateOfService = dateOfService;
 	}
 	
+	public ServiceItem(LocalDate dateOfService, InvoiceImp invoice) {
+		this.dateOfService = dateOfService;
+		this.invoice = invoice;
+	}
+
 	/************************ Overrides ****************/
 	
 	@Override

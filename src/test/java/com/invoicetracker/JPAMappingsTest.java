@@ -211,15 +211,15 @@ public class JPAMappingsTest {
 		// Assert
 		assertThat(invoice.getId(), is(greaterThan(0L)));
 	}
-	
+
 	@Test
 	public void shouldGenerateServiceItemId() {
-		//Arrange
+		// Arrange
 		LocalDate date = LocalDate.of(2020, 03, 28);
 		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(date));
 		long serviceItemId = serviceItem.getId();
-		
-		//Act
+
+		// Act
 		// Act
 		entityManager.flush();
 		entityManager.clear();
@@ -233,25 +233,25 @@ public class JPAMappingsTest {
 
 	@Test
 	public void shouldSaveAndLoadServiceItemDateOfService() {
-		//Arrange
+		// Arrange
 		LocalDate date = LocalDate.of(2020, 03, 28);
 		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(date));
 		long serviceItemId = serviceItem.getId();
-		
-		//Act
+
+		// Act
 		entityManager.flush();
 		entityManager.clear();
-		
+
 		Optional<ServiceItem> result = serviceItemRepo.findById(serviceItemId);
 		serviceItem = result.get();
-		
+
 		// Assert
 		assertEquals(serviceItem.getDateOfService(), date);
 	}
-	
+
 	@Test
 	public void shouldEstablishInvoiceToServiceItemRelationship() {
-		//Arrange
+		// Arrange
 		LocalDate dateServiceOne = LocalDate.of(2020, 03, 28);
 		LocalDate dateServiceTwo = LocalDate.of(2020, 03, 29);
 		ServiceItem serviceOne = serviceItemRepo.save(new ServiceItem(dateServiceOne));
@@ -259,7 +259,7 @@ public class JPAMappingsTest {
 		LocalDate dateOfInvoice = LocalDate.of(2020, 03, 29);
 		InvoiceImp invoice = invoiceRepo.save(new InvoiceImp(dateOfInvoice, serviceOne, serviceTwo));
 		long invoiceId = invoice.getId();
-		
+
 		// Act
 		entityManager.flush();
 		entityManager.clear();
@@ -269,8 +269,27 @@ public class JPAMappingsTest {
 
 		// Assert
 		assertThat(invoice.getServiceItems(), containsInAnyOrder(serviceOne, serviceTwo));
+	}
+
+	@Test
+	public void shouldEstablishServiceItemToInvoiceRelationship() {
+		// Arrange
+		LocalDate dateOfInvoice = LocalDate.of(2020, 03, 29);
+		InvoiceImp invoice = invoiceRepo.save(new InvoiceImp(dateOfInvoice));
+		LocalDate dateOfService = LocalDate.of(2020, 03, 29);
+		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(dateOfService,invoice));
+		long serviceItemId = serviceItem.getId();
+
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+
+		Optional<ServiceItem> result = serviceItemRepo.findById(serviceItemId);
+		serviceItem = result.get();
+
+		// Assert
+		assertEquals(serviceItem.getInvoice(), invoice);
 		
 	}
-	
 
 }
