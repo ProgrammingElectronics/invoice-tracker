@@ -61,7 +61,7 @@ input {
     width: 80%;
 }
 
-.container2 {
+#topContainer, #middleContainer {
     padding: 1em;
     display: flex;
    
@@ -69,6 +69,7 @@ input {
     
 }
 
+/* applies to top and middle containers sub containers */
 .container3 {
     padding: .25em;
     display: flex;
@@ -86,6 +87,7 @@ input {
     padding: 1em;
 }
 
+/* separates the right hand side of the upper section */
 .container4 {
     margin: 0.5em;
     width: 30%;
@@ -102,12 +104,13 @@ input {
     justify-content: flex-start;
 }
 
-.container4bb {
+/*  */
+#invoicePaid {
     display: flex;
     flex-direction: column;
 }
 
-.container4bb button {
+#invoicePaid button {
     color: black;
     background-color: red;
 }
@@ -124,8 +127,6 @@ input {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
-    
 }
 
 #serviceLables label {
