@@ -88,8 +88,8 @@ public class ServiceItem {
 	public ServiceItem() {
 	}
 	
-	public ServiceItem(LocalDate date) {
-		// TODO Auto-generated constructor stub
+	public ServiceItem(LocalDate dateOfService) {
+		this.dateOfService = dateOfService;
 	}
 	
 	/************************ Overrides ****************/

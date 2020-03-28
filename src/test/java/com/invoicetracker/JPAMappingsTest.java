@@ -230,6 +230,25 @@ public class JPAMappingsTest {
 		// Assert
 		assertThat(serviceItem.getId(), is(greaterThan(0L)));
 	}
+
+	@Test
+	public void shouldSaveAndLoadServiceItemDateOfService() {
+		//Arrange
+		LocalDate date = LocalDate.of(2020, 03, 28);
+		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(date));
+		long serviceItemId = serviceItem.getId();
+		
+		//Act
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<ServiceItem> result = serviceItemRepo.findById(serviceItemId);
+		serviceItem = result.get();
+		
+		// Assert
+		assertEquals(serviceItem.getDateOfService(), date);
+	}
 	
 
 }
