@@ -1,6 +1,8 @@
 package com.invoicetracker.models;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -15,7 +17,7 @@ public class Agency extends User {
 	
 	private String businessName;
 	
-	@ManyToMany(mappedBy = "agencies")
+	@ManyToMany
 	private Collection<Contractor> contractors;
 	
 	@OneToMany
@@ -49,10 +51,15 @@ public class Agency extends User {
 
 	/************************ Constructor ****************/
 	
+	public Agency() {}
+	
 	public Agency(String businessName) {
 		this.businessName = businessName;
 	}
-	
-	public Agency() {}
+
+	public Agency(String businessName, Contractor... contractors) {
+		this.businessName = businessName;
+		this.contractors = new HashSet<>(Arrays.asList(contractors));
+	}
 	
 }

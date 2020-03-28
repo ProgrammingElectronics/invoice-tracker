@@ -1,6 +1,8 @@
 package com.invoicetracker.models;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -70,6 +72,11 @@ public class Contractor extends User {
 	
 	public Contractor(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public Contractor(String firstName, Agency...agencies) {
+		this.firstName = firstName;
+		this.agencies = new HashSet<>(Arrays.asList(agencies));
 	}
 
 }
