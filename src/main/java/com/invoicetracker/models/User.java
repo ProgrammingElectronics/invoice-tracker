@@ -93,9 +93,9 @@ public abstract class User {
 	
 	/************************ Constructors ****************/
 	
-	public User() {}
+	protected User() {}
 	
-	public User(String email) {
+	protected User(String email) {
 		this.email = email;	
 	}
 
