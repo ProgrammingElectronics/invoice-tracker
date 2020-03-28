@@ -37,8 +37,8 @@ public class CustomerImp extends Customer {
 	
 	public CustomerImp() {}
 	
-	public CustomerImp(String string) {
-		// TODO Auto-generated constructor stub
+	public CustomerImp(String customerName) {
+		super(customerName);
 	}
 	
 }

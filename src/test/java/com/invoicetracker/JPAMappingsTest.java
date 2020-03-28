@@ -309,6 +309,21 @@ public class JPAMappingsTest {
 		
 		assertThat(customer.getId(), is(greaterThan(0L)));
 	}
-	
+
+	@Test
+	public void shouldSaveAndLoadCustomerName() {
+		//Arrange
+		CustomerImp customer = customerRepo.save(new CustomerImp("testName"));
+		long customerId = customer.getId();
+		
+		//Act
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<CustomerImp> result = customerRepo.findById(customerId);
+		customer = result.get();
+		
+		assertEquals(customer.getCustomerName(), "testName");
+	}
 
 }

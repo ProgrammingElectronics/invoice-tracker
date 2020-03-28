@@ -46,8 +46,8 @@ public abstract class Customer {
 	
 	public Customer() {}
 	
-	public Customer(String string) {
-		// TODO Auto-generated constructor stub
+	public Customer(String customerName) {
+		this.customerName = customerName;
 	}
 
 	/************************ Overrides ****************/
