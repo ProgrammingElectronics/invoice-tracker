@@ -41,6 +41,14 @@ public abstract class Customer {
 	public void setAccountNumber(int accountNumber) {
 		this.accountNumber = accountNumber;
 	}
+	
+	/************************ Constructors ****************/
+	
+	public Customer() {}
+	
+	public Customer(String string) {
+		// TODO Auto-generated constructor stub
+	}
 
 	/************************ Overrides ****************/
 	

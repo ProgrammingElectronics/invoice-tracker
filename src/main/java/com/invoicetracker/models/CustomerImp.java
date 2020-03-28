@@ -22,6 +22,7 @@ public class CustomerImp extends Customer {
 	@ManyToMany
 	private Collection<ServiceItem> ServiceItems;
 	
+
 	/************************ Getters and Setters ****************/
 
 	public Collection<Contractor> getContractors() {
@@ -32,4 +33,12 @@ public class CustomerImp extends Customer {
 		return agency;
 	}	
 		
+	/************************ Constructors ****************/
+	
+	public CustomerImp() {}
+	
+	public CustomerImp(String string) {
+		// TODO Auto-generated constructor stub
+	}
+	
 }

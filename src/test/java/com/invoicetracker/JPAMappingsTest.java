@@ -24,7 +24,7 @@ import com.invoicetracker.Repositories.AgencyRespository;
 import com.invoicetracker.Repositories.ContractorRepository;
 import com.invoicetracker.models.Agency;
 import com.invoicetracker.models.Contractor;
-import com.invoicetracker.models.Invoice;
+import com.invoicetracker.models.CustomerImp;
 import com.invoicetracker.models.InvoiceImp;
 import com.invoicetracker.models.ServiceItem;
 
@@ -46,6 +46,9 @@ public class JPAMappingsTest {
 
 	@Resource
 	private ServiceItemRespository serviceItemRepo;
+
+	@Resource
+	private CustomerImpRespository customerRepo;
 
 	@Test
 	public void shouldSaveAndLoadContractorPayPalId() {
@@ -289,7 +292,23 @@ public class JPAMappingsTest {
 
 		// Assert
 		assertEquals(serviceItem.getInvoice(), invoice);
-		
 	}
+	
+	@Test
+	public void shouldGenerateCustomerId() {
+		//Arrange
+		CustomerImp customer = customerRepo.save(new CustomerImp("testName"));
+		long customerId = customer.getId();
+		
+		//Act
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<CustomerImp> result = customerRepo.findById(customerId);
+		customer = result.get();
+		
+		assertThat(customer.getId(), is(greaterThan(0L)));
+	}
+	
 
 }
