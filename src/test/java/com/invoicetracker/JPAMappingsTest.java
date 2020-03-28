@@ -87,7 +87,7 @@ public class JPAMappingsTest {
 		contractor = result.get();
 		
 		//Assert
-		assertEquals(contractor.getId(), contractorId);
+		assertThat(contractor.getId(), is(greaterThan(0L)));
 	}
 
 	@Test
@@ -106,5 +106,23 @@ public class JPAMappingsTest {
 		
 		//Assert
 		assertEquals(agency.getBusinessName(), "businessName");
+	}
+
+	@Test
+	public void shouldGenerateAgencyId() {
+		
+		// Arrange
+		Agency agency = agencyRepo.save(new Agency("businessName"));
+		Long agencyId = agency.getId();
+		
+		//Act
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<Agency> result = agencyRepo.findById(agencyId);
+		agency = result.get();
+		
+		//Assert
+		assertThat(agency.getId(), is(greaterThan(0L)));
 	}
 }
