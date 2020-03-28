@@ -345,4 +345,24 @@ public class JPAMappingsTest {
 		assertThat(serviceItem.getCustomers(), containsInAnyOrder(customerOne, customerTwo));
 	}
 
+	@Test
+	public void shouldEstablishCustomerToServiceItemRelationship() {
+		// Arrange
+		LocalDate dateOfServiceOne = LocalDate.of(2020, 03, 29);
+		LocalDate dateOfServiceTwo = LocalDate.of(2020, 03, 30);
+		ServiceItem serviceItemOne = serviceItemRepo.save(new ServiceItem(dateOfServiceOne));
+		ServiceItem serviceItemTwo = serviceItemRepo.save(new ServiceItem(dateOfServiceTwo));
+		CustomerImp customer = customerRepo.save(new CustomerImp("testNameTwo", serviceItemOne, serviceItemTwo));
+		long customerId = customer.getId();
+		
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<CustomerImp> result = customerRepo.findById(customerId);
+		customer = result.get();
+		
+		assertThat(customer.getServiceItems(), containsInAnyOrder(serviceItemOne, serviceItemTwo));
+	}
+
 }
