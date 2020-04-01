@@ -20,13 +20,13 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.invoicetracker.Repositories.AgencyRespository;
-import com.invoicetracker.Repositories.ContractorRepository;
 import com.invoicetracker.models.Agency;
 import com.invoicetracker.models.Contractor;
 import com.invoicetracker.models.CustomerImp;
 import com.invoicetracker.models.InvoiceImp;
 import com.invoicetracker.models.ServiceItem;
+import com.invoicetracker.repositories.AgencyRespository;
+import com.invoicetracker.repositories.ContractorRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
