@@ -11,7 +11,14 @@ function addService(divName) {
         var newServ = document.createElement('div');
         // newServ.outerHTML = `<div class='serviceInfoSet' id='counter'></div>`
         counter++;
-        newServ.innerHTML = `<input type='text' id='clientName'><input type='text' id='serviceName'><input type ='date' id='serviceDate'><input type ='number' id='serviceTime'><input type='number' id='hourly rate'><input type='number' id='amountDue'><button type='button' onclick='deleteServ(` + counter + `)' id='deleteServBtn'>X</button>`;
+        newServ.innerHTML = `<input type="text" class="info" id="clientName">
+        <input type="text" class="info" id="serviceName">
+        <input type="date" class="info" id="serviceDate">
+        <input type="number" class="info" id="serviceTime">
+        <input type="number" class="info" id="hourlyRate">
+        <input type="number" class="info" id="amountDue">
+        <button type='button' onclick='deleteServ(` + counter + `)' id='deleteServBtn'>X</button>
+        `;
         newServ.id = counter;
         document.getElementById(divName).appendChild(newServ);
         newServ.className = 'serviceInfoSet';

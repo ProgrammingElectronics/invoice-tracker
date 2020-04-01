@@ -1,11 +1,22 @@
 function test() {
-    var serviceInfoSet = document.getElementsByClassName('serviceInfoSet');
+    var serviceInfoSets = document.getElementsByClassName('serviceInfoSet');
+    for (let infoSet of serviceInfoSets) {
+        console.log(infoSet.id);
+        var values = infoSet.getElementsByClassName('info');
+        for (let value of values) {
+            console.log(value.value);
+        }
+    }
 
-
-
-
-    console.log(serviceInfoSet);
 }
+
+
+// **** this function of a for/of loop allows iteration of a html collection ****
+// **** this example also prints to the console each DOM's id                ****
+// var list = document.getElementsByClassName("events");
+// for (let item of list) {
+//     console.log(item.id);
+// }
 
 function submit() {
     var contractorName = document.getElementById('contractorName').value;
