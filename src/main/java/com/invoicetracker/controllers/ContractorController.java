@@ -18,12 +18,12 @@ public class ContractorController {
 	
 	@GetMapping("/create-invoice")
 	private String createInvoice() {	
-		return "invoice-creation-view";	
+		return "create-invoice";	
 	}
 
 	@GetMapping("/view-invoice")
 	private String viewInvoice() {	
-		return "invoice-viewing-view";	
+		return "view-invoice";	
 	}
 
 }
