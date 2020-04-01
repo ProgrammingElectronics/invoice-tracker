@@ -8,10 +8,13 @@
     <!-- when moved the href for stylesheets and jsript will have to be updated -->
     <link rel="stylesheet" href="../static/invoice-creation-view.css">
     <script src="../static/invoice-creation-view.js"></script>
+    <script src="../static/invoice-json.js"></script>
 
 </head>
 
 <body>
+
+    <button type="button" onclick="test()">test</button>
 
     <header text="ProJo">
         <img src="../static/images/projo.png" alt="ProJo">
@@ -23,7 +26,7 @@
             <div class="container2" name="" id="topContainer">
                 <div class="container3" name="from" id="contractorInfo">
                     <label for="contractorName">Contractor</label>
-                    <input type="text" id="contractorName">
+                    <p type="text" id="contractorName">json</p>
                     <label for="contractorAddress">Address</label>
                     <input type="text" id="contractorAddress">
                     <label for="contractorPhone">Phone</label>
