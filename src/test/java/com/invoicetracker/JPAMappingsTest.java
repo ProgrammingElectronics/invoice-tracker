@@ -27,6 +27,9 @@ import com.invoicetracker.models.InvoiceImp;
 import com.invoicetracker.models.ServiceItem;
 import com.invoicetracker.repositories.AgencyRespository;
 import com.invoicetracker.repositories.ContractorRepository;
+import com.invoicetracker.repositories.CustomerImpRespository;
+import com.invoicetracker.repositories.InvoiceImpRespository;
+import com.invoicetracker.repositories.ServiceItemRespository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
