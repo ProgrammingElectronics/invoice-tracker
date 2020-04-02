@@ -1,10 +1,12 @@
 package com.invoicetracker;
 
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -58,22 +60,22 @@ public class ContractorControllerMockMvcTest {
 		.andExpect(view().name("view-invoice"));
 	}
 
-	/*
+	
 	@Test
 	public void shouldGetStatusOfOkWhenNavigatingToSearchInvoiceList() throws Exception {
-		LocalDate dateOne = LocalDate.of(2020, 4, 01);
-		InvoiceImp invoiceTestOne = invoiceRepo.save(new InvoiceImp(dateOne));
-
-		LocalDate dateTwo = LocalDate.of(2020, 4, 01);
-		InvoiceImp invoiceTestTwo = invoiceRepo.save(new InvoiceImp(dateTwo));
-		
-		Contractor contractor = contractorRepo.save(new Contractor(invoiceTestOne, invoiceTestTwo));
-		
+//		LocalDate dateOne = LocalDate.of(2020, 4, 01);
+//		InvoiceImp invoiceTestOne = invoiceRepo.save(new InvoiceImp(dateOne));
+//
+//		LocalDate dateTwo = LocalDate.of(2020, 4, 01);
+//		InvoiceImp invoiceTestTwo = invoiceRepo.save(new InvoiceImp(dateTwo));
+//		
+//		Contractor contractor = contractorRepo.save(new Contractor(invoiceTestOne, invoiceTestTwo));
+//		
 		long contractorId = 11;
-		
+		when(contractorRepo.findById(contractorId)).thenReturn(Optional.of(contractorOne));
 		this.mockMvc.perform(get("/search-invoice-list/" + contractorId)).andExpect(status().isOk())
 		.andExpect(view().name("search-invoice-list"));
 	}
-	*/
+	
 
 }

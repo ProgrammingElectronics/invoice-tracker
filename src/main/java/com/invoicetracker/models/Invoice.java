@@ -57,10 +57,6 @@ public abstract class Invoice {
 		return totalAmountDue;
 	}
 
-	public void setTotalAmountDue(float totalAmountDue) {
-		this.totalAmountDue = totalAmountDue;
-	}
-
 	/************************ Constructors ****************/
 
 	protected Invoice() {

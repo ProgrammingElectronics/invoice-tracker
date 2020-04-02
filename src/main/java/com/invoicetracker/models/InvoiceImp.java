@@ -42,6 +42,7 @@ public class InvoiceImp extends Invoice {
 		return serviceItems;
 	}
 	
+	
 	/************************ Constructors ****************/
 
 	public InvoiceImp() {
