@@ -21,7 +21,7 @@ public class ServiceItem {
 	private long id;
 
 	@ManyToOne
-	private InvoiceImp invoice;
+	private Invoice invoice;
 
 	@ManyToMany
 	private Collection<CustomerImp> customers;
@@ -37,11 +37,11 @@ public class ServiceItem {
 		return id;
 	}
 
-	public InvoiceImp getInvoice() {
+	public Invoice getInvoice() {
 		return invoice;
 	}
 
-	public void setInvoice(InvoiceImp invoice) {
+	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
 	}
 
@@ -94,7 +94,7 @@ public class ServiceItem {
 		this.dateOfService = dateOfService;
 	}
 
-	public ServiceItem(LocalDate dateOfService, InvoiceImp invoice) {
+	public ServiceItem(LocalDate dateOfService, Invoice invoice) {
 		this.dateOfService = dateOfService;
 		this.invoice = invoice;
 	}

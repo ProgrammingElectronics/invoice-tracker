@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 
 import com.invoicetracker.models.Contractor;
 import com.invoicetracker.models.CustomerImp;
-import com.invoicetracker.models.InvoiceImp;
+import com.invoicetracker.models.Invoice;
 import com.invoicetracker.models.ServiceItem;
 import com.invoicetracker.repositories.ContractorRepository;
 import com.invoicetracker.repositories.CustomerImpRepository;
-import com.invoicetracker.repositories.InvoiceImpRepository;
+import com.invoicetracker.repositories.InvoiceRepository;
 import com.invoicetracker.repositories.ServiceItemRepository;
 
 @Component
@@ -26,7 +26,7 @@ public class Populator implements CommandLineRunner {
 	CustomerImpRepository customerRepo;
 
 	@Resource
-	InvoiceImpRepository invoiceRepo;
+	InvoiceRepository invoiceRepo;
 
 	@Resource
 	ContractorRepository contractorRepo;
@@ -54,7 +54,7 @@ public class Populator implements CommandLineRunner {
 		
 		
 		LocalDate dateThreeInv1 = LocalDate.of(2020, 4, 03);
-		InvoiceImp invoiceOneInv1 = new InvoiceImp(dateThreeInv1, serviceItemOneInv1, serviceItemTwoInv1);
+		Invoice invoiceOneInv1 = new Invoice(dateThreeInv1, serviceItemOneInv1, serviceItemTwoInv1);
 		invoiceRepo.save(invoiceOneInv1);
 		
 		/******************* Invoice Inv2 **********************/
@@ -74,7 +74,7 @@ public class Populator implements CommandLineRunner {
 		serviceItemTwoInv1.setAmountDue(550);
 		
 		LocalDate dateThreeInv2 = LocalDate.of(2020, 4, 03);
-		InvoiceImp invoiceOneInv2 = new InvoiceImp(dateThreeInv2, serviceItemOneInv2, serviceItemTwoInv2);
+		Invoice invoiceOneInv2 = new Invoice(dateThreeInv2, serviceItemOneInv2, serviceItemTwoInv2);
 		invoiceRepo.save(invoiceOneInv2);
 		
 		//ContractorOne

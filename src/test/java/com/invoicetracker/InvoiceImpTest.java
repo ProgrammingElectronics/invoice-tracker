@@ -12,10 +12,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.invoicetracker.models.CustomerImp;
-import com.invoicetracker.models.InvoiceImp;
+import com.invoicetracker.models.Invoice;
 import com.invoicetracker.models.ServiceItem;
 import com.invoicetracker.repositories.CustomerImpRepository;
-import com.invoicetracker.repositories.InvoiceImpRepository;
+import com.invoicetracker.repositories.InvoiceRepository;
 import com.invoicetracker.repositories.ServiceItemRepository;
 
 @DataJpaTest
@@ -28,7 +28,7 @@ class InvoiceImpTest {
 	ServiceItemRepository serviceItemRepo;
 
 	@Resource
-	InvoiceImpRepository invoiceRepo;
+	InvoiceRepository invoiceRepo;
 	
 	@Test
 	void shouldSumServiceItemsAmountDue() {
@@ -47,7 +47,7 @@ class InvoiceImpTest {
 		serviceItemTwoInv1.setAmountDue(400);
 	
 		LocalDate dateThreeInv1 = LocalDate.of(2020, 4, 03);
-		InvoiceImp invoiceOneInv1 = new InvoiceImp(dateThreeInv1, serviceItemOneInv1, serviceItemTwoInv1);
+		Invoice invoiceOneInv1 = new Invoice(dateThreeInv1, serviceItemOneInv1, serviceItemTwoInv1);
 		invoiceRepo.save(invoiceOneInv1);
 		
 		

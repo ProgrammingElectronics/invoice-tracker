@@ -21,7 +21,7 @@ public class Agency extends User {
 	private Collection<Contractor> contractors;
 	
 	@OneToMany
-	private Collection<InvoiceImp> invoices;
+	private Collection<Invoice> invoices;
 	
 	@OneToMany(mappedBy = "agency")
 	private Collection<CustomerImp> customers;
@@ -41,7 +41,7 @@ public class Agency extends User {
 		return contractors;
 	}
 	
-	public Collection<InvoiceImp> getInvoices() {
+	public Collection<Invoice> getInvoices() {
 		return invoices;
 	}
 

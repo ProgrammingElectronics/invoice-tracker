@@ -23,12 +23,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.invoicetracker.models.Agency;
 import com.invoicetracker.models.Contractor;
 import com.invoicetracker.models.CustomerImp;
-import com.invoicetracker.models.InvoiceImp;
+import com.invoicetracker.models.Invoice;
 import com.invoicetracker.models.ServiceItem;
 import com.invoicetracker.repositories.AgencyRepository;
 import com.invoicetracker.repositories.ContractorRepository;
 import com.invoicetracker.repositories.CustomerImpRepository;
-import com.invoicetracker.repositories.InvoiceImpRepository;
+import com.invoicetracker.repositories.InvoiceRepository;
 import com.invoicetracker.repositories.ServiceItemRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -45,7 +45,7 @@ public class JPAMappingsTest {
 	private AgencyRepository agencyRepo;
 
 	@Resource
-	private InvoiceImpRepository invoiceRepo;
+	private InvoiceRepository invoiceRepo;
 
 	@Resource
 	private ServiceItemRepository serviceItemRepo;
@@ -186,14 +186,14 @@ public class JPAMappingsTest {
 	public void shouldSaveAndLoadInvoiceDateOfService() {
 		// Arrange
 		LocalDate date = LocalDate.of(2020, 03, 28);
-		InvoiceImp invoice = invoiceRepo.save(new InvoiceImp(date));
+		Invoice invoice = invoiceRepo.save(new Invoice(date));
 		Long invoiceId = invoice.getId();
 
 		// Act
 		entityManager.flush();
 		entityManager.clear();
 
-		Optional<InvoiceImp> result = invoiceRepo.findById(invoiceId);
+		Optional<Invoice> result = invoiceRepo.findById(invoiceId);
 		invoice = result.get();
 
 		// Assert
@@ -204,14 +204,14 @@ public class JPAMappingsTest {
 	public void shouldGenerateInvoiceId() {
 		// Arrange
 		LocalDate date = LocalDate.of(2020, 03, 28);
-		InvoiceImp invoice = invoiceRepo.save(new InvoiceImp(date));
+		Invoice invoice = invoiceRepo.save(new Invoice(date));
 		Long invoiceId = invoice.getId();
 
 		// Act
 		entityManager.flush();
 		entityManager.clear();
 
-		Optional<InvoiceImp> result = invoiceRepo.findById(invoiceId);
+		Optional<Invoice> result = invoiceRepo.findById(invoiceId);
 		invoice = result.get();
 
 		// Assert
@@ -263,14 +263,14 @@ public class JPAMappingsTest {
 		ServiceItem serviceOne = serviceItemRepo.save(new ServiceItem(dateServiceOne));
 		ServiceItem serviceTwo = serviceItemRepo.save(new ServiceItem(dateServiceTwo));
 		LocalDate dateOfInvoice = LocalDate.of(2020, 03, 29);
-		InvoiceImp invoice = invoiceRepo.save(new InvoiceImp(dateOfInvoice, serviceOne, serviceTwo));
+		Invoice invoice = invoiceRepo.save(new Invoice(dateOfInvoice, serviceOne, serviceTwo));
 		long invoiceId = invoice.getId();
 
 		// Act
 		entityManager.flush();
 		entityManager.clear();
 
-		Optional<InvoiceImp> result = invoiceRepo.findById(invoiceId);
+		Optional<Invoice> result = invoiceRepo.findById(invoiceId);
 		invoice = result.get();
 
 		// Assert
@@ -281,7 +281,7 @@ public class JPAMappingsTest {
 	public void shouldEstablishServiceItemToInvoiceImpRelationship() {
 		// Arrange
 		LocalDate dateOfInvoice = LocalDate.of(2020, 03, 29);
-		InvoiceImp invoice = invoiceRepo.save(new InvoiceImp(dateOfInvoice));
+		Invoice invoice = invoiceRepo.save(new Invoice(dateOfInvoice));
 		LocalDate dateOfService = LocalDate.of(2020, 03, 29);
 		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(dateOfService, invoice));
 		long serviceItemId = serviceItem.getId();
@@ -371,8 +371,8 @@ public class JPAMappingsTest {
 	@Test
 	public void shouldEstablishContractorToInvoiceImpRelationship() {
 		// Arrange
-		InvoiceImp invoiceOne = invoiceRepo.save(new InvoiceImp());
-		InvoiceImp invoiceTwo = invoiceRepo.save(new InvoiceImp());
+		Invoice invoiceOne = invoiceRepo.save(new Invoice());
+		Invoice invoiceTwo = invoiceRepo.save(new Invoice());
 		Contractor contractor = contractorRepo.save(new Contractor(invoiceOne, invoiceTwo));
 		long contractorId = contractor.getId();
 

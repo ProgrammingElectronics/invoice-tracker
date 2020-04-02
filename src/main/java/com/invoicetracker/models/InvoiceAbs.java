@@ -1,24 +1,16 @@
 package com.invoicetracker.models;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-//@PrimaryKeyJoinColumn(name = "invoiceId")
-public class Invoice {
+public abstract class InvoiceAbs {
 
 	/************************ Field Values ****************/
 
@@ -30,17 +22,9 @@ public class Invoice {
 	private LocalDate dateOfInvoice;
 	private boolean isPaid;
 	private float totalAmountDue;
-	
-	@ManyToOne
-	Contractor contractor;
 
-	@ManyToOne
-	Agency agency;
+	/************************ Getters and Setters ****************/
 
-	@OneToMany
-	private Collection<ServiceItem> serviceItems;
-
-	/************************ Getters and Setter ****************/
 	public long getId() {
 		return id;
 	}
@@ -72,36 +56,18 @@ public class Invoice {
 	public float getTotalAmountDue() {
 		return totalAmountDue;
 	}
-	
-	public Contractor getContractor() {
-		return contractor;
-	}
-
-	public Agency getAgency() {
-		return agency;
-	}
-
-	public Collection<ServiceItem> getServiceItems() {
-		return serviceItems;
-	}
 
 	/************************ Constructors ****************/
 
-
-	public Invoice() {
+	protected InvoiceAbs() {
 	}
 
-	public Invoice(LocalDate dateOfInvoice) {
+	protected InvoiceAbs(LocalDate dateOfInvoice) {
 		this.dateOfInvoice = dateOfInvoice;
-	}
-
-	public Invoice(LocalDate dateOfInvoice, ServiceItem...serviceItems) {
-		this.dateOfInvoice = dateOfInvoice;
-		this.serviceItems = new HashSet<>(Arrays.asList(serviceItems));
 	}
 
 	/************************ Overrides ****************/
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -118,11 +84,10 @@ public class Invoice {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Invoice other = (Invoice) obj;
+		InvoiceAbs other = (InvoiceAbs) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
-
 
 }

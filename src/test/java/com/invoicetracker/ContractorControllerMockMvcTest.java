@@ -16,9 +16,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.invoicetracker.controllers.ContractorController;
 import com.invoicetracker.models.Contractor;
-import com.invoicetracker.models.InvoiceImp;
+import com.invoicetracker.models.Invoice;
 import com.invoicetracker.repositories.ContractorRepository;
-import com.invoicetracker.repositories.InvoiceImpRepository;
+import com.invoicetracker.repositories.InvoiceRepository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,16 +37,16 @@ public class ContractorControllerMockMvcTest {
 	private ContractorRepository contractorRepo;
 
 	@MockBean
-	private InvoiceImpRepository invoiceRepo;
+	private InvoiceRepository invoiceRepo;
 	
 	@Mock
 	private Contractor contractorOne;
 	
 	@Mock
-	private InvoiceImp invoiceOne;
+	private Invoice invoiceOne;
 
 	@Mock
-	private InvoiceImp invoiceTwo;
+	private Invoice invoiceTwo;
 	
 	@Test
 	public void shouldGetStatusOfOkWhenNavigatingToCreateInvoice() throws Exception {
