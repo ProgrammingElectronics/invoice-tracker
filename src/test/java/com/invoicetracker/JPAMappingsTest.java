@@ -25,11 +25,11 @@ import com.invoicetracker.models.Contractor;
 import com.invoicetracker.models.CustomerImp;
 import com.invoicetracker.models.InvoiceImp;
 import com.invoicetracker.models.ServiceItem;
-import com.invoicetracker.repositories.AgencyRespository;
+import com.invoicetracker.repositories.AgencyRepository;
 import com.invoicetracker.repositories.ContractorRepository;
-import com.invoicetracker.repositories.CustomerImpRespository;
-import com.invoicetracker.repositories.InvoiceImpRespository;
-import com.invoicetracker.repositories.ServiceItemRespository;
+import com.invoicetracker.repositories.CustomerImpRepository;
+import com.invoicetracker.repositories.InvoiceImpRepository;
+import com.invoicetracker.repositories.ServiceItemRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
@@ -42,16 +42,16 @@ public class JPAMappingsTest {
 	private ContractorRepository contractorRepo;
 
 	@Resource
-	private AgencyRespository agencyRepo;
+	private AgencyRepository agencyRepo;
 
 	@Resource
-	private InvoiceImpRespository invoiceRepo;
+	private InvoiceImpRepository invoiceRepo;
 
 	@Resource
-	private ServiceItemRespository serviceItemRepo;
+	private ServiceItemRepository serviceItemRepo;
 
 	@Resource
-	private CustomerImpRespository customerRepo;
+	private CustomerImpRepository customerRepo;
 
 	@Test
 	public void shouldSaveAndLoadContractorPayPalId() {
