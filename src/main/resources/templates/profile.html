@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProJo</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css/profile-styles.css">
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <!-- navigation -->
+
+    <div class="container">
+        <div class="navbar">
+            <a href="index.html" class="navbar-brand-pic"><img src="../templates/images/projo-1.png"
+                    class="responsive-img" alt="logo"></a>
+            <div class="login-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Username" name="username">
+                    <input type="text" placeholder="Password" name="psw">
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-right">
+                <input type="text" placeholder="Search..">
+                <button type="submit"><i class="fa fa-search"></i></button>
+                <li><a href="index.html" class="active">HOME</a></li>
+                <li><a href="#">REPORTS</a></li>
+                <li><a href="#">CONTRACTS</a></li>
+                <li><a href="#">PAYMENTS</a></li>
+                <li><a href="#">MESSAGES</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+    <!--name section-->
+    <div id="hello">
+        <div class="container">
+            <div class="name-row">
+                <div class="user-name">
+                    <h3>Hello, ProJo
+                        <img src="images/profile-picture.png" alt=""></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- divider section -->
+    <div class="divider">
+        <div class="container">
+            <div class="profile-block">
+                <div class="profile-settings">
+                    <h3>My Profile</h3>
+                    <div class="personal-info-divider">
+                        <button onclick="proJoFunction('Personal')" class="w3-button w3-block w3-left-align"><i
+                                class="fas fa-user-circle"></i>Personal Info</button>
+                        <div id="Personal" class="w3-container w3-hide">
+                            <form id="personal">
+                                <label for="name">Name:</label><br>
+                                <input type="text" id="name" name="name" value=""><br>
+                                <label for="address">Address:</label><br>
+                                <input type="text" id="address" address="address" value=""><br>
+                                <label for="phone">Phone number:</label><br>
+                                <input type="text" id="phone" phone="phone" value=""><br>
+                                <input type="submit" value="Submit">
+                            </form>
+
+
+                        </div>
+                    </div>
+                    <div class="privacy-security-divider">
+                        <button onclick="proJoFunction('Privacy')" class="w3-button w3-block w3-left-align">
+                            <i class="fas fa-lock"></i>Privacy & Security</button>
+                        <div id="Privacy" class="w3-container w3-hide">
+                            <form>
+                                <label for="email">Email:</label><br>
+                                <input type="text" id="email" email="email" value=""><br>
+                                <label for="password">Password:</label><br>
+                                <input type="password" id="pwd" name="password" value=""><br><br>
+                                <input type="submit" value="Submit">
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="payment-settings-divider">
+                        <button onclick="proJoFunction('Payment')" class="w3-button w3-block w3-left-align">
+                            <i class="fas fa-landmark">Payment Settings</i></button>
+                        <div id="Payment" class="w3-container w3-hide">
+                            <p>Preferred payment option:</p>
+                            <form>
+                                <label for="pay-method">Payment Method</label><br>
+                                <select id="pay-methods" name="pay-methods">
+                                    <option value="pick-a-method">Make a selection</option>
+                                    <option value="CashApp">CashApp</option>
+                                    <option value="Check">Check</option>
+                                    <option value="Direct Deposit">Direct Deposit</option>
+                                    <option value="PayPal">PayPal</option>
+                                    <option value="Venmo">Venmo</option>
+                                </select>
+
+                                <p>Please enter in your account information: </p>
+                                <label for="bank-name">Bank Name</label><br>
+                                <input type="text" id="bank-name" name="bank-name" placeholder="Bank name..."><br>
+                                <label for="account-number">Account Number</label><br>
+                                <input type="text" id="account-number" name="account-number"
+                                    placeholder="Account number..."><br>
+                                <label for="routing-number">Routing Number</label><br>
+                                <input type="text" id="routing-number" name="routing-number"
+                                    placeholder="Routing number..."><br>
+
+                                <label for="cash-tag">Cash Tag</label><br>
+                                <input type="text" id="cash-tag" name="cash-tag" placeholder="$CashTag..."><br>
+
+                                <label for="pay-pal">Paypal.Me link</label><br>
+                                <input type="text" id="pay-pal" name="pay-pal" placeholder="paypal.me/yourname..."><br>
+
+                                <label for="venmo">Venmo</label><br>
+                                <input type="text" id="venmo" name="venmo" placeholder="@username...">
+
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="notifications-divider">
+                        <button onclick="proJoFunction('Notify')" class="w3-button w3-block w3-left-align">
+                            <i class="fas fa-bell">Notifications</i></button>
+                        <div id="Notify" class="w3-container w3-hide">
+                            <p>Notification Preference:</p>
+                            <form>
+                                <input type="checkbox" id="e-mail" name="email" value="E-mail">
+                                <label for="e-mail"> I prefer e-mail.</label><br>
+                                <input type="checkbox" id="text" name="text" value="Text Message">
+                                <label for="vehicle2"> I prefer a text message.</label><br>
+                                <input type="checkbox" id="both" name="both" value="E-mail and Text">
+                                <label for="vehicle3"> I prefer both e-mail and text.</label>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+<footer>
+    <div class="container">
+        <div class="footer-navbar">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse">
+            <ul>
+                <li><a href="#">ABOUT US</a></li>
+                <li><a href="#">TERMS OF SERVICE</a></li>
+                <li><a href="#">HELP & SUPPORT</a></li>
+            </ul>
+        </div>
+    </div>
+
+    &COPY; 2020 ProJo
+
+</footer>
+
+</html>
