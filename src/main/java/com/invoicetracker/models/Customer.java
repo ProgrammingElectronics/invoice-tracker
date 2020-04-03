@@ -11,6 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -31,7 +32,7 @@ public class Customer {
 	@ManyToOne
 	private Agency agency;
 
-	@ManyToMany
+	@OneToMany
 	private Collection<ServiceItem> serviceItems;
 
 	/************************ Getters and Setters ****************/
@@ -76,7 +77,7 @@ public class Customer {
 		this.customerName = customerName;
 	}
 
-	public Customer(String customerName, ServiceItem... serviceItems) {
+	public Customer(String customerName, ServiceItem ... serviceItems) {
 		this.customerName = customerName;
 		this.serviceItems = new HashSet<>(Arrays.asList(serviceItems));
 	}

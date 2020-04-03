@@ -41,7 +41,7 @@ public class ServiceItem {
 		this.invoice = invoice;
 	}
 
-	public Customer getCustomers() {
+	public Customer getCustomer() {
 		return customer;
 	}
 

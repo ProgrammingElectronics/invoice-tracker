@@ -1,15 +1,12 @@
 package com.invoicetracker;
 
 import java.time.LocalDate;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-import java.util.Collection;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -330,12 +327,11 @@ public class JPAMappingsTest {
 	}
 
 	@Test
-	public void shouldEstablishServiceItemToCustomerImpRelationship() {
+	public void shouldEstablishServiceItemToCustomerRelationship() {
 		// Arrange
 		Customer customerOne = customerRepo.save(new Customer("testNameOne"));
-		Customer customerTwo = customerRepo.save(new Customer("testNameTwo"));
 		LocalDate dateOfService = LocalDate.of(2020, 03, 29);
-		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(dateOfService, customerOne, customerTwo));
+		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(dateOfService, customerOne));
 		long serviceId = serviceItem.getId();
 
 		// Act
@@ -344,12 +340,13 @@ public class JPAMappingsTest {
 
 		Optional<ServiceItem> result = serviceItemRepo.findById(serviceId);
 		serviceItem = result.get();
+		String customerName = serviceItem.getCustomer().getCustomerName();
 
-		assertThat(serviceItem.getCustomers(), containsInAnyOrder(customerOne, customerTwo));
+		assertEquals(customerName, customerOne.getCustomerName());
 	}
 
 	@Test
-	public void shouldEstablishCustomerImpToServiceItemRelationship() {
+	public void shouldEstablishCustomerToServiceItemRelationship() {
 		// Arrange
 		LocalDate dateOfServiceOne = LocalDate.of(2020, 03, 29);
 		LocalDate dateOfServiceTwo = LocalDate.of(2020, 03, 30);
@@ -369,7 +366,7 @@ public class JPAMappingsTest {
 	}
 
 	@Test
-	public void shouldEstablishContractorToInvoiceImpRelationship() {
+	public void shouldEstablishContractorToInvoiceRelationship() {
 		// Arrange
 		Invoice invoiceOne = invoiceRepo.save(new Invoice());
 		Invoice invoiceTwo = invoiceRepo.save(new Invoice());
