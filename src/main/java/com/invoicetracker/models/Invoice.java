@@ -13,7 +13,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Invoice {
@@ -23,12 +22,12 @@ public class Invoice {
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	private int invoiceNumber;
 	private LocalDate dateOfInvoice;
 	private boolean isPaid;
 	private float totalAmountDue;
-	
+
 	@ManyToOne
 	Contractor contractor;
 
@@ -68,9 +67,11 @@ public class Invoice {
 	}
 
 	public float getTotalAmountDue() {
-		return totalAmountDue;
+
+		return calculateTotalAmountDue();
 	}
-	
+
+
 	public Contractor getContractor() {
 		return contractor;
 	}
@@ -85,7 +86,6 @@ public class Invoice {
 
 	/************************ Constructors ****************/
 
-
 	public Invoice() {
 	}
 
@@ -93,13 +93,26 @@ public class Invoice {
 		this.dateOfInvoice = dateOfInvoice;
 	}
 
-	public Invoice(LocalDate dateOfInvoice, ServiceItem...serviceItems) {
+	public Invoice(LocalDate dateOfInvoice, ServiceItem... serviceItems) {
 		this.dateOfInvoice = dateOfInvoice;
 		this.serviceItems = new HashSet<>(Arrays.asList(serviceItems));
 	}
 
-	/************************ Overrides ****************/
+	/************************ Class Methods ****************/
 	
+	public float calculateTotalAmountDue() {
+		
+		float runningTotal = 0;
+		
+		for (ServiceItem item : this.serviceItems) {
+			runningTotal += item.getAmountDue();
+		}
+		
+		return runningTotal;
+	}
+	
+	/************************ Overrides ****************/
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
