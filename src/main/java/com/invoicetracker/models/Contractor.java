@@ -24,13 +24,13 @@ public class Contractor extends User {
 	 * is breaking the JPAMappingsTest shouldEstablishContractorToInvoiceImpRelationship 
 	 */
 	@OneToMany // (mappedBy = "contractor")
-	private Collection<InvoiceImp> invoices;
+	private Collection<Invoice> invoices;
 
 	@ManyToMany
 	private Collection<Agency> agencies;
 
 	@ManyToMany(mappedBy = "contractors")
-	private Collection<CustomerImp> customers;
+	private Collection<Customer> customers;
 
 	/************************ Getters and Setters ****************/
 
@@ -58,7 +58,7 @@ public class Contractor extends User {
 		this.payPalId = payPalId;
 	}
 
-	public Collection<InvoiceImp> getInvoices() {
+	public Collection<Invoice> getInvoices() {
 		return invoices;
 	}
 
@@ -66,7 +66,7 @@ public class Contractor extends User {
 		return agencies;
 	}
 
-	public Collection<CustomerImp> getCustomers() {
+	public Collection<Customer> getCustomers() {
 		return customers;
 	}
 
@@ -84,11 +84,11 @@ public class Contractor extends User {
 		this.agencies = new HashSet<>(Arrays.asList(agencies));
 	}
 
-	public Contractor(InvoiceImp... invoices) {
+	public Contractor(Invoice... invoices) {
 		this.invoices = new HashSet<>(Arrays.asList(invoices));
 	}
 
-	public Contractor(String firstName, InvoiceImp...invoices) {
+	public Contractor(String firstName, Invoice...invoices) {
 		this.firstName = firstName;
 		this.invoices = new HashSet<>(Arrays.asList(invoices));
 	}

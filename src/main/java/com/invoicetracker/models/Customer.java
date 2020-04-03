@@ -1,15 +1,21 @@
 package com.invoicetracker.models;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Customer {
-	
+public class Customer {
+
 	/************************ Field Values ****************/
 
 	@Id
@@ -18,10 +24,18 @@ public abstract class Customer {
 	
 	private String customerName;
 	private int accountNumber;
+	
+	@ManyToMany
+	private Collection<Contractor> contractors;
 
+	@ManyToOne
+	private Agency agency;
+
+	@ManyToMany
+	private Collection<ServiceItem> serviceItems;
 
 	/************************ Getters and Setters ****************/
-	
+
 	public long getId() {
 		return id;
 	}
@@ -41,13 +55,30 @@ public abstract class Customer {
 	public void setAccountNumber(int accountNumber) {
 		this.accountNumber = accountNumber;
 	}
-	
+	public Collection<Contractor> getContractors() {
+		return contractors;
+	}
+
+	public Agency getAgency() {
+		return agency;
+	}
+
+	public Collection<ServiceItem> getServiceItems() {
+		return serviceItems;
+	}
+
 	/************************ Constructors ****************/
-	
-	public Customer() {}
-	
+
+	public Customer() {
+	}
+
 	public Customer(String customerName) {
 		this.customerName = customerName;
+	}
+
+	public Customer(String customerName, ServiceItem... serviceItems) {
+		this.customerName = customerName;
+		this.serviceItems = new HashSet<>(Arrays.asList(serviceItems));
 	}
 
 	/************************ Overrides ****************/
@@ -55,7 +86,7 @@ public abstract class Customer {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
@@ -64,7 +95,7 @@ public abstract class Customer {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;

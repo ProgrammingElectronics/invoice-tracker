@@ -1,16 +1,22 @@
 package com.invoicetracker.models;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Invoice {
+public class Invoice {
 
 	/************************ Field Values ****************/
 
@@ -22,9 +28,17 @@ public abstract class Invoice {
 	private LocalDate dateOfInvoice;
 	private boolean isPaid;
 	private float totalAmountDue;
+	
+	@ManyToOne
+	Contractor contractor;
 
-	/************************ Getters and Setters ****************/
+	@ManyToOne
+	Agency agency;
 
+	@OneToMany
+	private Collection<ServiceItem> serviceItems;
+
+	/************************ Getters and Setter ****************/
 	public long getId() {
 		return id;
 	}
@@ -56,22 +70,36 @@ public abstract class Invoice {
 	public float getTotalAmountDue() {
 		return totalAmountDue;
 	}
+	
+	public Contractor getContractor() {
+		return contractor;
+	}
 
-	public void setTotalAmountDue(float totalAmountDue) {
-		this.totalAmountDue = totalAmountDue;
+	public Agency getAgency() {
+		return agency;
+	}
+
+	public Collection<ServiceItem> getServiceItems() {
+		return serviceItems;
 	}
 
 	/************************ Constructors ****************/
 
-	protected Invoice() {
+
+	public Invoice() {
 	}
 
-	protected Invoice(LocalDate dateOfInvoice) {
+	public Invoice(LocalDate dateOfInvoice) {
 		this.dateOfInvoice = dateOfInvoice;
 	}
 
-	/************************ Overrides ****************/
+	public Invoice(LocalDate dateOfInvoice, ServiceItem...serviceItems) {
+		this.dateOfInvoice = dateOfInvoice;
+		this.serviceItems = new HashSet<>(Arrays.asList(serviceItems));
+	}
 
+	/************************ Overrides ****************/
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
