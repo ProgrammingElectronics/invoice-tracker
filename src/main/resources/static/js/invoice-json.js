@@ -116,7 +116,8 @@ function test() {
     }
     console.log(JSON.stringify(invoiceJson));
 
-
+    xmlhttp.open("GET", "http://invoicetracker.com");
+    xmlhttp.send();
 }
 
 // test was used for testing the submission feature pieces while building functions
