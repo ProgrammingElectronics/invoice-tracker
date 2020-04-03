@@ -88,4 +88,9 @@ public class Contractor extends User {
 		this.invoices = new HashSet<>(Arrays.asList(invoices));
 	}
 
+	public Contractor(String firstName, InvoiceImp...invoices) {
+		this.firstName = firstName;
+		this.invoices = new HashSet<>(Arrays.asList(invoices));
+	}
+
 }
