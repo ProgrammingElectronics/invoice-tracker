@@ -155,7 +155,7 @@ public class JPAMappingsTest {
 		contractor = result.get();
 
 		// Assert
-		assertThat(contractor.getAgencies(), containsInAnyOrder(agency));
+		assertEquals(contractor.getAgency(), agency);
 
 	}
 

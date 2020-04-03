@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -26,10 +26,10 @@ public class Contractor extends User {
 	@OneToMany // (mappedBy = "contractor")
 	private Collection<Invoice> invoices;
 
-	@ManyToMany
-	private Collection<Agency> agencies;
+	@ManyToOne
+	private Agency agency;
 
-	@ManyToMany(mappedBy = "contractors")
+	@OneToMany(mappedBy = "contractors")
 	private Collection<Customer> customers;
 
 	/************************ Getters and Setters ****************/
@@ -62,8 +62,8 @@ public class Contractor extends User {
 		return invoices;
 	}
 
-	public Collection<Agency> getAgencies() {
-		return agencies;
+	public Agency getAgency() {
+		return agency;
 	}
 
 	public Collection<Customer> getCustomers() {
@@ -79,9 +79,9 @@ public class Contractor extends User {
 		this.firstName = firstName;
 	}
 
-	public Contractor(String firstName, Agency... agencies) {
+	public Contractor(String firstName, Agency agency) {
 		this.firstName = firstName;
-		this.agencies = new HashSet<>(Arrays.asList(agencies));
+		this.agency = agency;
 	}
 
 	public Contractor(Invoice... invoices) {

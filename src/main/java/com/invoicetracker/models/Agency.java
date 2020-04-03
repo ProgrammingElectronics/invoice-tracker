@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -17,7 +16,7 @@ public class Agency extends User {
 	
 	private String businessName;
 	
-	@ManyToMany
+	@OneToMany //(mappedBy = "agency")  this breaks my tests...
 	private Collection<Contractor> contractors;
 	
 	@OneToMany

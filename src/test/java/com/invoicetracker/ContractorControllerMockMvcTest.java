@@ -63,15 +63,7 @@ public class ContractorControllerMockMvcTest {
 	
 	@Test
 	public void shouldGetStatusOfOkWhenNavigatingToSearchInvoiceList() throws Exception {
-//		LocalDate dateOne = LocalDate.of(2020, 4, 01);
-//		InvoiceImp invoiceTestOne = invoiceRepo.save(new InvoiceImp(dateOne));
-//
-//		LocalDate dateTwo = LocalDate.of(2020, 4, 01);
-//		InvoiceImp invoiceTestTwo = invoiceRepo.save(new InvoiceImp(dateTwo));
-//		
-//		Contractor contractor = contractorRepo.save(new Contractor(invoiceTestOne, invoiceTestTwo));
-//		
-		long contractorId = 11;
+		long contractorId = 1;
 		when(contractorRepo.findById(contractorId)).thenReturn(Optional.of(contractorOne));
 		this.mockMvc.perform(get("/search-invoice-list/" + contractorId)).andExpect(status().isOk())
 		.andExpect(view().name("search-invoice-list"));
