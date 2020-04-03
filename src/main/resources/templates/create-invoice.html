@@ -7,14 +7,17 @@
     <title>ProJo Invoice</title>
     <!-- when moved the href for stylesheets and jsript will have to be updated -->
     <link rel="stylesheet" href="../css/invoice-creation-view.css">
+    <script src="../static/js/invoice-json.js"></script>
 
 
 </head>
 
 <body>
 
+    <button type="button" onclick="test()">test</button>
+
     <header text="ProJo">
-        <img src="../images/projo.png" alt="ProJo">
+        <img src="../static/images/projo.png" alt="ProJo">
     </header>
     <h2 id="invoiceTitle">INVOICE</h2>
 
@@ -73,12 +76,12 @@
             <!-- this is the section that should be added with a function tied to the addServBtn -->
             <div class="container5" id="serviceInfo">
                 <div class="serviceInfoSet" id="1">
-                    <input type="text" id="clientName">
-                    <input type="text" id="serviceName">
-                    <input type="date" id="serviceDate">
-                    <input type="number" id="serviceTime">
-                    <input type="number" id="hourlyRate">
-                    <input type="number" id="amountDue">
+                    <input type="text" class="info" id="clientName">
+                    <input type="text" class="info" id="serviceName">
+                    <input type="date" class="info" id="serviceDate">
+                    <input type="number" class="info" id="serviceTime">
+                    <input type="number" class="info" id="hourlyRate">
+                    <input type="number" class="info" id="amountDue">
                     <button type="button" onclick="deleteServ(1)" id="deleteServBtn">X</button>
                 </div>
             </div>

@@ -4,8 +4,8 @@
 }
 
 html {
-    color: rgb(6, 14, 138);
-    background-color: rgb(6, 14, 138);
+    color: #2E343F;
+    background-color: #4f5357;
 }
 
 p {
@@ -13,28 +13,32 @@ p {
 }
 
 body {
-    background-color: #b1b3b9;
+    background-color: #f2f2f2;
     margin: 1em 1em;
-    border: 5px solid rgb(129, 212, 19);
-    border-radius: 1em;
+    border: 5px solid #3a9ac1;
+    border-radius: 1em 1em 1em 1em;
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: space-around;
 }
+
+/* Logo */
 header {
-    font-size: 2em;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-left: auto;
+    /* font-size: 2em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+    margin-top: 2%;
+    margin-left: 2%;
     margin-right: auto;
-    border: orange solid 5px;
+    border: #3a9ac1 solid 5px;
     border-radius: 5em;
-    width: 300px;
+    width: 280px;
+    height: 130px;
     display: flex;
     justify-content: center;
-    background-color: navy;
-    color: orange;
+    background-color: #4f5357;
+    color: #3a9ac1;
 }
 
 body h2 {
@@ -74,7 +78,7 @@ input {
     padding: .25em;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
 }
 
 #invoiceIdandDateContainer {
@@ -84,7 +88,12 @@ input {
 
 #invoiceIdandDateContainer div{
     display: flex;
-    padding: 1em;
+    padding: .25em;
+}
+
+.container4 input{
+    margin-left: 10%;
+    width: 8.5em;
 }
 
 /* separates the right hand side of the upper section */
@@ -104,7 +113,7 @@ input {
     justify-content: flex-start;
 }
 
-/*  */
+/* paid button */
 #invoicePaid {
     display: flex;
     flex-direction: column;
@@ -115,10 +124,6 @@ input {
     background-color: red;
 }
 
-.container4 input{
-    margin-left: 10%;
-    width: 85px;
-}
 
 /* .container5 is for lower section */
 .container5 {
@@ -170,12 +175,6 @@ input {
     border: solid black 3px;
 }
 
-/* .container5b div p{
-    margin: .25%;
-    padding: 0%;
-    width: 24%;
-} */
-
 /* buttons */
 
 button {
@@ -202,8 +201,8 @@ button {
 
 #submitBtn {
     
-    background-color: navy;
-    color: yellow;
+    background-color: #4f5357;
+    color: #3a9ac1;
     font-size: larger;
     font-style: italic;
 }
