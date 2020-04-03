@@ -8,11 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.invoicetracker.models.Contractor;
-import com.invoicetracker.models.CustomerImp;
+import com.invoicetracker.models.Customer;
 import com.invoicetracker.models.Invoice;
 import com.invoicetracker.models.ServiceItem;
 import com.invoicetracker.repositories.ContractorRepository;
-import com.invoicetracker.repositories.CustomerImpRepository;
+import com.invoicetracker.repositories.CustomerRepository;
 import com.invoicetracker.repositories.InvoiceRepository;
 import com.invoicetracker.repositories.ServiceItemRepository;
 
@@ -23,7 +23,7 @@ public class Populator implements CommandLineRunner {
 	ServiceItemRepository serviceItemRepo;
 	
 	@Resource
-	CustomerImpRepository customerRepo;
+	CustomerRepository customerRepo;
 
 	@Resource
 	InvoiceRepository invoiceRepo;
@@ -37,8 +37,8 @@ public class Populator implements CommandLineRunner {
 		
 		/******************* Invoice Inv2 **********************/
 		
-		CustomerImp customerOneInv1 = new CustomerImp("Harry");
-		CustomerImp customerTwoInv1 = new CustomerImp("Jill");
+		Customer customerOneInv1 = new Customer("Harry");
+		Customer customerTwoInv1 = new Customer("Jill");
 		customerRepo.save(customerTwoInv1);
 		customerRepo.save(customerOneInv1);
 		
@@ -59,8 +59,8 @@ public class Populator implements CommandLineRunner {
 		
 		/******************* Invoice Inv2 **********************/
 		
-		CustomerImp customerOneInv2 = new CustomerImp("Harry");
-		CustomerImp customerTwoInv2 = new CustomerImp("Jill");
+		Customer customerOneInv2 = new Customer("Harry");
+		Customer customerTwoInv2 = new Customer("Jill");
 		customerRepo.save(customerTwoInv2);
 		customerRepo.save(customerOneInv2);
 		

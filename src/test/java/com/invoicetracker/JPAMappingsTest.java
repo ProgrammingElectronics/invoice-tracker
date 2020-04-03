@@ -22,12 +22,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.invoicetracker.models.Agency;
 import com.invoicetracker.models.Contractor;
-import com.invoicetracker.models.CustomerImp;
+import com.invoicetracker.models.Customer;
 import com.invoicetracker.models.Invoice;
 import com.invoicetracker.models.ServiceItem;
 import com.invoicetracker.repositories.AgencyRepository;
 import com.invoicetracker.repositories.ContractorRepository;
-import com.invoicetracker.repositories.CustomerImpRepository;
+import com.invoicetracker.repositories.CustomerRepository;
 import com.invoicetracker.repositories.InvoiceRepository;
 import com.invoicetracker.repositories.ServiceItemRepository;
 
@@ -51,7 +51,7 @@ public class JPAMappingsTest {
 	private ServiceItemRepository serviceItemRepo;
 
 	@Resource
-	private CustomerImpRepository customerRepo;
+	private CustomerRepository customerRepo;
 
 	@Test
 	public void shouldSaveAndLoadContractorPayPalId() {
@@ -256,7 +256,7 @@ public class JPAMappingsTest {
 	}
 
 	@Test
-	public void shouldEstablishInvoiceImpToServiceItemRelationship() {
+	public void shouldEstablishInvoiceToServiceItemRelationship() {
 		// Arrange
 		LocalDate dateServiceOne = LocalDate.of(2020, 03, 28);
 		LocalDate dateServiceTwo = LocalDate.of(2020, 03, 29);
@@ -278,7 +278,7 @@ public class JPAMappingsTest {
 	}
 
 	@Test
-	public void shouldEstablishServiceItemToInvoiceImpRelationship() {
+	public void shouldEstablishServiceItemToInvoiceRelationship() {
 		// Arrange
 		LocalDate dateOfInvoice = LocalDate.of(2020, 03, 29);
 		Invoice invoice = invoiceRepo.save(new Invoice(dateOfInvoice));
@@ -300,14 +300,14 @@ public class JPAMappingsTest {
 	@Test
 	public void shouldGenerateCustomerId() {
 		// Arrange
-		CustomerImp customer = customerRepo.save(new CustomerImp("testName"));
+		Customer customer = customerRepo.save(new Customer("testName"));
 		long customerId = customer.getId();
 
 		// Act
 		entityManager.flush();
 		entityManager.clear();
 
-		Optional<CustomerImp> result = customerRepo.findById(customerId);
+		Optional<Customer> result = customerRepo.findById(customerId);
 		customer = result.get();
 
 		assertThat(customer.getId(), is(greaterThan(0L)));
@@ -316,14 +316,14 @@ public class JPAMappingsTest {
 	@Test
 	public void shouldSaveAndLoadCustomerName() {
 		// Arrange
-		CustomerImp customer = customerRepo.save(new CustomerImp("testName"));
+		Customer customer = customerRepo.save(new Customer("testName"));
 		long customerId = customer.getId();
 
 		// Act
 		entityManager.flush();
 		entityManager.clear();
 
-		Optional<CustomerImp> result = customerRepo.findById(customerId);
+		Optional<Customer> result = customerRepo.findById(customerId);
 		customer = result.get();
 
 		assertEquals(customer.getCustomerName(), "testName");
@@ -332,8 +332,8 @@ public class JPAMappingsTest {
 	@Test
 	public void shouldEstablishServiceItemToCustomerImpRelationship() {
 		// Arrange
-		CustomerImp customerOne = customerRepo.save(new CustomerImp("testNameOne"));
-		CustomerImp customerTwo = customerRepo.save(new CustomerImp("testNameTwo"));
+		Customer customerOne = customerRepo.save(new Customer("testNameOne"));
+		Customer customerTwo = customerRepo.save(new Customer("testNameTwo"));
 		LocalDate dateOfService = LocalDate.of(2020, 03, 29);
 		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(dateOfService, customerOne, customerTwo));
 		long serviceId = serviceItem.getId();
@@ -355,14 +355,14 @@ public class JPAMappingsTest {
 		LocalDate dateOfServiceTwo = LocalDate.of(2020, 03, 30);
 		ServiceItem serviceItemOne = serviceItemRepo.save(new ServiceItem(dateOfServiceOne));
 		ServiceItem serviceItemTwo = serviceItemRepo.save(new ServiceItem(dateOfServiceTwo));
-		CustomerImp customer = customerRepo.save(new CustomerImp("testNameTwo", serviceItemOne, serviceItemTwo));
+		Customer customer = customerRepo.save(new Customer("testNameTwo", serviceItemOne, serviceItemTwo));
 		long customerId = customer.getId();
 
 		// Act
 		entityManager.flush();
 		entityManager.clear();
 
-		Optional<CustomerImp> result = customerRepo.findById(customerId);
+		Optional<Customer> result = customerRepo.findById(customerId);
 		customer = result.get();
 
 		assertThat(customer.getServiceItems(), containsInAnyOrder(serviceItemOne, serviceItemTwo));

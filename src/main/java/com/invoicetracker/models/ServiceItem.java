@@ -1,14 +1,10 @@
 package com.invoicetracker.models;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -23,8 +19,8 @@ public class ServiceItem {
 	@ManyToOne
 	private Invoice invoice;
 
-	@ManyToMany
-	private Collection<CustomerImp> customers;
+	@ManyToOne
+	private Customer customer;
 
 	private LocalDate dateOfService;
 	private float hourlyPayRate;
@@ -45,12 +41,12 @@ public class ServiceItem {
 		this.invoice = invoice;
 	}
 
-	public Collection<CustomerImp> getCustomers() {
-		return customers;
+	public Customer getCustomers() {
+		return customer;
 	}
 
-	public void setCustomers(Collection<CustomerImp> customers) {
-		this.customers = customers;
+	public void setCustomers(Customer customer) {
+		this.customer = customer;
 	}
 
 	public LocalDate getDateOfService() {
@@ -99,9 +95,9 @@ public class ServiceItem {
 		this.invoice = invoice;
 	}
 
-	public ServiceItem(LocalDate dateOfService, CustomerImp... customers) {
+	public ServiceItem(LocalDate dateOfService, Customer customer) {
 		this.dateOfService = dateOfService;
-		this.customers = new HashSet<>(Arrays.asList(customers));
+		this.customer = customer;
 	}
 
 	/************************ Overrides ****************/

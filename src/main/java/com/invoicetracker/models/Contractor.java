@@ -30,7 +30,7 @@ public class Contractor extends User {
 	private Collection<Agency> agencies;
 
 	@ManyToMany(mappedBy = "contractors")
-	private Collection<CustomerImp> customers;
+	private Collection<Customer> customers;
 
 	/************************ Getters and Setters ****************/
 
@@ -66,7 +66,7 @@ public class Contractor extends User {
 		return agencies;
 	}
 
-	public Collection<CustomerImp> getCustomers() {
+	public Collection<Customer> getCustomers() {
 		return customers;
 	}
 

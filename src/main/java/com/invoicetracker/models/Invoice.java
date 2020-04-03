@@ -12,12 +12,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-//@PrimaryKeyJoinColumn(name = "invoiceId")
 public class Invoice {
 
 	/************************ Field Values ****************/
@@ -123,6 +121,5 @@ public class Invoice {
 			return false;
 		return true;
 	}
-
 
 }
