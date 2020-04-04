@@ -4,8 +4,7 @@ function submitInvoiceButton() {
 
     const invoiceJSON = submitInvoice()
     postRequest('http://localhost:8080/submit-invoice',
-        invoiceJSON,
-        null)
+        invoiceJSON)
     console.log(JSON.stringify(invoiceJSON));
 
 }

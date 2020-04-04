@@ -23,11 +23,38 @@ public class InvoiceController {
 	@Resource
 	private InvoiceRepository invoiceRepo;
 	
+//	@RequestMapping("submit-invoice")
+//	private void createNewInvoice(@RequestBody String body) throws JSONException {
+//		JSONObject newInvoice = new JSONObject(body);
+//		String dateOfInvoice = newInvoice.getString("invoiceDate");
+//		LocalDate localDate = LocalDate.parse(dateOfInvoice);
+//		invoiceRepo.save(new Invoice(localDate));
+//	}
+	
 	@RequestMapping("submit-invoice")
 	private void createNewInvoice(@RequestBody String body) throws JSONException {
 		JSONObject newInvoice = new JSONObject(body);
-		String dateOfInvoice = newInvoice.getString("invoiceDate");
+		
+		String dateOfInvoice = newInvoice.getJSONObject("invoiceNumbersJson").getString("invoiceDate");
 		LocalDate localDate = LocalDate.parse(dateOfInvoice);
-		invoiceRepo.save(new Invoice(localDate));
+		Invoice invoice = new Invoice(localDate);
+		
+		int invoiceNumber = newInvoice.getJSONObject("invoiceNumbersJson").getInt("invoiceNumber");
+		invoice.setInvoiceNumber(invoiceNumber);
+		
+		invoiceRepo.save(invoice);
+		
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

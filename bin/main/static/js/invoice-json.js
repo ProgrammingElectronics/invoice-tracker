@@ -9,6 +9,18 @@
 // as the page was built.
 
 
+// function submitInvoice() {
+//     var invoiceNumber = document.getElementById('invoiceNumber').value;
+//     var invoiceDate = document.getElementById('invoiceDate').value;
+//     var invoiceTerm = document.getElementById('invoiceTerm').value;
+//     var invoiceJson = {
+//         'invoiceNumber': invoiceNumber,
+//         'invoiceDate': invoiceDate,
+//         'invoiceTerm': invoiceTerm
+//     }
+//     return invoiceJson;
+// }
+
 function submitInvoice() {
 
     // ***information from the upper half of the html doc***

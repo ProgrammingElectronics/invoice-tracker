@@ -2,13 +2,12 @@
  * Boiler Plate
  */
 
-function postRequest(location, requestBody, callback) {
+function postRequest(location, requestBody) {
     fetch(location, {
         method: "POST",
         body: JSON.stringify(requestBody)
     })
         .then(response => response.json())
-        .then(data => callback(data))
         .catch(err => console.log(err))
 }
 
