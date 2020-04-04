@@ -97,7 +97,13 @@ public class Invoice {
 		this.dateOfInvoice = dateOfInvoice;
 		this.serviceItems = new HashSet<>(Arrays.asList(serviceItems));
 	}
-
+	/************************ Methods ****************/
+	
+	public void addServiceItem(ServiceItem serviceItem) {
+		this.serviceItems.add(serviceItem);
+	}
+	
+	
 	/************************ Overrides ****************/
 	
 	@Override

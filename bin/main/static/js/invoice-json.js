@@ -126,7 +126,7 @@ function submitInvoice() {
         agencyJson,
         invoiceArray
     }
-    console.log(JSON.stringify(invoiceJson));
+    // console.log(JSON.stringify(invoiceJson));
     return invoiceJson;
 
 }
