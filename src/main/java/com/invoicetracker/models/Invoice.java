@@ -8,13 +8,10 @@ import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Invoice {
 
 	/************************ Field Values ****************/
@@ -29,12 +26,12 @@ public class Invoice {
 	private float totalAmountDue;
 
 	@ManyToOne
-	Contractor contractor;
+	private Contractor contractor;
 
 	@ManyToOne
-	Agency agency;
+	private Agency agency;
 
-	@OneToMany
+	@OneToMany//(mappedBy = "invoice")
 	private Collection<ServiceItem> serviceItems;
 
 	/************************ Getters and Setter ****************/
@@ -66,9 +63,16 @@ public class Invoice {
 		this.dateOfInvoice = dateOfInvoice;
 	}
 
+	/**
+	 * NEEDS CODE REVIEW: 
+	 * 
+	 * Is this bad form?  I am getting a warning on the field value 
+	 * totalAmountDue.
+	 */
 	public float getTotalAmountDue() {
 
-		return calculateTotalAmountDue();
+		return calculateTotalAmountDueFromAllServiceItemsOnInvoice();
+		
 	}
 
 
@@ -100,7 +104,7 @@ public class Invoice {
 
 	/************************ Class Methods ****************/
 	
-	public float calculateTotalAmountDue() {
+	public float calculateTotalAmountDueFromAllServiceItemsOnInvoice() {
 		
 		float runningTotal = 0;
 		

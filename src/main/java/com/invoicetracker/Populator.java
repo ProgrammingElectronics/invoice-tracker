@@ -47,14 +47,15 @@ public class Populator implements CommandLineRunner {
 		LocalDate dateTwoInv1 = LocalDate.of(2020, 4, 02);
 		ServiceItem serviceItemOneInv1 = new ServiceItem(dateOneInv1, customerOneInv1);
 		ServiceItem serviceItemTwoInv1 = new ServiceItem(dateTwoInv1, customerTwoInv1);
-		serviceItemRepo.save(serviceItemOneInv1);
-		serviceItemRepo.save(serviceItemTwoInv1);
 		serviceItemOneInv1.setAmountDue(300);
 		serviceItemTwoInv1.setAmountDue(940);
-		
+		serviceItemRepo.save(serviceItemOneInv1);
+		serviceItemRepo.save(serviceItemTwoInv1);
 		
 		LocalDate dateThreeInv1 = LocalDate.of(2020, 4, 03);
 		Invoice invoiceOneInv1 = new Invoice(dateThreeInv1, serviceItemOneInv1, serviceItemTwoInv1);
+		invoiceOneInv1.setPaid(true);
+		invoiceOneInv1.setInvoiceNumber(1001);
 		invoiceRepo.save(invoiceOneInv1);
 		
 		/******************* Invoice Inv2 **********************/
@@ -68,13 +69,15 @@ public class Populator implements CommandLineRunner {
 		LocalDate dateTwoInv2 = LocalDate.of(2020, 4, 02);
 		ServiceItem serviceItemOneInv2 = new ServiceItem(dateOneInv2, customerOneInv2);
 		ServiceItem serviceItemTwoInv2 = new ServiceItem(dateTwoInv2, customerTwoInv2);
+		serviceItemOneInv2.setAmountDue(100);
+		serviceItemTwoInv2.setAmountDue(550);
 		serviceItemRepo.save(serviceItemOneInv2);
 		serviceItemRepo.save(serviceItemTwoInv2);
-		serviceItemOneInv1.setAmountDue(100);
-		serviceItemTwoInv1.setAmountDue(550);
 		
 		LocalDate dateThreeInv2 = LocalDate.of(2020, 4, 03);
 		Invoice invoiceOneInv2 = new Invoice(dateThreeInv2, serviceItemOneInv2, serviceItemTwoInv2);
+		invoiceOneInv2.setPaid(false);
+		invoiceOneInv2.setInvoiceNumber(1002);
 		invoiceRepo.save(invoiceOneInv2);
 		
 		//ContractorOne

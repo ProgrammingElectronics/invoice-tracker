@@ -17,10 +17,18 @@
 
     <ul>
         <li th:each="invoice: ${invoices}">
-            <a th:text="${invoice.id}"></a>
+            <a th:text="${invoice.invoiceNumber} + --------- "></a>
+            <a th:text="${invoice.dateOfInvoice} + --------- "></a>
+            <a th:text="${invoice.totalAmountDue}"></a>
         </li>
     </ul>
-
+    <!-- 
+        <a th:each="serviceItem: ${invoices.serviceItems}">
+                <p th:text="${serviceItem.customerName}"></p>
+                <p th:text="${serviceItem.customerName}"></p>
+            </a>
+            <a th:text="${invoice.customerName}"></a>
+            <a th:text="${invoice.totalAmountDue} + --------- "></a>-->
 
 </body>
 
