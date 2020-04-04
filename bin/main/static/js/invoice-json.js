@@ -9,7 +9,7 @@
 // as the page was built.
 
 
-function test() {
+function submitInvoice() {
 
     // ***information from the upper half of the html doc***
 
@@ -115,6 +115,7 @@ function test() {
         invoiceArray
     }
     console.log(JSON.stringify(invoiceJson));
+    return invoiceJson;
 
 }
 

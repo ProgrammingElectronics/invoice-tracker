@@ -11,8 +11,8 @@ function postRequest(location, requestBody, callback) {
         .catch(err => console.log(err))
 }
 
-export default {
-    postRequest
-}
+// export default {
+//     postRequest
+// }
 
 // postRequest()

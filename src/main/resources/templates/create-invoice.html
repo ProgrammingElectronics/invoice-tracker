@@ -1,3 +1,7 @@
+<!-- IMPORTANT: in testing it may be required to change src paths to include static
+folders and other such directories. Make sure to trouble shoot these  when running
+program from eclipse before pushing for a merge!!!!! -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProJo Invoice</title>
     <!-- when moved the href for stylesheets and jsript will have to be updated -->
-    <link rel="stylesheet" href="../css/invoice-creation-view.css">
+    <link rel="stylesheet" href="../static/css/invoice-creation-view.css">
 
 
 </head>
@@ -16,7 +20,7 @@
     <button type="button" onclick="test()">test</button>
 
     <header text="ProJo">
-        <img src="../images/projo.png" alt="ProJo">
+        <img src="../static/images/projo.png" alt="ProJo">
     </header>
     <h2 id="invoiceTitle">INVOICE</h2>
 
@@ -96,11 +100,12 @@
     </form>
 
 
-    <button type="submit" id="submitBtn">SUBMIT</button>
+    <button type="submit" id="submitBtn" onclick="submitInvoiceButton()">SUBMIT</button>
 
-    <script src="../js/invoice-creation-view.js"></script>
-    <!-- <script src="../js/invoice-json.js"></script> -->
-    <script src="../js/components/app.js"></script>
+    <script src="../static/js/invoice-creation-view.js"></script>
+    <script src="../static/js/invoice-json.js"></script>
+    <script src="../static/js/components/app.js"></script>
+    <script src="../static/js/api/api-actions.js"></script>
 </body>
 
 </html>

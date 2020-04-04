@@ -119,6 +119,10 @@ function submitInvoice() {
 
 }
 
+// export default {
+//     submitInvoice
+// }
+
 // test was used for testing the submission feature pieces while building functions
 // function test() {
 
