@@ -119,13 +119,3 @@ function submitInvoice() {
 
 }
 
-// test was used for testing the submission feature pieces while building functions
-// function test() {
-
-
-    // }
-
-
-
-    // xmlhttp.open("GET", "http://invoicetracker.com");
-    // xmlhttp.send();

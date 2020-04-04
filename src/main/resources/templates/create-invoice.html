@@ -9,18 +9,20 @@ program from eclipse before pushing for a merge!!!!! -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProJo Invoice</title>
-    <!-- when moved the href for stylesheets and jsript will have to be updated -->
-    <link rel="stylesheet" href="../static/css/invoice-creation-view.css">
-
+    <!-- Uncomment below when using VSCODE GoLive -->
+    <!-- <link rel="stylesheet" href="../static/css/invoice-creation-view.css"> -->
+    <!-- Uncomment below when using Eclipse -->
+    <link rel="stylesheet" href="../css/invoice-creation-view.css">
 
 </head>
 
 <body>
 
-    <button type="button" onclick="test()">test</button>
-
     <header text="ProJo">
-        <img src="../static/images/projo.png" alt="ProJo">
+        <!-- Uncomment below when using VSCODE GoLive -->
+        <!-- <img src="../static/images/projo.png" alt="ProJo"> -->
+        <!-- Uncomment below when using Eclipse -->
+        <img src="../images/projo.png" alt="ProJo">
     </header>
     <h2 id="invoiceTitle">INVOICE</h2>
 
@@ -102,10 +104,17 @@ program from eclipse before pushing for a merge!!!!! -->
 
     <button type="submit" id="submitBtn" onclick="submitInvoiceButton()">SUBMIT</button>
 
-    <script src="../static/js/invoice-creation-view.js"></script>
+    <!-- Uncomment below when using Eclipse -->
+    <script src="../js/invoice-creation-view.js"></script>
+    <script src="../js/invoice-json.js"></script>
+    <script src="../js/components/app.js"></script>
+    <script src="../js/api/api-actions.js"></script>
+
+    <!-- Uncomment below when using VSCODE GoLive -->
+    <!-- <script src="../static/js/invoice-creation-view.js"></script>
     <script src="../static/js/invoice-json.js"></script>
     <script src="../static/js/components/app.js"></script>
-    <script src="../static/js/api/api-actions.js"></script>
+    <script src="../static/js/api/api-actions.js"></script> -->
 </body>
 
 </html>
