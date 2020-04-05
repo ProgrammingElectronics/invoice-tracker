@@ -32,15 +32,7 @@ public class InvoiceControllerTest {
 		MockitoAnnotations.initMocks(this);
 	}
 	
-	@Test
-	public void addInvoiceToModel() {
-		//arrange
-		long arbitraryCourseId = 1;
-		//act
-		when(invoiceRepo.save(invoice))
-		
-		//assert
-	}
+	
 }
 
 

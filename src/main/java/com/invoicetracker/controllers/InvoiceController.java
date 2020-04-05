@@ -69,25 +69,11 @@ public class InvoiceController {
 			invoiceRepo.save(invoice);
 		}
 		
-	
-		
 		int invoiceNumber = newInvoice.getJSONObject("invoiceNumbersJson").getInt("invoiceNumber");
 		invoice.setInvoiceNumber(invoiceNumber);
 		
-		
 		invoiceRepo.save(invoice);
 		
-		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 }
