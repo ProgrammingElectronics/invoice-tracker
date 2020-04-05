@@ -35,7 +35,7 @@ public class Populator implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		
-		/******************* Invoice Inv2 **********************/
+		/******************* Invoice Inv1 **********************/
 		
 		Customer customerOneInv1 = new Customer("Harry");
 		Customer customerTwoInv1 = new Customer("Jill");

@@ -54,12 +54,15 @@ public class InvoiceController {
 		invoiceRepo.save(invoice);	
 		
 		JSONArray serviceItems = newInvoice.getJSONArray("invoiceArray");
-
-		for (int i=0; i < serviceItems.length(); i++) {
-			String serviceName = serviceItems.getJSONObject(1).getString("clientName");
+		System.out.println(serviceItems.length() + " LOOOOOOOOKKKKK AAAAATTTTT MEEEEEEEEEEEEEEEE!!!!!!!!!!!");
+		//************* This for loop needs to iterate through the invoiceArray and make ***************
+		//********* serviceItems objects out of them and put them into the invoice object **************
+		
+		for (int i=1; i < serviceItems.length(); i++) {
+			String serviceName = serviceItems.getJSONObject(i).getString("clientName");
 			Customer customer = new Customer(serviceName);
 			System.out.println(serviceName + " Hey You guuuuuuuuaaaaaaiiiiiiiiiiiiiissss!!!!!!!!!!!!!!!!!!!!!");
-			String serviceDate = serviceItems.getJSONObject(1).getString("serviceDate");
+			String serviceDate = serviceItems.getJSONObject(i).getString("serviceDate");
 			LocalDate localServiceDate = LocalDate.parse(serviceDate);
 			ServiceItem serviceItem = new ServiceItem(localServiceDate);
 			serviceItem.setCustomer(customer);
