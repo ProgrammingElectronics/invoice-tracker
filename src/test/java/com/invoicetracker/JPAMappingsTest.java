@@ -345,7 +345,7 @@ public class JPAMappingsTest {
 		Optional<ServiceItem> result = serviceItemRepo.findById(serviceId);
 		serviceItem = result.get();
 
-		assertEquals(serviceItem.getCustomers(), customerOne);
+		assertThat(serviceItem.getCustomer(), containsInAnyOrder(customerOne, customerTwo));
 	}
 
 	@Test
