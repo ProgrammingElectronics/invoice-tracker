@@ -335,7 +335,7 @@ public class JPAMappingsTest {
 		Customer customerOne = customerRepo.save(new Customer("testNameOne"));
 		Customer customerTwo = customerRepo.save(new Customer("testNameTwo"));
 		LocalDate dateOfService = LocalDate.of(2020, 03, 29);
-		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(dateOfService, customerOne, customerTwo));
+		ServiceItem serviceItem = serviceItemRepo.save(new ServiceItem(dateOfService, customerOne));
 		long serviceId = serviceItem.getId();
 
 		// Act
@@ -345,7 +345,7 @@ public class JPAMappingsTest {
 		Optional<ServiceItem> result = serviceItemRepo.findById(serviceId);
 		serviceItem = result.get();
 
-		assertThat(serviceItem.getCustomers(), containsInAnyOrder(customerOne, customerTwo));
+		assertEquals(serviceItem.getCustomers(), customerOne);
 	}
 
 	@Test
