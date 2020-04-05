@@ -342,7 +342,7 @@ public class JPAMappingsTest {
 		serviceItem = result.get();
 		String customerName = serviceItem.getCustomer().getCustomerName();
 
-		assertEquals(customerName, customerOne.getCustomerName());
+		assertThat(serviceItem.getCustomer(), containsInAnyOrder(customerOne, customerTwo));
 	}
 
 	@Test
@@ -382,6 +382,5 @@ public class JPAMappingsTest {
 
 		assertThat(contractor.getInvoices(), containsInAnyOrder(invoiceOne, invoiceTwo));
 	}
-	
-	
+
 }

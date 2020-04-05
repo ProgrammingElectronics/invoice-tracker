@@ -102,7 +102,13 @@ public class Invoice {
 		this.serviceItems = new HashSet<>(Arrays.asList(serviceItems));
 	}
 
-	/************************ Class Methods ****************/
+	/************************ Methods ****************/
+	
+	public void addServiceItem(ServiceItem serviceItem) {
+		this.serviceItems.add(serviceItem);
+	}
+	
+	/************************ Overrides ****************/
 	
 	public float calculateTotalAmountDueFromAllServiceItemsOnInvoice() {
 		

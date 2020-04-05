@@ -50,13 +50,13 @@ public class ContractorControllerMockMvcTest {
 	
 	@Test
 	public void shouldGetStatusOfOkWhenNavigatingToCreateInvoice() throws Exception {
-		this.mockMvc.perform(get("/contractor/create-invoice")).andExpect(status().isOk())
+		this.mockMvc.perform(get("/contractor/create-new-invoice")).andExpect(status().isOk())
 		.andExpect(view().name("create-invoice"));
 	}
 
 	@Test
 	public void shouldGetStatusOfOkWhenNavigatingToViewInvoice() throws Exception {
-		this.mockMvc.perform(get("/contractor/view-invoice")).andExpect(status().isOk())
+		this.mockMvc.perform(get("/contractor/view-existing-invoice")).andExpect(status().isOk())
 		.andExpect(view().name("view-invoice"));
 	}
 

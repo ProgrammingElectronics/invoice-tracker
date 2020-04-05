@@ -9,7 +9,19 @@
 // as the page was built.
 
 
-function test() {
+// function submitInvoice() {
+//     var invoiceNumber = document.getElementById('invoiceNumber').value;
+//     var invoiceDate = document.getElementById('invoiceDate').value;
+//     var invoiceTerm = document.getElementById('invoiceTerm').value;
+//     var invoiceJson = {
+//         'invoiceNumber': invoiceNumber,
+//         'invoiceDate': invoiceDate,
+//         'invoiceTerm': invoiceTerm
+//     }
+//     return invoiceJson;
+// }
+
+function submitInvoice() {
 
     // ***information from the upper half of the html doc***
 
@@ -114,17 +126,8 @@ function test() {
         agencyJson,
         invoiceArray
     }
-    console.log(JSON.stringify(invoiceJson));
+    // console.log(JSON.stringify(invoiceJson));
+    return invoiceJson;
 
 }
 
-// test was used for testing the submission feature pieces while building functions
-// function test() {
-
-
-    // }
-
-
-
-    // xmlhttp.open("GET", "http://invoicetracker.com");
-    // xmlhttp.send();

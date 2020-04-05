@@ -45,7 +45,7 @@ public class ServiceItem {
 		return customer;
 	}
 
-	public void setCustomers(Customer customer) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
