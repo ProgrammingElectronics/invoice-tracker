@@ -1,5 +1,7 @@
 package com.invoicetracker.controllers;
 
+import java.util.Collection;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.invoicetracker.models.Contractor;
+import com.invoicetracker.models.Invoice;
 import com.invoicetracker.repositories.ContractorRepository;
 
 @RequestMapping("/contractor")
@@ -33,7 +36,8 @@ public class ContractorController {
 	private String viewInvoiceList(@PathVariable(value="contractorId") long contractorId, Model model) {				
 		
 		Contractor contractor = contractorRepo.findById(contractorId).get();
-		model.addAttribute("invoices", contractor.getInvoices());
+		Collection<Invoice> invoices = contractor.getInvoices();
+		model.addAttribute("invoices", invoices);
 		
 		return "search-invoice-list";
 	}
