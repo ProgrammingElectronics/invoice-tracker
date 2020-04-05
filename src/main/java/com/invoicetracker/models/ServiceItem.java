@@ -41,11 +41,11 @@ public class ServiceItem {
 		this.invoice = invoice;
 	}
 
-	public Customer getCustomers() {
+	public Customer getCustomer() {
 		return customer;
 	}
 
-	public void setCustomers(Customer customer) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
