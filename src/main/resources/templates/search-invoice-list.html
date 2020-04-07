@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Invoices</title>
-    <link rel="stylesheet" href="search-invoices.css">
+    <link rel="stylesheet" href="/css/search-invoices.css">
+    <!-- <link rel="stylesheet" href="../static/css/search-invoices.css"> -->
 
 </head>
 
@@ -16,23 +17,36 @@
         <h1>My Invoices</h1>
     </header>
 
-
     <!------------------------------------ Invoice List ------------------------------------------------->
-    <table>
-        <tr>
-            <th>Invoice #</th>
-            <th>Date</th>
-            <th>Service Descriptions</th>
-            <th>Total Amount Due</th>
-        </tr>
-        <tr th:each="invoice : ${invoices}">
-            <td th:text="${invoice.invoiceNumber}"></td>
-            <td th:text="${invoice.dateOfInvoice}"></td>
-            <td th:each="serviceItem : ${invoice.serviceItems}">
-                <p th:text="${serviceItem.customerName}"></p>
-            </td>
-            <td th:text="${invoice.totalAmountDue}"></td>
-        </tr>
+    <table class="fixed_headers">
+        <thead>
+            <tr>&nbsp;</tr>
+            <tr>
+                <th>Invoice #</th>
+                <th>Date</th>
+                <th>Service Descriptions</th>
+                <th>Total Amount Due</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>&nbsp;</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr th:each="invoice : ${invoices}">
+                <td th:text="${invoice.invoiceNumber}"></td>
+                <td th:text="${invoice.dateOfInvoice}"></td>
+                <td th:each="serviceItem : ${invoice.serviceItems}">
+                    <p th:text="${serviceItem.customerName}"></p>
+                </td>
+                <td th:text="${invoice.totalAmountDue}"></td>
+            </tr>
+
+        </tbody>
     </table>
 
     <!------------------------------------ NAV ------------------------------------------------->

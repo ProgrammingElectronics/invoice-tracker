@@ -39,7 +39,7 @@ public class ContractorController {
 		Collection<Invoice> invoices = contractor.getInvoices();
 		model.addAttribute("invoices", invoices);
 		
-		return "search-invoices";
+		return "search-invoice-list";
 	}
 
 }
