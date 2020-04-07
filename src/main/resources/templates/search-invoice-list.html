@@ -5,30 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Invoice List</title>
-
-    <link rel="stylesheet" href="../css/invoice-creation-view.css">
+    <link rel="stylesheet" href="../css/search-invoice-list.css">
 </head>
 
 <body>
 
     <header>
-        <h1>Search Invoice List</h1>
+        <h1>My Invoices</h1>
     </header>
 
-    <ul>
-        <li th:each="invoice: ${invoices}">
-            <a th:text="${invoice.invoiceNumber} + --------- "></a>
-            <a th:text="${invoice.dateOfInvoice} + --------- "></a>
-            <a th:text="${invoice.totalAmountDue}"></a>
-        </li>
-    </ul>
-    <!-- 
-        <a th:each="serviceItem: ${invoices.serviceItems}">
+
+    <!------------------------------------ Invoice List ------------------------------------------------->
+    <table>
+        <tr>
+            <th>Invoice #</th>
+            <th>Date</th>
+            <th>Service Descriptions</th>
+            <th>Total Amount Due</th>
+        </tr>
+        <tr th:each="invoice : ${invoices}">
+            <td th:text="${invoice.invoiceNumber}"></td>
+            <td th:text="${invoice.dateOfInvoice}"></td>
+            <td th:each="serviceItem : ${invoice.serviceItems}">
                 <p th:text="${serviceItem.customerName}"></p>
-                <p th:text="${serviceItem.customerName}"></p>
-            </a>
-            <a th:text="${invoice.customerName}"></a>
-            <a th:text="${invoice.totalAmountDue} + --------- "></a>-->
+            </td>
+            <td th:text="${invoice.totalAmountDue}"></td>
+        </tr>
+    </table>
+
+    <!------------------------------------ NAV ------------------------------------------------->
+    <nav>
+        <a href="http://localhost:8080/contractor/search-invoice-list/11">My Invoices</a>
+        <a href="http://localhost:8080/contractor/create-new-invoice">Create Invoice</a>
+        <a href="http://localhost:8080/contractor/profile">Profile</a>
+    </nav>
+
 
 </body>
 

@@ -21,7 +21,7 @@ public class Populator implements CommandLineRunner {
 
 	@Resource
 	ServiceItemRepository serviceItemRepo;
-	
+
 	@Resource
 	CustomerRepository customerRepo;
 
@@ -33,61 +33,60 @@ public class Populator implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		
+
 		/******************* Invoice Inv2 **********************/
-		
+
 		Customer customerOneInv1 = new Customer("Harry");
 		Customer customerTwoInv1 = new Customer("Jill");
 		customerRepo.save(customerTwoInv1);
 		customerRepo.save(customerOneInv1);
-		
-		
+
 		LocalDate dateOneInv1 = LocalDate.of(2020, 4, 01);
 		LocalDate dateTwoInv1 = LocalDate.of(2020, 4, 02);
 		ServiceItem serviceItemOneInv1 = new ServiceItem(dateOneInv1, customerOneInv1);
 		ServiceItem serviceItemTwoInv1 = new ServiceItem(dateTwoInv1, customerTwoInv1);
 		serviceItemOneInv1.setAmountDue(300);
 		serviceItemTwoInv1.setAmountDue(940);
+		serviceItemOneInv1.setCustomerName("Timmy");
+		serviceItemTwoInv1.setCustomerName("Jose");
 		serviceItemRepo.save(serviceItemOneInv1);
 		serviceItemRepo.save(serviceItemTwoInv1);
-		
+
 		LocalDate dateThreeInv1 = LocalDate.of(2020, 4, 03);
 		Invoice invoiceOneInv1 = new Invoice(dateThreeInv1, serviceItemOneInv1, serviceItemTwoInv1);
 		invoiceOneInv1.setPaid(true);
 		invoiceOneInv1.setInvoiceNumber(1001);
 		invoiceRepo.save(invoiceOneInv1);
-		
+
 		/******************* Invoice Inv2 **********************/
-		
+
 		Customer customerOneInv2 = new Customer("Harry");
 		Customer customerTwoInv2 = new Customer("Jill");
 		customerRepo.save(customerTwoInv2);
 		customerRepo.save(customerOneInv2);
-		
+
 		LocalDate dateOneInv2 = LocalDate.of(2020, 4, 01);
 		LocalDate dateTwoInv2 = LocalDate.of(2020, 4, 02);
 		ServiceItem serviceItemOneInv2 = new ServiceItem(dateOneInv2, customerOneInv2);
 		ServiceItem serviceItemTwoInv2 = new ServiceItem(dateTwoInv2, customerTwoInv2);
 		serviceItemOneInv2.setAmountDue(100);
 		serviceItemTwoInv2.setAmountDue(550);
+		serviceItemOneInv2.setCustomerName("Letisha");
+		serviceItemTwoInv2.setCustomerName("Eleanor");
 		serviceItemRepo.save(serviceItemOneInv2);
 		serviceItemRepo.save(serviceItemTwoInv2);
-		
+
 		LocalDate dateThreeInv2 = LocalDate.of(2020, 4, 03);
 		Invoice invoiceOneInv2 = new Invoice(dateThreeInv2, serviceItemOneInv2, serviceItemTwoInv2);
 		invoiceOneInv2.setPaid(false);
 		invoiceOneInv2.setInvoiceNumber(1002);
 		invoiceRepo.save(invoiceOneInv2);
-		
-		//ContractorOne
+
+		// ContractorOne
 		Contractor contractor = new Contractor("Emily", invoiceOneInv1, invoiceOneInv2);
 		contractorRepo.save(contractor);
 		contractor.setEmail("em@projo.com");
-		
-				
+
 	}
 
-	
-	
 }

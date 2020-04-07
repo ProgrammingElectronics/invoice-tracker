@@ -22,6 +22,7 @@ public class ServiceItem {
 	@ManyToOne
 	private Customer customer;
 
+	private String customerName; 
 	private LocalDate dateOfService;
 	private float hourlyPayRate;
 	private float serviceHours;
@@ -81,6 +82,14 @@ public class ServiceItem {
 		this.amountDue = amountDue;
 	}
 
+	public String getCustomerName() {
+		return customerName;
+	}
+	
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
 	/********************* Constructors ****************/
 
 	public ServiceItem() {
@@ -123,5 +132,6 @@ public class ServiceItem {
 			return false;
 		return true;
 	}
+
 
 }
