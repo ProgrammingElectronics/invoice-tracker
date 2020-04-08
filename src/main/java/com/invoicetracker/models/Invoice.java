@@ -1,9 +1,12 @@
 package com.invoicetracker.models;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +34,7 @@ public class Invoice {
 	@ManyToOne
 	private Agency agency;
 
-	@OneToMany//(mappedBy = "invoice")
+	@OneToMany // (mappedBy = "invoice")
 	private Collection<ServiceItem> serviceItems;
 
 	/************************ Getters and Setter ****************/
@@ -64,17 +67,15 @@ public class Invoice {
 	}
 
 	/**
-	 * NEEDS CODE REVIEW: 
+	 * NEEDS CODE REVIEW:
 	 * 
-	 * Is this bad form?  I am getting a warning on the field value 
-	 * totalAmountDue.
+	 * Is this bad form? I am getting a warning on the field value totalAmountDue.
 	 */
-	public float getTotalAmountDue() {
+	public String getTotalAmountDue() {
 
-		return calculateTotalAmountDueFromAllServiceItemsOnInvoice();
-		
+		return formatTotalAmountDueAsCurrency();
+
 	}
-
 
 	public Contractor getContractor() {
 		return contractor;
@@ -103,24 +104,59 @@ public class Invoice {
 	}
 
 	/************************ Methods ****************/
-	
+
 	public void addServiceItem(ServiceItem serviceItem) {
 		this.serviceItems.add(serviceItem);
 	}
-	
-	/************************ Overrides ****************/
-	
+
+	public String formatTotalAmountDueAsCurrency() {
+		
+		float amount = calculateTotalAmountDueFromAllServiceItemsOnInvoice();
+		NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+		String currency = format.format(amount); 
+		//TODO: Requires Code Review 
+		//I am auto down casting here, format expects a double...Is that bad?
+		
+		return currency;	
+	}
+
 	public float calculateTotalAmountDueFromAllServiceItemsOnInvoice() {
-		
+
 		float runningTotal = 0;
-		
+
 		for (ServiceItem item : this.serviceItems) {
 			runningTotal += item.getAmountDue();
 		}
-		
+
 		return runningTotal;
 	}
+
 	
+	//TODO This function is an abomination and needs fixed.
+	public String getCustomerNamePreviewAsString() {
+		
+		ArrayList<ServiceItem> serviceItemsArray = new ArrayList<>(this.serviceItems);
+		String customerNames = "";
+		
+		int count = 0;
+		for(ServiceItem serviceItem : serviceItems ) {
+			
+			if(count == 0) {
+				customerNames += serviceItem.getCustomerName();
+			}
+			if(count == 1) {
+				customerNames += ", " + serviceItem.getCustomerName();
+			}
+			if(count == 2) {
+				customerNames += " ... plus " + (Math.abs(serviceItems.size() - 2)) + " more";
+			}
+			
+			count++;
+		}
+		
+		return customerNames;
+	}
+
 	/************************ Overrides ****************/
 
 	@Override

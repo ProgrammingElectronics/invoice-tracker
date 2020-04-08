@@ -34,6 +34,13 @@ public class Populator implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+		/*
+		 *  TODO: This needs simplified. 
+		 *  Maybe a constructor that accepts all this at once or something.
+		 *  
+		 *  It just feels absurd.
+		 */
+		
 		/******************* Invoice Inv1 **********************/
 
 		Customer customerOneInv1 = new Customer("Harry");
@@ -45,15 +52,19 @@ public class Populator implements CommandLineRunner {
 		LocalDate dateTwoInv1 = LocalDate.of(2020, 4, 02);
 		ServiceItem serviceItemOneInv1 = new ServiceItem(dateOneInv1, customerOneInv1);
 		ServiceItem serviceItemTwoInv1 = new ServiceItem(dateTwoInv1, customerTwoInv1);
+		ServiceItem serviceItemThreeInv1 = new ServiceItem(dateTwoInv1);
 		serviceItemOneInv1.setAmountDue(300);
 		serviceItemTwoInv1.setAmountDue(940);
+		serviceItemThreeInv1.setAmountDue(120);
 		serviceItemOneInv1.setCustomerName("Timmy");
 		serviceItemTwoInv1.setCustomerName("Jose");
+		serviceItemThreeInv1.setCustomerName("Jolinda");
 		serviceItemRepo.save(serviceItemOneInv1);
 		serviceItemRepo.save(serviceItemTwoInv1);
+		serviceItemRepo.save(serviceItemThreeInv1);
 
 		LocalDate dateThreeInv1 = LocalDate.of(2020, 4, 03);
-		Invoice invoiceOneInv1 = new Invoice(dateThreeInv1, serviceItemOneInv1, serviceItemTwoInv1);
+		Invoice invoiceOneInv1 = new Invoice(dateThreeInv1, serviceItemOneInv1, serviceItemTwoInv1, serviceItemThreeInv1);
 		invoiceOneInv1.setPaid(true);
 		invoiceOneInv1.setInvoiceNumber(1001);
 		invoiceRepo.save(invoiceOneInv1);

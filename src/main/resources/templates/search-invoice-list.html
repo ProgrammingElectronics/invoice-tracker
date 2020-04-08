@@ -24,7 +24,7 @@
             <tr>
                 <th>Invoice #</th>
                 <th>Date</th>
-                <th>Service Descriptions</th>
+                <th>Service Items</th>
                 <th>Total Amount Due</th>
             </tr>
         </thead>
@@ -40,9 +40,10 @@
             <tr th:each="invoice : ${invoices}">
                 <td th:text="${invoice.invoiceNumber}"></td>
                 <td th:text="${invoice.dateOfInvoice}"></td>
-                <td th:each="serviceItem : ${invoice.serviceItems}">
+                <td th:text="${invoice.CustomerNamePreviewAsString}"></td>
+                <!-- <td th:each="serviceItem : ${invoice.serviceItems}">
                     <p th:text="${serviceItem.customerName}"></p>
-                </td>
+                </td> -->
                 <td th:text="${invoice.totalAmountDue}"></td>
             </tr>
 
