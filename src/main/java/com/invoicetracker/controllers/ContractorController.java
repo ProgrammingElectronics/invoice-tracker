@@ -1,6 +1,7 @@
 package com.invoicetracker.controllers;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.invoicetracker.models.Contractor;
 import com.invoicetracker.models.Invoice;
 import com.invoicetracker.repositories.ContractorRepository;
+import com.invoicetracker.repositories.InvoiceRepository;
 
 @RequestMapping("/contractor")
 @Controller
@@ -20,6 +22,9 @@ public class ContractorController {
 	
 	@Resource
 	private ContractorRepository contractorRepo;
+
+	@Resource
+	private InvoiceRepository invoiceRepo;
 	
 	
 	@GetMapping("/create-new-invoice")
@@ -27,8 +32,13 @@ public class ContractorController {
 		return "create-invoice";	
 	}
 
-	@GetMapping("/view-existing-invoice")
-	private String viewInvoice() {	
+	@GetMapping("/view-existing-invoice/{contractorId}/{invoiceId}")
+	private String viewInvoice(@PathVariable(value="contractorId") long contractorId, @PathVariable(value="invoiceId") long invoiceId, Model model) {	
+		
+		Contractor contractor = contractorRepo.findById(contractorId).get();
+		Optional<Invoice> invoice = invoiceRepo.findById(invoiceId);
+		model.addAttribute("invoice", invoice);
+		
 		return "view-invoice";	
 	}
 	
@@ -38,6 +48,7 @@ public class ContractorController {
 		Contractor contractor = contractorRepo.findById(contractorId).get();
 		Collection<Invoice> invoices = contractor.getInvoices();
 		model.addAttribute("invoices", invoices);
+		model.addAttribute("contractor", contractor);
 		
 		return "search-invoice-list";
 	}

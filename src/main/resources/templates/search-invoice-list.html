@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Invoices</title>
+    <!-- Comment out the second link for eclipse mapping 
+    Comment out the first link for VS Code Go Live mapping -->
     <link rel="stylesheet" href="/css/search-invoices.css">
     <!-- <link rel="stylesheet" href="../static/css/search-invoices.css"> -->
 
 </head>
-
 
 <body>
 
@@ -38,12 +39,12 @@
         </tfoot>
         <tbody>
             <tr th:each="invoice : ${invoices}">
-                <td th:text="${invoice.invoiceNumber}"></td>
+                <td>
+                    <a th:href="@{/contractor/view-existing-invoice/{contractorId}/{invoiceId}(contractorId = ${contractor.id}, invoiceId = ${invoice.id})}"
+                        th:text="${invoice.invoiceNumber}" target="_blank"></a>
+                </td>
                 <td th:text="${invoice.dateOfInvoice}"></td>
                 <td th:text="${invoice.CustomerNamePreviewAsString}"></td>
-                <!-- <td th:each="serviceItem : ${invoice.serviceItems}">
-                    <p th:text="${serviceItem.customerName}"></p>
-                </td> -->
                 <td th:text="${invoice.totalAmountDue}"></td>
             </tr>
 
@@ -52,7 +53,8 @@
 
     <!------------------------------------ NAV ------------------------------------------------->
     <nav>
-        <a href="http://localhost:8080/contractor/search-invoice-list/11">My Invoices</a>
+        <a th:href="@{/contractor/search-invoice-list/{contractorId}(contractorId = ${contractor.id})}">My
+            Invoices</a>
         <a href="http://localhost:8080/contractor/create-new-invoice">Create Invoice</a>
         <a href="http://localhost:8080/contractor/profile">Profile</a>
     </nav>

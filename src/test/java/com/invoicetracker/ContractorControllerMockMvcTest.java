@@ -65,7 +65,7 @@ public class ContractorControllerMockMvcTest {
 	public void shouldGetStatusOfOkWhenNavigatingToSearchInvoiceList() throws Exception {
 		long contractorId = 1;
 		when(contractorRepo.findById(contractorId)).thenReturn(Optional.of(contractorOne));
-		this.mockMvc.perform(get("/search-invoice-list/" + contractorId)).andExpect(status().isOk())
+		this.mockMvc.perform(get("/contractor/search-invoice-list/" + contractorId)).andExpect(status().isOk())
 		.andExpect(view().name("search-invoice-list"));
 	}
 	
