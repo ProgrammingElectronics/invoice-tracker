@@ -1,10 +1,7 @@
 function submitInvoiceButton() {
 
-    console.log("submitInvoiceButton fired")
-
     const invoiceJSON = submitInvoice()
-    postRequest('http://localhost:8080/submit-invoice',
+    const newLocal = 'http://localhost:8080/submit';
+    postRequest(newLocal,
         invoiceJSON)
-    console.log(JSON.stringify(invoiceJSON));
-
 }
