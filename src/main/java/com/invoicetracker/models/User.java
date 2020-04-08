@@ -19,7 +19,7 @@ public abstract class User {
 	
 	/* Contact Info */
 	private String email;
-	private String phone;
+	private Long phone;
 	
 	/* Address */
 	private String addressLineOne;
@@ -32,15 +32,15 @@ public abstract class User {
 
 	/************************ Getters and Setters ****************/
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public String getPhone() {
+	public Number getPhone() {
 		return phone;
 	}
 	
-	public void setPhone(final String phone) {
+	public void setPhone(final Long phone) {
 		this.phone = phone;
 	}
 
@@ -102,15 +102,28 @@ public abstract class User {
 
 	/************************ Constructors ****************/
 
-	protected User() {
+	public User(String email, Long phone, String addressLineOne, String addressLineTwo, String city, String state,
+			String zip, String country) {
+		this.email = email;
+		this.phone = phone;
+		this.addressLineOne = addressLineOne;
+		this.addressLineTwo = addressLineTwo;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.country = country;
 	}
 
-	protected User(final String email) {
-		this.email = email;
-	}
 
 	/************************ Overrides ****************/
 
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", phone=" + phone + ", addressLineOne=" + addressLineOne + ", addressLineTwo="
+				+ addressLineTwo + ", city=" + city + ", state=" + state + ", zip=" + zip + ", country=" + country
+				+ "]";
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

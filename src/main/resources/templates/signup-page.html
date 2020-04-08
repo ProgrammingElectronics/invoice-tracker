@@ -44,12 +44,12 @@ input.invalid {
 
 .imgcontainer {
   text-align: center;
-  margin: 24px 0 12px 0;
+  margin: 12px 0 6px 0;
 }
 
 img.logo {
-  width: 40%;
-  border-radius: 50%;
+  width: 25%;
+  border-radius: 15%;
 }
 
 button {
@@ -92,11 +92,16 @@ button:hover {
 }
 </style>
 <body>
+    <div class="container">
+        <form id="regForm" action="/action_page.php">
+        <div class="row">
+            <h2 style="text-align:center">Sign Up</h2>
+      
+            <form action="/action_page.php" method="post">
     <div class="imgcontainer">
-        <img src="img_projo.png" alt="ProJo - Sign Up" class="logo">
+        <img src="C:\Users\WeCanCodeIT\wcci\code\invoice-tracker\src\main\resources\images\projo.png" alt="ProJo - Sign Up" class="logo">
       </div>
-<form id="regForm" action="/action_page.php">
-  <h1>Sign Up:</h1>
+  <!-- <h1>Sign Up:</h1> -->
   <!-- othere is one "tab" for each step in the form: -->
   <div class="tab">Name:
     <p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>
@@ -132,6 +137,7 @@ button:hover {
     <span class="step"></span>
   </div>
 </form>
+</div>
 
 <script>
 var currentTab = 0; // the current "tab" should is the first tab (0)

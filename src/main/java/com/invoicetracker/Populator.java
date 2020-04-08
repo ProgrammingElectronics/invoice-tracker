@@ -15,6 +15,7 @@ import com.invoicetracker.repositories.ContractorRepository;
 import com.invoicetracker.repositories.CustomerRepository;
 import com.invoicetracker.repositories.InvoiceRepository;
 import com.invoicetracker.repositories.ServiceItemRepository;
+import com.invoicetracker.repositories.UserRepository;
 
 @Component
 public class Populator implements CommandLineRunner {
@@ -30,6 +31,9 @@ public class Populator implements CommandLineRunner {
 
 	@Resource
 	ContractorRepository contractorRepo;
+	
+	@Resource
+	UserRepository userRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
