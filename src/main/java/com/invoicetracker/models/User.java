@@ -19,6 +19,7 @@ public abstract class User {
 	
 	/* Contact Info */
 	private String email;
+	private String phone;
 	
 	/* Address */
 	private String addressLineOne;
@@ -35,72 +36,81 @@ public abstract class User {
 		return id;
 	}
 	
+	public String getPhone() {
+		return phone;
+	}
+	
+	public void setPhone(final String phone) {
+		this.phone = phone;
+	}
+
 	public String getEmail() {
 		return email;
 	}
-	
-	public void setEmail(String email) {
+
+	public void setEmail(final String email) {
 		this.email = email;
 	}
-	
+
 	public String getAddressLineOne() {
 		return addressLineOne;
 	}
-	
-	public void setAddressLineOne(String addressLineOne) {
+
+	public void setAddressLineOne(final String addressLineOne) {
 		this.addressLineOne = addressLineOne;
 	}
-	
+
 	public String getAddressLineTwo() {
 		return addressLineTwo;
 	}
-	
-	public void setAddressLineTwo(String addressLineTwo) {
+
+	public void setAddressLineTwo(final String addressLineTwo) {
 		this.addressLineTwo = addressLineTwo;
 	}
-	
+
 	public String getCity() {
 		return city;
 	}
-	
-	public void setCity(String city) {
+
+	public void setCity(final String city) {
 		this.city = city;
 	}
-	
+
 	public String getState() {
 		return state;
 	}
-	
-	public void setState(String state) {
+
+	public void setState(final String state) {
 		this.state = state;
 	}
-	
+
 	public String getZip() {
 		return zip;
 	}
-	
-	public void setZip(String zip) {
+
+	public void setZip(final String zip) {
 		this.zip = zip;
 	}
-	
+
 	public String getCountry() {
 		return country;
 	}
-	
-	public void setCountry(String country) {
+
+	public void setCountry(final String country) {
 		this.country = country;
 	}
-	
+
 	/************************ Constructors ****************/
-	
-	protected User() {}
-	
-	protected User(String email) {
-		this.email = email;	
+
+	protected User() {
+	}
+
+	protected User(final String email) {
+		this.email = email;
 	}
 
 	/************************ Overrides ****************/
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -110,14 +120,14 @@ public abstract class User {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		final User other = (User) obj;
 		if (id != other.id)
 			return false;
 		return true;

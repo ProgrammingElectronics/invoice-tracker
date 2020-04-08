@@ -42,7 +42,7 @@ button:hover {
   margin: 24px 0 12px 0;
 }
 
-img.PROJO IMAGE {
+img.logo {
   width: 40%;
   border-radius: 50%;
 }
@@ -56,9 +56,18 @@ span.psw {
   padding-top: 16px;
 }
 
-/* Change styles for span and cancel button on extra small screens */
+span.sup {
+  float: inline-end;
+  padding-top: 16px;
+}
+
+/* styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
+     display: block;
+     float: none;
+  }
+  span.sup {
      display: block;
      float: none;
   }
@@ -70,11 +79,11 @@ span.psw {
 </head>
 <body>
 
-<h2>Login Form</h2>
+<h2>Welcome, ProJo</h2>
 
 <form action="/action_page.php" method="post">
   <div class="imgcontainer">
-    <img src="img_projo.png" alt="Avatar FIND AVATAR AND CHANGE TO PROJOPIC" class="avatar">
+    <img src="img_projo.png" alt="ProJo - Login" class="logo">
   </div>
 
   <div class="container">
@@ -83,7 +92,7 @@ span.psw {
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
-        
+
     <button type="loginButton">Login</button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -92,7 +101,8 @@ span.psw {
 
   <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password</a></span>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+    <span class="sup">Don't have an account? <a href="#">Sign Up!</a></span>
   </div>
 </form>
 
