@@ -36,44 +36,66 @@ public class InvoiceController {
 	@Resource
 	private CustomerRepository customerRepo;
 	
-//	@RequestMapping("submit-invoice")
-//	private void createNewInvoice(@RequestBody String body) throws JSONException {
-//		JSONObject newInvoice = new JSONObject(body);
-//		String dateOfInvoice = newInvoice.getString("invoiceDate");
-//		LocalDate localDate = LocalDate.parse(dateOfInvoice);
-//		invoiceRepo.save(new Invoice(localDate));
-//	}
-	
 	@RequestMapping("submit-invoice")
 	private void createNewInvoice(@RequestBody String body) throws JSONException {
+		
+		/* Create the invoice */
 		JSONObject newInvoice = new JSONObject(body);
 		
 		String dateOfInvoice = newInvoice.getJSONObject("invoiceNumbersJson").getString("invoiceDate");
 		LocalDate localDate = LocalDate.parse(dateOfInvoice);
 		Invoice invoice = new Invoice(localDate);
-		invoiceRepo.save(invoice);	
-		
-		JSONArray serviceItems = newInvoice.getJSONArray("invoiceArray");
-
-		for (int i=0; i < serviceItems.length(); i++) {
-			String serviceName = serviceItems.getJSONObject(1).getString("clientName");
-			Customer customer = new Customer(serviceName);
-			System.out.println(serviceName + " Hey You guuuuuuuuaaaaaaiiiiiiiiiiiiiissss!!!!!!!!!!!!!!!!!!!!!");
-			String serviceDate = serviceItems.getJSONObject(1).getString("serviceDate");
-			LocalDate localServiceDate = LocalDate.parse(serviceDate);
-			ServiceItem serviceItem = new ServiceItem(localServiceDate);
-			serviceItem.setCustomer(customer);
-			customerRepo.save(customer);
-			serviceItemRepo.save(serviceItem);
-			invoice.addServiceItem(serviceItem);
-			invoiceRepo.save(invoice);
-		}
-		
+			
 		int invoiceNumber = newInvoice.getJSONObject("invoiceNumbersJson").getInt("invoiceNumber");
-		invoice.setInvoiceNumber(invoiceNumber);
-		
+		invoice.setInvoiceNumber(invoiceNumber);		
 		invoiceRepo.save(invoice);
 		
+		/* Add Service Items */
+		JSONArray serviceItemsArray = newInvoice.getJSONArray("invoiceArray");
+
+		JSONObject aServiceItem = (JSONObject) serviceItemsArray.get(0);
+		String serviceDate = aServiceItem.getString("serviceDate");
+		LocalDate localServiceDate = LocalDate.parse(serviceDate);
+		ServiceItem newServiceItem = new ServiceItem(localServiceDate);
+		serviceItemRepo.save(newServiceItem);
+		
+		invoice.addServiceItem(newServiceItem);
+		invoiceRepo.save(invoice);
+		
+		System.out.println(serviceItemsArray.get(0).toString() + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+		System.out.println(serviceDate + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
 	}
+	
+//	@RequestMapping("submit-invoice")
+//	private void createNewInvoice(@RequestBody String body) throws JSONException {
+//		JSONObject newInvoice = new JSONObject(body);
+//		
+//		String dateOfInvoice = newInvoice.getJSONObject("invoiceNumbersJson").getString("invoiceDate");
+//		LocalDate localDate = LocalDate.parse(dateOfInvoice);
+//		Invoice invoice = new Invoice(localDate);
+//		invoiceRepo.save(invoice);	
+//		
+//		JSONArray serviceItems = newInvoice.getJSONArray("invoiceArray");
+//
+//		for (int i=0; i < serviceItems.length(); i++) {
+//			String serviceName = serviceItems.getJSONObject(1).getString("clientName");
+//			Customer customer = new Customer(serviceName);
+//			System.out.println(serviceName + " Hey You guuuuuuuuaaaaaaiiiiiiiiiiiiiissss!!!!!!!!!!!!!!!!!!!!!");
+//			String serviceDate = serviceItems.getJSONObject(1).getString("serviceDate");
+//			LocalDate localServiceDate = LocalDate.parse(serviceDate);
+//			ServiceItem serviceItem = new ServiceItem(localServiceDate);
+//			serviceItem.setCustomer(customer);
+//			customerRepo.save(customer);
+//			serviceItemRepo.save(serviceItem);
+//			invoice.addServiceItem(serviceItem);
+//			invoiceRepo.save(invoice);
+//		}
+//		
+//		int invoiceNumber = newInvoice.getJSONObject("invoiceNumbersJson").getInt("invoiceNumber");
+//		invoice.setInvoiceNumber(invoiceNumber);
+//		
+//		invoiceRepo.save(invoice);
+//		
+//	}
 		
 }
