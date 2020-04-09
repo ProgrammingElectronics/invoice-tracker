@@ -65,6 +65,10 @@ public class Populator implements CommandLineRunner {
 
 		LocalDate dateThreeInv1 = LocalDate.of(2020, 4, 03);
 		Invoice invoiceOneInv1 = new Invoice(dateThreeInv1, serviceItemOneInv1, serviceItemTwoInv1, serviceItemThreeInv1);
+//		invoiceOneInv1.getServiceItems().add(serviceItemOneInv1); 
+//		invoiceOneInv1.getServiceItems().add(serviceItemTwoInv1); 
+//		invoiceOneInv1.getServiceItems().add(serviceItemThreeInv1);
+		
 		invoiceOneInv1.setPaid(true);
 		invoiceOneInv1.setInvoiceNumber(1001);
 		invoiceRepo.save(invoiceOneInv1);

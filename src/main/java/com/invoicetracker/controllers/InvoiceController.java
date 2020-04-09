@@ -1,8 +1,6 @@
 package com.invoicetracker.controllers;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Iterator;
 
 import javax.annotation.Resource;
 
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.invoicetracker.models.Customer;
 import com.invoicetracker.models.Invoice;
 import com.invoicetracker.models.ServiceItem;
 import com.invoicetracker.repositories.CustomerRepository;
@@ -56,11 +53,10 @@ public class InvoiceController {
 		JSONObject aServiceItem = (JSONObject) serviceItemsArray.get(0);
 		String serviceDate = aServiceItem.getString("serviceDate");
 		LocalDate localServiceDate = LocalDate.parse(serviceDate);
-		ServiceItem newServiceItem = new ServiceItem(localServiceDate);
+		ServiceItem newServiceItem = new ServiceItem(localServiceDate, invoice);
 		serviceItemRepo.save(newServiceItem);
 		
-		invoice.addServiceItem(newServiceItem);
-		invoiceRepo.save(invoice);
+		invoice.getServiceItems().add(newServiceItem);
 		
 		System.out.println(serviceItemsArray.get(0).toString() + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
 		System.out.println(serviceDate + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");

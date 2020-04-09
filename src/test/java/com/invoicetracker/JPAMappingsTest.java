@@ -260,7 +260,10 @@ public class JPAMappingsTest {
 		ServiceItem serviceOne = serviceItemRepo.save(new ServiceItem(dateServiceOne));
 		ServiceItem serviceTwo = serviceItemRepo.save(new ServiceItem(dateServiceTwo));
 		LocalDate dateOfInvoice = LocalDate.of(2020, 03, 29);
-		Invoice invoice = invoiceRepo.save(new Invoice(dateOfInvoice, serviceOne, serviceTwo));
+		//Invoice invoice = invoiceRepo.save(new Invoice(dateOfInvoice, serviceOne, serviceTwo));
+		Invoice invoice = invoiceRepo.save(new Invoice(dateOfInvoice));
+		invoice.getServiceItems().add(serviceOne);
+		invoice.getServiceItems().add(serviceTwo);
 		long invoiceId = invoice.getId();
 
 		// Act

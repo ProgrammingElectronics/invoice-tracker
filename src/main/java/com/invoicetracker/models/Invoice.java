@@ -8,11 +8,14 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Locale;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 
 @Entity
 public class Invoice {
@@ -34,8 +37,10 @@ public class Invoice {
 	@ManyToOne
 	private Agency agency;
 
-	@OneToMany // (mappedBy = "invoice")
+	@OneToMany(cascade = CascadeType.MERGE, orphanRemoval = true)
+	@JoinColumn(name = "invoice_id")
 	private Collection<ServiceItem> serviceItems;
+
 
 	/************************ Getters and Setter ****************/
 	public long getId() {
@@ -88,6 +93,11 @@ public class Invoice {
 	public Collection<ServiceItem> getServiceItems() {
 		return serviceItems;
 	}
+	
+	public void setServiceItems(Collection<ServiceItem> serviceItems) {
+		this.serviceItems = serviceItems;
+	}
+	
 
 	/************************ Constructors ****************/
 
