@@ -49,49 +49,17 @@ public class InvoiceController {
 		
 		/* Add Service Items */
 		JSONArray serviceItemsArray = newInvoice.getJSONArray("invoiceArray");
+		
+		for(int i = 0; i < serviceItemsArray.length(); i++) {
+			
+			JSONObject aServiceItem = (JSONObject) serviceItemsArray.get(2);
+			String serviceDate = aServiceItem.getString("serviceDate");
+			LocalDate localServiceDate = LocalDate.parse(serviceDate);
+			ServiceItem newServiceItem = new ServiceItem(localServiceDate, invoice);
+			serviceItemRepo.save(newServiceItem);
+			
+		}
 
-		JSONObject aServiceItem = (JSONObject) serviceItemsArray.get(0);
-		String serviceDate = aServiceItem.getString("serviceDate");
-		LocalDate localServiceDate = LocalDate.parse(serviceDate);
-		ServiceItem newServiceItem = new ServiceItem(localServiceDate, invoice);
-		serviceItemRepo.save(newServiceItem);
-		
-		invoice.getServiceItems().add(newServiceItem);
-		
-		System.out.println(serviceItemsArray.get(0).toString() + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
-		System.out.println(serviceDate + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
 	}
-	
-//	@RequestMapping("submit-invoice")
-//	private void createNewInvoice(@RequestBody String body) throws JSONException {
-//		JSONObject newInvoice = new JSONObject(body);
-//		
-//		String dateOfInvoice = newInvoice.getJSONObject("invoiceNumbersJson").getString("invoiceDate");
-//		LocalDate localDate = LocalDate.parse(dateOfInvoice);
-//		Invoice invoice = new Invoice(localDate);
-//		invoiceRepo.save(invoice);	
-//		
-//		JSONArray serviceItems = newInvoice.getJSONArray("invoiceArray");
-//
-//		for (int i=0; i < serviceItems.length(); i++) {
-//			String serviceName = serviceItems.getJSONObject(1).getString("clientName");
-//			Customer customer = new Customer(serviceName);
-//			System.out.println(serviceName + " Hey You guuuuuuuuaaaaaaiiiiiiiiiiiiiissss!!!!!!!!!!!!!!!!!!!!!");
-//			String serviceDate = serviceItems.getJSONObject(1).getString("serviceDate");
-//			LocalDate localServiceDate = LocalDate.parse(serviceDate);
-//			ServiceItem serviceItem = new ServiceItem(localServiceDate);
-//			serviceItem.setCustomer(customer);
-//			customerRepo.save(customer);
-//			serviceItemRepo.save(serviceItem);
-//			invoice.addServiceItem(serviceItem);
-//			invoiceRepo.save(invoice);
-//		}
-//		
-//		int invoiceNumber = newInvoice.getJSONObject("invoiceNumbersJson").getInt("invoiceNumber");
-//		invoice.setInvoiceNumber(invoiceNumber);
-//		
-//		invoiceRepo.save(invoice);
-//		
-//	}
-		
+			
 }
