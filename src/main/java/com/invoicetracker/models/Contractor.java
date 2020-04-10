@@ -18,6 +18,7 @@ public class Contractor extends User {
 	private String firstName;
 	private String lastName;
 	private String payPalId;
+	private int currentInvoiceNumber = 1000;
 
 	@OneToMany(mappedBy = "contractor")
 	private Collection<Invoice> invoices;
@@ -50,6 +51,14 @@ public class Contractor extends User {
 
 	public void setPayPalId(String payPalId) {
 		this.payPalId = payPalId;
+	}
+
+	public int getCurrentInvoiceNumber() {
+		return currentInvoiceNumber;
+	}
+
+	public void setCurrentInvoiceNumber(int currentInvoiceNumber) {
+		this.currentInvoiceNumber = currentInvoiceNumber;
 	}
 
 	public Collection<Invoice> getInvoices() {
@@ -102,5 +111,5 @@ public class Contractor extends User {
 			return false;
 		return true;
 	}
-	
+
 }

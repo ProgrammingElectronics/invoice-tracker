@@ -22,6 +22,7 @@ public class Invoice {
 	private LocalDate dateOfInvoice;
 	private int invoiceNumber;
 	private float totalAmountDue;
+	private String invoiceNote;
 	private boolean isPaid;
 
 	@ManyToOne
@@ -51,19 +52,27 @@ public class Invoice {
 		this.invoiceNumber = invoiceNumber;
 	}
 
-	public void setTotalAmountDue(float totalAmountDue) {
-		this.totalAmountDue = totalAmountDue;
-	}
-
 	public float getTotalAmountDue() {
 		return totalAmountDue;
 	}
 
-	public boolean isPaid() {
+	public void setTotalAmountDue(float totalAmountDue) {
+		this.totalAmountDue = totalAmountDue;
+	}
+
+	public String getInvoiceNote() {
+		return invoiceNote;
+	}
+
+	public void setInvoiceNote(String invoiceNote) {
+		this.invoiceNote = invoiceNote;
+	}
+
+	public boolean getIsPaid() {
 		return isPaid;
 	}
 
-	public void setPaid(boolean isPaid) {
+	public void setIsPaid(boolean isPaid) {
 		this.isPaid = isPaid;
 	}
 
@@ -89,19 +98,21 @@ public class Invoice {
 	}
 
 	public Invoice(Contractor contractor) {
+		
 		this.contractor = contractor;
+		this.invoiceNumber = contractor.getCurrentInvoiceNumber() + 1;
 	}
 
 	/************************ Methods ****************/
 
 	public void addServiceItem(ServiceItem newServiceItem) {
-		
+
 		getServiceItems().add(newServiceItem);
 		newServiceItem.setInvoice(this);
 	}
 
 	public void removeServiceItem(ServiceItem serviceItemToRemove) {
-		
+
 		getServiceItems().remove(serviceItemToRemove);
 		serviceItemToRemove.setInvoice(null);
 	}
