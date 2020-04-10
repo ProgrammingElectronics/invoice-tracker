@@ -57,8 +57,8 @@ public class Contractor extends User {
 		return currentInvoiceNumber;
 	}
 
-	public void setCurrentInvoiceNumber(int currentInvoiceNumber) {
-		this.currentInvoiceNumber = currentInvoiceNumber;
+	public void incrementCurrentInvoiceNumber() {
+		this.currentInvoiceNumber++;
 	}
 
 	public Collection<Invoice> getInvoices() {

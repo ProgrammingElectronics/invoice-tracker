@@ -100,7 +100,8 @@ public class Invoice {
 	public Invoice(Contractor contractor) {
 		
 		this.contractor = contractor;
-		this.invoiceNumber = contractor.getCurrentInvoiceNumber() + 1;
+		this.contractor.incrementCurrentInvoiceNumber();
+		this.invoiceNumber = contractor.getCurrentInvoiceNumber();
 	}
 
 	/************************ Methods ****************/
@@ -109,11 +110,11 @@ public class Invoice {
 	 * I am thinking we no longer need this function. 
 	 * When we create a service item, it is already being assigned to the invoice. 
 	 */
-	public void addServiceItem(ServiceItem newServiceItem) {
-
-		getServiceItems().add(newServiceItem);
-		newServiceItem.setInvoice(this);
-	}
+//	public void addServiceItem(ServiceItem newServiceItem) {
+//
+//		getServiceItems().add(newServiceItem);
+//		newServiceItem.setInvoice(this);
+//	}
 
 	public void removeServiceItem(ServiceItem serviceItemToRemove) {
 

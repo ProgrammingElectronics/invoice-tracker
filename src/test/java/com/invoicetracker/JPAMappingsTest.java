@@ -1,22 +1,18 @@
 package com.invoicetracker;
 
-import java.time.LocalDate;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-
+import java.time.LocalDate;
 import java.util.Optional;
-
 import javax.annotation.Resource;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import com.invoicetracker.models.Contractor;
 import com.invoicetracker.models.Invoice;
 import com.invoicetracker.models.ServiceItem;
@@ -50,11 +46,9 @@ public class JPAMappingsTest {
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-
 		Optional<Contractor> result = contractorRepo.findById(contractorId);
 		contractor = result.get();
 
-		// Assert
 		assertEquals(contractor.getPayPalId(), "payPalId");
 
 	}
@@ -68,11 +62,9 @@ public class JPAMappingsTest {
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-
 		Optional<Contractor> result = contractorRepo.findById(contractorId);
 		contractor = result.get();
 
-		// Assert
 		assertEquals(contractor.getFirstName(), "firstName");
 	}
 
@@ -85,11 +77,9 @@ public class JPAMappingsTest {
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-
 		Optional<Contractor> result = contractorRepo.findById(contractorId);
 		contractor = result.get();
 
-		// Assert
 		assertThat(contractor.getId(), is(greaterThan(0L)));
 	}
 
@@ -99,19 +89,16 @@ public class JPAMappingsTest {
 		// Arrange
 	    Contractor contractor = contractorRepo.save(new Contractor());
 		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
-		
 		LocalDate date = LocalDate.of(2020, 03, 28);
 		invoice.setDateOfInvoice(date);
 		Long invoiceId = invoice.getId();
-
+		
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-
 		Optional<Invoice> result = invoiceRepo.findById(invoiceId);
 		invoice = result.get();
 
-		// Assert
 		assertEquals(invoice.getDateOfInvoice(), date);
 	}
 
@@ -121,15 +108,13 @@ public class JPAMappingsTest {
 	    Contractor contractor = contractorRepo.save(new Contractor());
 		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
 		Long invoiceId = invoice.getId();
-
+		
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-
 		Optional<Invoice> result = invoiceRepo.findById(invoiceId);
 		invoice = result.get();
 
-		// Assert
 		assertThat(invoice.getId(), is(greaterThan(0L)));
 	}
 
@@ -142,14 +127,11 @@ public class JPAMappingsTest {
 		long serviceItemId = serviceItem.getId();
 
 		// Act
-		// Act
 		entityManager.flush();
 		entityManager.clear();
-
 		Optional<ServiceItem> result = serviceItemRepo.findById(serviceItemId);
 		serviceItem = result.get();
 
-		// Assert
 		assertThat(serviceItem.getId(), is(greaterThan(0L)));
 	}
 
@@ -166,11 +148,9 @@ public class JPAMappingsTest {
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-
 		Optional<ServiceItem> result = serviceItemRepo.findById(serviceItemId);
 		serviceItem = result.get();
 
-		// Assert
 		assertEquals(serviceItem.getDateOfService(), date);
 	}
 
@@ -181,17 +161,14 @@ public class JPAMappingsTest {
 		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
 		ServiceItem serviceItemOne = serviceItemRepo.save(new ServiceItem(invoice));
 		ServiceItem serviceItemTwo = serviceItemRepo.save(new ServiceItem(invoice));
-		
 		long invoiceId = invoice.getId();
 
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-
 		Optional<Invoice> result = invoiceRepo.findById(invoiceId);
 		invoice = result.get();
 
-		// Assert
 		assertThat(invoice.getServiceItems(), containsInAnyOrder(serviceItemOne, serviceItemTwo));
 	}
 
@@ -206,7 +183,6 @@ public class JPAMappingsTest {
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-
 		Optional<Contractor> result = contractorRepo.findById(contractorId);
 		contractor = result.get();
 

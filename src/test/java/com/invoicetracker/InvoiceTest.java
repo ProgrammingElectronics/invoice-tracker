@@ -1,18 +1,12 @@
 package com.invoicetracker;
 
 import static org.junit.Assert.assertEquals;
-
-import java.time.LocalDate;
-import java.util.Optional;
-
 import javax.annotation.Resource;
-
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import com.invoicetracker.models.Contractor;
 import com.invoicetracker.models.Invoice;
 import com.invoicetracker.models.ServiceItem;
@@ -50,7 +44,6 @@ class InvoiceTest {
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-
 		float result = invoiceRepo.findById(invoiceId).get().calculateTotalAmountDueFromAllServiceItemsOnInvoice();
 
 		assertEquals(700, result, 0.01);
@@ -61,6 +54,7 @@ class InvoiceTest {
 		//Arrange
 		Contractor contractor = contractorRepo.save(new Contractor());
 		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
+		@SuppressWarnings("unused")
 		ServiceItem serviceItemOne = serviceItemRepo.save(new ServiceItem(invoice));
 		ServiceItem serviceItemTwo = serviceItemRepo.save(new ServiceItem(invoice));
 		long invoiceId = invoice.getId();
@@ -68,7 +62,6 @@ class InvoiceTest {
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-		
 		Invoice result = invoiceRepo.findById(invoiceId).get();
 		result.removeServiceItem(serviceItemTwo);
 		
@@ -77,7 +70,6 @@ class InvoiceTest {
 
 	@Test
 	void shouldReturnThreeServiceItemCustomerNamesAsACommaSeparatedString() {
-
 		//Arrange
 		Contractor contractor = contractorRepo.save(new Contractor());
 		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
@@ -90,14 +82,13 @@ class InvoiceTest {
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-		
 		Invoice result = invoiceRepo.findById(invoiceId).get();
+		
 		assertEquals("bill, ted", result.getCustomerNamePreviewAsString());
 	}
 
 	@Test
 	void shouldClipNumberOfServiceItemCustomerNamesOver3() {
-		
 		//Arrange
 		Contractor contractor = contractorRepo.save(new Contractor());
 		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
@@ -114,32 +105,26 @@ class InvoiceTest {
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-		
 		Invoice result = invoiceRepo.findById(invoiceId).get();
+		
 		assertEquals("bill, ted ... plus 2 more", result.getCustomerNamePreviewAsString());		
 	}
 	
-//	@Test
-//	void shouldFormatTotalAmountDueAsCurrency() {
-//		
-//		// TODO: Make all this invoice code into a mock...somehow
-//		LocalDate dateOneInv1 = LocalDate.of(2020, 4, 01);
-//		LocalDate dateTwoInv1 = LocalDate.of(2020, 4, 02);
-//		ServiceItem serviceItemOneInv1 = new ServiceItem(dateOneInv1);
-//		ServiceItem serviceItemTwoInv1 = new ServiceItem(dateTwoInv1);
-//		serviceItemOneInv1.setAmountDue(300);
-//		serviceItemTwoInv1.setAmountDue(400);
-//		serviceItemRepo.save(serviceItemOneInv1);
-//		serviceItemRepo.save(serviceItemTwoInv1);
-//
-//		LocalDate dateThreeInv1 = LocalDate.of(2020, 4, 03);
-//		Invoice invoiceOneInv1 = new Invoice(dateThreeInv1, serviceItemOneInv1, serviceItemTwoInv1);
-//		invoiceRepo.save(invoiceOneInv1);
-//		
-//		String result = invoiceOneInv1.formatTotalAmountDueAsCurrency();
-//		
-//		assertEquals("$700.00", result);
-//		
-//	}
-
+	@Test
+	void shouldFormatTotalAmountDueAsCurrency() {
+		//Arrange
+		Contractor contractor = contractorRepo.save(new Contractor());
+		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
+		ServiceItem serviceItemOne = serviceItemRepo.save(new ServiceItem(invoice));
+		ServiceItem serviceItemTwo = serviceItemRepo.save(new ServiceItem(invoice));
+		serviceItemOne.setAmountDue(300);
+		serviceItemTwo.setAmountDue(400);
+		long invoiceId = invoice.getId();
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+		Invoice result = invoiceRepo.findById(invoiceId).get();		
+		
+		assertEquals("$700.00", result.getTotalAmountDueAsCurrencyString());
+	}
 }
