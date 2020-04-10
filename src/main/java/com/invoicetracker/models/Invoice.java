@@ -105,6 +105,10 @@ public class Invoice {
 
 	/************************ Methods ****************/
 
+	/**
+	 * I am thinking we no longer need this function. 
+	 * When we create a service item, it is already being assigned to the invoice. 
+	 */
 	public void addServiceItem(ServiceItem newServiceItem) {
 
 		getServiceItems().add(newServiceItem);

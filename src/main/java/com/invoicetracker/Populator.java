@@ -48,7 +48,8 @@ public class Populator implements CommandLineRunner {
 			invoice_A1.setDateOfInvoice(dateInvoice_A1);
 			invoice_A1.setInvoiceNote("Contractor A's first Invoice");
 			invoice_A1.setIsPaid(false);			
-			invoiceRepo.save(invoice_A1);		
+			invoiceRepo.save(invoice_A1);
+			contractorRepo.save(contractor_A);
 			
 			ServiceItem serviceItem_A1 = new ServiceItem(invoice_A1);
 			LocalDate dateServiceItem_A1 = LocalDate.of(2020, 03, 11);
@@ -94,7 +95,5 @@ public class Populator implements CommandLineRunner {
 			serviceItem_A5.setServiceDescription("Tutored Ack");
 			serviceItemRepo.save(serviceItem_A5);
 			
-			
-			contractorRepo.save(contractor_A);
 	}
 }
