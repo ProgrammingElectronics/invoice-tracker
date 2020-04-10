@@ -75,29 +75,26 @@ class InvoiceTest {
 		assertEquals(1, result.getServiceItems().size());
 	}
 
-//	@Test
-//	void shouldReturnThreeServiceItemCustomerNamesAsACommaSeparatedString() {
-//
-//		// TODO: Make all this invoice code into a mock...somehow
-//		LocalDate dateOneInv1 = LocalDate.of(2020, 4, 01);
-//		LocalDate dateTwoInv1 = LocalDate.of(2020, 4, 02);
-//		ServiceItem serviceItemOneInv1 = new ServiceItem(dateOneInv1);
-//		ServiceItem serviceItemTwoInv1 = new ServiceItem(dateTwoInv1);
-//		serviceItemOneInv1.setCustomerName("bill");
-//		serviceItemTwoInv1.setCustomerName("ted");
-//		serviceItemRepo.save(serviceItemOneInv1);
-//		serviceItemRepo.save(serviceItemTwoInv1);
-//
-//		LocalDate dateFourInv1 = LocalDate.of(2020, 4, 03);
-//		Invoice invoiceOneInv1 = new Invoice(dateFourInv1, serviceItemOneInv1, serviceItemTwoInv1);
-//		invoiceRepo.save(invoiceOneInv1);
-//
-//		String result = invoiceOneInv1.getCustomerNamePreviewAsString();
-//
-//		assertEquals("bill, ted", result);
-//
-//	}
-//
+	@Test
+	void shouldReturnThreeServiceItemCustomerNamesAsACommaSeparatedString() {
+
+		//Arrange
+		Contractor contractor = contractorRepo.save(new Contractor());
+		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
+		ServiceItem serviceItemOne = serviceItemRepo.save(new ServiceItem(invoice));
+		ServiceItem serviceItemTwo = serviceItemRepo.save(new ServiceItem(invoice));
+		serviceItemOne.setServiceDescription("bill");
+		serviceItemTwo.setServiceDescription("ted");
+		long invoiceId = invoice.getId();
+
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+		
+		Invoice result = invoiceRepo.findById(invoiceId).get();
+		assertEquals("bill, ted", result.getCustomerNamePreviewAsString());
+	}
+
 //	@Test
 //	void shouldClipNumberOfServiceItemCustomerNamesOver3() {
 //		
