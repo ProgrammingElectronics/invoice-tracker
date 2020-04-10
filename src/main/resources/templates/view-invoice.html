@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -8,87 +8,66 @@
 
     <!-- Comment out the second link for eclipse mapping 
          Comment out the first link for VS Code Go Live mapping -->
-    <link rel="stylesheet" href="/css/invoice-creation-view.css">
-    <!-- <link rel="stylesheet" href="../static/css/invoice-creation-view.css"> -->
-
-
+    <link rel="stylesheet" href="/css/single-invoice.css">
+    <!-- <link rel="stylesheet" href="../static/css/single-invoice.css"> -->
 </head>
 
 <body>
 
-    <header text="ProJo">
-        <!-- Comment out the second link for eclipse mapping 
-             Comment out the first link for VS Code Go Live mapping -->
-        <img src="/images/projo.png" alt="ProJo">
-        <!-- <img src="../images/projo.png" alt="ProJo"> -->
+    <section id="contractor_info">
+        <h1>INVOICE</h1>
+        <p th:text="${contractor.firstName} + ' ' + ${contractor.lastName}">Something</p>
+        <p th:text="${contractor.addressLineOne}"></p>
+        <p th:text="${contractor.addressLineTwo}"></p>
+        <p th:text="${contractor.city} + ', ' + ${contractor.state} + ' ' + ${contractor.zip}"></p>
+        <p th:text="${contractor.country}"></p>
+        <p th:text="${contractor.phoneNumber}"></p>
+        <p th:text="${contractor.email}"></p>
+    </section>
 
-    </header>
-    <h2 id="invoiceTitle">INVOICE</h2>
+    <section id="invoice_info">
+        <p>Invoice Number:</p>
+        <p th:text="${invoice.invoiceNumber}"></p>
+        <p>Invoice Date:</p>
+        <p th:text="${invoice.dateOfInvoice}"></p>
+        <p>Amount Due (USD):</p>
+        <p th:text="${invoice.TotalAmountDueAsCurrencyString}"></p>
+    </section>
 
-    <form action="invoice">
-        <div class="container">
-            <div class="container2" name="" id="topContainer">
-                <div class="container3" name="from" id="contractorInfo">
-                    <label for="contractorName">Contractor</label>
-                    <input type="text" id="contractorName">
-                    <label for="contractorAddress">Address</label>
-                    <input type="text" id="contractorAddress">
-                    <label for="contractorPhone">Phone</label>
-                    <input type="text" name="" id="contractorPhone">
-                </div>
-                <div class="container3" id="invoiceIdandDateContainer">
-                    <div class="container4">
-                        <label for="invoiceNumber">Invoice Number</label>
-                        <input type="text" id="invoiceNumber">
-                    </div>
-                    <div class="container4">
-                        <label for="invoiceDate">Invoice Date</label>
-                        <input type="text" id="invoiceDate">
-                    </div>
-                </div>
-            </div>
+    <section id="serviceItem_info">
+        <table id="service_item_table">
+            <thead>
+                <tr>&nbsp;</tr>
+                <tr>
+                    <th>Service</th>
+                    <th>Date of Service</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="serviceItem : ${invoice.serviceItems}">
+                    <td th:text="${serviceItem.serviceDescription}"></td>
+                    <td th:text="${serviceItem.dateOfService}"></td>
+                    <td th:text="${serviceItem.amountDue}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Amount Due (USD):</p>
+        <p th:text="${invoice.TotalAmountDueAsCurrencyString}"></p>
+    </section>
 
-        </div>
-        </div>
+    <section id="notes">
+        <p>Notes</p>
+        <p th:text="${invoice.invoiceNote}"></p>
+    </section>
 
+    <section id="invoice_footer">
+        <p>Thank you for your business!</p>
+    </section>
 
-        <div class="container" id="bottomContainer">
-            <div class="container5" id="serviceLables">
-                <label for="clientName">Client</label>
-                <label for="serviceName">Service</label>
-                <label for="serviceDate">Date</label>
-                <label for="serviceTime">Hours</label>
-                <label for="hourlyRate">Hourly Rate</label>
-                <label for="amountDue">Amount Due</label>
-            </div>
-
-            <div class="container5" id="serviceInfo">
-                <div class="serviceInfoSet" id="">
-                    <input type="text" id="clientName">
-                    <input type="text" id="serviceName">
-                    <input type="date" id="serviceDate">
-                    <input type="number" id="serviceTime">
-                    <input type="number" id="hourlyRate">
-                    <input type="number" id="amountDue">
-
-                </div>
-            </div>
-
-            <div class="container4" id="totalsBeforeNotes">
-                <label for="totalAmountDue" id="totalAmountDueLabel">Total Amount Due</label>
-                <p id="totalAmountDue">0.0</p>
-            </div>
-
-            <label for="serviceNotes">Notes</label>
-            <textarea type="text" id="serviceNotes"></textarea>
-        </div>
-    </form>
-
-
-
-    <div id="invoicePaid">
+    <section id="invoicePaid">
         <button type="button" onclick="payInvoice('invoicePaid')" id="payBtn">Paid</button>
-    </div>
+    </section>
 
     <!-- Comment out the second link for eclipse mapping 
          Comment out the first link for VS Code Go Live mapping -->

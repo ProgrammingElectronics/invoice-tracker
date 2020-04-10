@@ -26,18 +26,13 @@ public class ContractorController {
 	@Resource
 	private InvoiceRepository invoiceRepo;
 	
-	@GetMapping("/create-new-invoice/{contractorId}")
-	private String createInvoice(@PathVariable(value="contractorId") long contractorId, Model model) {	
-		Contractor contractor = contractorRepo.findById(contractorId).get();
-		model.addAttribute("contractor", contractor);
-		return "create-invoice";	
-	}
-
 	@GetMapping("/view-existing-invoice/{contractorId}/{invoiceId}")
 	private String viewInvoice(@PathVariable(value="contractorId") long contractorId, @PathVariable(value="invoiceId") long invoiceId, Model model) {	
 		
 		Contractor contractor = contractorRepo.findById(contractorId).get();
-		Optional<Invoice> invoice = invoiceRepo.findById(invoiceId);
+		Invoice invoice = invoiceRepo.findById(invoiceId).get();
+		
+		model.addAttribute("contractor", contractor);
 		model.addAttribute("invoice", invoice);
 		
 		return "view-invoice";	

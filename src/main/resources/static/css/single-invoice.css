@@ -1,0 +1,65 @@
+*{
+  font-family: sans-serif;
+  line-height: 1.618em;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: large;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+html {
+  background-color: white;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 0.4fr [invoice-start] minmax(200px, 1fr) [invoice-stop] 0.4fr;
+}
+
+#contractor_info {
+  grid-column: invoice-start / invoice-stop;
+  background: #EDE7F6;
+  padding: 1.5rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+#invoice_info {
+  grid-column: invoice-start / invoice-stop;
+  background: #EDE7F6;
+  padding: 1.5rem;
+}
+
+#serviceItem_info {
+  grid-column: invoice-start / invoice-stop;
+  background:#3a9ac1;
+  padding: 1.5rem;
+}
+
+#notes {
+  grid-column: invoice-start / invoice-stop;
+  background: #EDE7F6;
+  padding: 1.5rem;
+}
+
+#invoice_footer {
+  grid-column: invoice-start / invoice-stop;
+  background: #EDE7F6;
+  padding: 1.5rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+#invoicePaid {
+  grid-column: invoice-stop;
+  grid-row: 1;
+  padding: 1.5rem;
+}
+
+
+
+
