@@ -19,15 +19,15 @@ public class ContractorController {
 	private ContractorRepository contractorRepo;
 	
 	
-	@GetMapping("/create-new-invoice")
+	@GetMapping("create-new-invoice")
 	private String createInvoice() {	
 		return "create-invoice";	
 	}
 
-	@GetMapping("/view-existing-invoice")
-	private String viewInvoice() {	
-		return "view-invoice";	
-	}
+//	@GetMapping("/view-existing-invoice")
+//	private String viewInvoice() {	
+//		return "view-invoice";	
+//	}
 	
 	@GetMapping("/search-invoice-list/{contractorId}")
 	private String viewInvoiceList(@PathVariable(value="contractorId") long contractorId, Model model) {				

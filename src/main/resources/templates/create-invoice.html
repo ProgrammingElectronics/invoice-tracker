@@ -81,11 +81,8 @@ program from eclipse before pushing for a merge!!!!! -->
             <!-- this is the section that should be added with a function tied to the addServBtn -->
             <div class="container5" id="serviceInfo">
                 <div class="serviceInfoSet" id="1">
-                    <input type="text" class="info" id="clientName">
-                    <input type="text" class="info" id="serviceName">
+                    <input type="text" class="info" id="serviceDescription">
                     <input type="date" class="info" id="serviceDate">
-                    <input type="number" class="info" id="serviceTime">
-                    <input type="number" class="info" id="hourlyRate">
                     <input type="number" class="info" id="amountDue">
                     <button type="button" onclick="deleteServ(1)" id="deleteServBtn">X</button>
                 </div>
@@ -105,16 +102,16 @@ program from eclipse before pushing for a merge!!!!! -->
     <button type="submit" id="submitBtn" onclick="submitInvoiceButton()">SUBMIT</button>
 
     <!-- Uncomment below when using Eclipse -->
-    <script src="../js/invoice-creation-view.js"></script>
+    <!-- <script src="../js/invoice-creation-view.js"></script>
     <script src="../js/invoice-json.js"></script>
     <script src="../js/components/app.js"></script>
-    <script src="../js/api/api-actions.js"></script>
+    <script src="../js/api/api-actions.js"></script> -->
 
     <!-- Uncomment below when using VSCODE GoLive -->
-    <!-- <script src="../static/js/invoice-creation-view.js"></script>
+    <script src="../static/js/invoice-creation-view.js"></script>
     <script src="../static/js/invoice-json.js"></script>
     <script src="../static/js/components/app.js"></script>
-    <script src="../static/js/api/api-actions.js"></script> -->
+    <script src="../static/js/api/api-actions.js"></script>
 </body>
 
 </html>
