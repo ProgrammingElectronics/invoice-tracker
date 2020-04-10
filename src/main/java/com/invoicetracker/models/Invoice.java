@@ -2,20 +2,13 @@ package com.invoicetracker.models;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Locale;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
 
 @Entity
 public class Invoice {
@@ -26,41 +19,20 @@ public class Invoice {
 	@GeneratedValue
 	private long id;
 
-	private int invoiceNumber;
 	private LocalDate dateOfInvoice;
-	private boolean isPaid;
+	private int invoiceNumber;
 	private float totalAmountDue;
+	private boolean isPaid;
 
 	@ManyToOne
 	private Contractor contractor;
 
-	@ManyToOne
-	private Agency agency;
-
-	@OneToMany(cascade = CascadeType.MERGE, orphanRemoval = true)
-	@JoinColumn(name = "invoice_id")
+	@OneToMany(mappedBy = "invoice")
 	private Collection<ServiceItem> serviceItems;
-
 
 	/************************ Getters and Setter ****************/
 	public long getId() {
 		return id;
-	}
-
-	public int getInvoiceNumber() {
-		return invoiceNumber;
-	}
-
-	public void setInvoiceNumber(int invoiceNumber) {
-		this.invoiceNumber = invoiceNumber;
-	}
-
-	public boolean isPaid() {
-		return isPaid;
-	}
-
-	public void setPaid(boolean isPaid) {
-		this.isPaid = isPaid;
 	}
 
 	public LocalDate getDateOfInvoice() {
@@ -71,63 +43,78 @@ public class Invoice {
 		this.dateOfInvoice = dateOfInvoice;
 	}
 
-	/**
-	 * NEEDS CODE REVIEW:
-	 * 
-	 * Is this bad form? I am getting a warning on the field value totalAmountDue.
-	 */
-	public String getTotalAmountDue() {
+	public int getInvoiceNumber() {
+		return invoiceNumber;
+	}
 
-		return formatTotalAmountDueAsCurrency();
+	public void setInvoiceNumber(int invoiceNumber) {
+		this.invoiceNumber = invoiceNumber;
+	}
 
+	public void setTotalAmountDue(float totalAmountDue) {
+		this.totalAmountDue = totalAmountDue;
+	}
+
+	public float getTotalAmountDue() {
+		return totalAmountDue;
+	}
+
+	public boolean isPaid() {
+		return isPaid;
+	}
+
+	public void setPaid(boolean isPaid) {
+		this.isPaid = isPaid;
 	}
 
 	public Contractor getContractor() {
 		return contractor;
 	}
 
-	public Agency getAgency() {
-		return agency;
+	public void setContractor(Contractor contractor) {
+		this.contractor = contractor;
 	}
 
 	public Collection<ServiceItem> getServiceItems() {
 		return serviceItems;
 	}
-	
+
 	public void setServiceItems(Collection<ServiceItem> serviceItems) {
 		this.serviceItems = serviceItems;
 	}
-	
 
 	/************************ Constructors ****************/
 
 	public Invoice() {
 	}
 
-	public Invoice(LocalDate dateOfInvoice) {
-		this.dateOfInvoice = dateOfInvoice;
-	}
-
-	public Invoice(LocalDate dateOfInvoice, ServiceItem... serviceItems) {
-		this.dateOfInvoice = dateOfInvoice;
-		this.serviceItems = new HashSet<>(Arrays.asList(serviceItems));
+	public Invoice(Contractor contractor) {
+		this.contractor = contractor;
 	}
 
 	/************************ Methods ****************/
 
-	public void addServiceItem(ServiceItem serviceItem) {
-		this.serviceItems.add(serviceItem);
+	public void addServiceItem(ServiceItem newServiceItem) {
+		
+		getServiceItems().add(newServiceItem);
+		newServiceItem.setInvoice(this);
 	}
 
-	public String formatTotalAmountDueAsCurrency() {
+	public void removeServiceItem(ServiceItem serviceItemToRemove) {
 		
+		getServiceItems().remove(serviceItemToRemove);
+		serviceItemToRemove.setInvoice(null);
+	}
+
+	public String getTotalAmountDueAsCurrencyString() {
+
 		float amount = calculateTotalAmountDueFromAllServiceItemsOnInvoice();
 		NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
-		String currency = format.format(amount); 
-		//TODO: Requires Code Review 
-		//I am auto down casting here, format expects a double...Is that bad?
-		
-		return currency;	
+		String currency = format.format(amount);
+		// TODO: Requires Code Review
+		// I am auto down casting here, format expects a double...Is that bad?
+
+		return currency;
 	}
 
 	public float calculateTotalAmountDueFromAllServiceItemsOnInvoice() {
@@ -141,29 +128,30 @@ public class Invoice {
 		return runningTotal;
 	}
 
-	
-	//TODO This function is an abomination and needs fixed.
+	// TODO This function is an abomination and needs fixed.
 	public String getCustomerNamePreviewAsString() {
-		
-		ArrayList<ServiceItem> serviceItemsArray = new ArrayList<>(this.serviceItems);
+
+		/* Test and then remove this */
+		// ArrayList<ServiceItem> serviceItemsArray = new
+		// ArrayList<>(this.serviceItems);
 		String customerNames = "";
-		
+
 		int count = 0;
-		for(ServiceItem serviceItem : serviceItems ) {
-			
-			if(count == 0) {
-				customerNames += serviceItem.getCustomerName();
+		for (ServiceItem serviceItem : serviceItems) {
+
+			if (count == 0) {
+				customerNames += serviceItem.getServiceDescription();
 			}
-			if(count == 1) {
-				customerNames += ", " + serviceItem.getCustomerName();
+			if (count == 1) {
+				customerNames += ", " + serviceItem.getServiceDescription();
 			}
-			if(count == 2) {
+			if (count == 2) {
 				customerNames += " ... plus " + (Math.abs(serviceItems.size() - 2)) + " more";
 			}
-			
+
 			count++;
 		}
-		
+
 		return customerNames;
 	}
 

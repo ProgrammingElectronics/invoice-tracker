@@ -11,11 +11,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.invoicetracker.models.Invoice;
 import com.invoicetracker.models.ServiceItem;
+import com.invoicetracker.repositories.ContractorRepository;
 import com.invoicetracker.repositories.CustomerRepository;
 import com.invoicetracker.repositories.InvoiceRepository;
 import com.invoicetracker.repositories.ServiceItemRepository;
@@ -29,9 +33,9 @@ public class InvoiceController {
 	
 	@Resource
 	private ServiceItemRepository serviceItemRepo;
-	
+
 	@Resource
-	private CustomerRepository customerRepo;
+	private ContractorRepository contractorItemRepo;
 	
 	@RequestMapping("submit-invoice")
 	private void createNewInvoice(@RequestBody String body) throws JSONException {
@@ -57,8 +61,9 @@ public class InvoiceController {
 			LocalDate localServiceDate = LocalDate.parse(serviceDate);
 			ServiceItem newServiceItem = new ServiceItem(localServiceDate, invoice);
 			serviceItemRepo.save(newServiceItem);
-			
 		}
+		
+		contractorItemRepo.findById(27L).get().addInvoice(invoice);
 
 	}
 			

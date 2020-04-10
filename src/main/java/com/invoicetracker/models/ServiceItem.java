@@ -16,17 +16,12 @@ public class ServiceItem {
 	@GeneratedValue
 	private long id;
 
+	private LocalDate dateOfService;
+	private float amountDue;
+	private String serviceDescription; 
+
 	@ManyToOne
 	private Invoice invoice;
-
-	@ManyToOne
-	private Customer customer;
-
-	private String customerName; 
-	private LocalDate dateOfService;
-	private float hourlyPayRate;
-	private float serviceHours;
-	private float amountDue;
 
 	/************************ Getters and Setters ****************/
 
@@ -34,79 +29,45 @@ public class ServiceItem {
 		return id;
 	}
 
-	public Invoice getInvoice() {
-		return invoice;
-	}
-
-	public void setInvoice(Invoice invoice) {
-		this.invoice = invoice;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
 	public LocalDate getDateOfService() {
 		return dateOfService;
 	}
-
+	
 	public void setDateOfService(LocalDate dateOfService) {
 		this.dateOfService = dateOfService;
 	}
-
-	public float getPayRateOfAService() {
-		return hourlyPayRate;
-	}
-
-	public void setPayRateOfAService(float payRateOfAService) {
-		this.hourlyPayRate = payRateOfAService;
-	}
-
-	public float getServiceHours() {
-		return serviceHours;
-	}
-
-	public void setServiceHours(float serviceHours) {
-		this.serviceHours = serviceHours;
-	}
-
+	
 	public float getAmountDue() {
 		return amountDue;
 	}
-
+	
 	public void setAmountDue(float amountDue) {
 		this.amountDue = amountDue;
 	}
-
-	public String getCustomerName() {
-		return customerName;
+	
+	public String getServiceDescription() {
+		return serviceDescription;
 	}
 	
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setServiceDescription(String serviceDescription) {
+		this.serviceDescription = serviceDescription;
 	}
-
+	
+	public Invoice getInvoice() {
+		return invoice;
+	}
+	
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
+	}
+	
 	/********************* Constructors ****************/
 
 	public ServiceItem() {
 	}
-
-	public ServiceItem(LocalDate dateOfService) {
-		this.dateOfService = dateOfService;
-	}
-
-	public ServiceItem(LocalDate dateOfService, Invoice invoice) {
-		this.dateOfService = dateOfService;
+	
+	public ServiceItem(Invoice invoice) {
 		this.invoice = invoice;
-	}
-
-	public ServiceItem(LocalDate dateOfService, Customer customer) {
-		this.dateOfService = dateOfService;
-		this.customer = customer;
 	}
 
 	/************************ Overrides ****************/
@@ -132,6 +93,5 @@ public class ServiceItem {
 			return false;
 		return true;
 	}
-
-
+	
 }
