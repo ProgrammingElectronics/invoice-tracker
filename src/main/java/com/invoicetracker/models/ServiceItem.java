@@ -1,6 +1,8 @@
 package com.invoicetracker.models;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -73,6 +75,17 @@ public class ServiceItem {
 		this.invoice = invoice;
 	}
 
+	/************************ Methods ****************/
+	
+	public Object getAmountDueAsCurrencyString() {
+		NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+		String currency = format.format(amountDue);
+		// TODO: Requires Code Review
+		// I am auto down casting here, format expects a double...Is that bad?
+
+		return currency;
+	}
+	
 	/************************ Overrides ****************/
 
 	@Override
@@ -96,5 +109,6 @@ public class ServiceItem {
 			return false;
 		return true;
 	}
+
 	
 }

@@ -64,7 +64,7 @@
                 <tr th:each="serviceItem : ${invoice.serviceItems}">
                     <td class="fifty" th:text="${serviceItem.serviceDescription}"></td>
                     <td class="twenty_five" id="service_date" th:text="${serviceItem.dateOfService}"></td>
-                    <td class="twenty_five" id="service_price" th:text="${serviceItem.amountDue}"></td>
+                    <td class="twenty_five" id="service_price" th:text="${serviceItem.AmountDueAsCurrencyString}"></td>
                 </tr>
             </tbody>
         </table>
