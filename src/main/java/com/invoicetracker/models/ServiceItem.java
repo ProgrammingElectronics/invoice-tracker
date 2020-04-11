@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ServiceItem {
 
@@ -20,6 +22,7 @@ public class ServiceItem {
 	private float amountDue;
 	private String serviceDescription; 
 
+	@JsonIgnore
 	@ManyToOne
 	private Invoice invoice;
 

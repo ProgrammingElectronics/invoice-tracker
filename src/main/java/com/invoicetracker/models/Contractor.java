@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Contractor extends User {
 
@@ -20,6 +22,7 @@ public class Contractor extends User {
 	private String payPalId;
 	private int currentInvoiceNumber = 1000;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "contractor")
 	private Collection<Invoice> invoices;
 

@@ -31,13 +31,14 @@ public class Populator implements CommandLineRunner {
 		 * service items
 		 */
 		Contractor contractor_A = new Contractor();
-		contractor_A.setEmail("contractor_A@gmail.com");
-		contractor_A.setAddressLineOne("A St");
-		contractor_A.setAddressLineTwo("Apt A");
-		contractor_A.setCity("A city");
+		contractor_A.setEmail("JohnSmith@gmail.com");
+		contractor_A.setAddressLineOne("Center St");
+		contractor_A.setAddressLineTwo("Suite A");
+		contractor_A.setCity("Cityville");
 		contractor_A.setState("Alabama");
+		contractor_A.setZip("90210");
 		contractor_A.setCountry("USA");
-		contractor_A.setPhoneNumber("1-800-AAAAA");
+		contractor_A.setPhoneNumber("(555) 555-5555");
 		contractor_A.setFirstName("Andy");
 		contractor_A.setLastName("Amoray");
 		contractor_A.setPayPalId("AndyAmorayPayPal");
@@ -48,7 +49,7 @@ public class Populator implements CommandLineRunner {
 			Invoice invoice_A1 = new Invoice(contractor_A);
 			LocalDate dateInvoice_A1 = LocalDate.of(2020, 03, 28);
 			invoice_A1.setDateOfInvoice(dateInvoice_A1);
-			invoice_A1.setInvoiceNote("Contractor A's first Invoice");
+			invoice_A1.setInvoiceNote("Students did a great job applying themselves durring both sessions, I am very impressed with the progress!");
 			invoice_A1.setIsPaid(false);
 			invoiceRepo.save(invoice_A1);
 			contractorRepo.save(contractor_A);
@@ -72,7 +73,7 @@ public class Populator implements CommandLineRunner {
 			Invoice invoice_A2 = new Invoice(contractor_A);
 			LocalDate dateInvoice_A2 = LocalDate.of(2020, 03, 11);
 			invoice_A2.setDateOfInvoice(dateInvoice_A2);
-			invoice_A2.setInvoiceNote("Contractor A's second Invoice");
+			invoice_A2.setInvoiceNote("Students did a great job applying themselves durring both sessions, I am very impressed with the progress!");
 			invoice_A2.setIsPaid(false);
 			invoiceRepo.save(invoice_A2);
 

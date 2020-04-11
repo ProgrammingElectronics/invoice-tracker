@@ -13,25 +13,41 @@
 </head>
 
 <body>
+    <section id="paid_stamp">
+        <img src="/images/paid_stamp.png" alt="">
+    </section>
+    <section id="box_shadow"></section>
+    <section id="invoice_actions">
+        <button onclick="printInvoice()" id="printBtn">Print</button>
+        <button onclick="markAsPaid('true')" id="payBtn">Mark as Paid</button>
+    </section>
 
     <section id="contractor_info">
         <h1>INVOICE</h1>
-        <p th:text="${contractor.firstName} + ' ' + ${contractor.lastName}">Something</p>
+        <p class="darker" th:text="${contractor.firstName} + ' ' + ${contractor.lastName}"></p>
         <p th:text="${contractor.addressLineOne}"></p>
         <p th:text="${contractor.addressLineTwo}"></p>
         <p th:text="${contractor.city} + ', ' + ${contractor.state} + ' ' + ${contractor.zip}"></p>
         <p th:text="${contractor.country}"></p>
+        <p>&nbsp;</p>
         <p th:text="${contractor.phoneNumber}"></p>
         <p th:text="${contractor.email}"></p>
+        <hr>
     </section>
 
     <section id="invoice_info">
-        <p>Invoice Number:</p>
-        <p th:text="${invoice.invoiceNumber}"></p>
-        <p>Invoice Date:</p>
-        <p th:text="${invoice.dateOfInvoice}"></p>
-        <p>Amount Due (USD):</p>
-        <p th:text="${invoice.TotalAmountDueAsCurrencyString}"></p>
+        <div class="container">
+            <p class="darker">Invoice Number: </p>
+            <p th:text="${invoice.invoiceNumber}"></p>
+        </div>
+        <div class="container">
+            <p class="darker">Invoice Date: </p>
+            <p th:text="${invoice.dateOfInvoice}"></p>
+        </div>
+        <div class="container">
+            <p class="darker amount_due" id="invoice_amount_due">Amount Due (USD): </p>
+            <p class="amount_due" th:text="${invoice.TotalAmountDueAsCurrencyString}"></p>
+        </div>
     </section>
 
     <section id="serviceItem_info">
@@ -39,40 +55,39 @@
             <thead>
                 <tr>&nbsp;</tr>
                 <tr>
-                    <th>Service</th>
-                    <th>Date of Service</th>
-                    <th>Price</th>
+                    <th class="fifty">Products / Services</th>
+                    <th class="twenty_five">Date of Service</th>
+                    <th class="twenty_five">Price</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="serviceItem : ${invoice.serviceItems}">
-                    <td th:text="${serviceItem.serviceDescription}"></td>
-                    <td th:text="${serviceItem.dateOfService}"></td>
-                    <td th:text="${serviceItem.amountDue}"></td>
+                    <td class="fifty" th:text="${serviceItem.serviceDescription}"></td>
+                    <td class="twenty_five" id="service_date" th:text="${serviceItem.dateOfService}"></td>
+                    <td class="twenty_five" id="service_price" th:text="${serviceItem.amountDue}"></td>
                 </tr>
             </tbody>
         </table>
-        <p>Amount Due (USD):</p>
-        <p th:text="${invoice.TotalAmountDueAsCurrencyString}"></p>
+
+        <div class="container">
+            <p class="amount_due darker" id="total_amount_due">Amount Due (USD):</p>
+            <p class="amount_due darker underline" th:text="${invoice.TotalAmountDueAsCurrencyString}"></p>
+        </div>
     </section>
 
     <section id="notes">
-        <p>Notes</p>
+        <h2>Notes</h2>
         <p th:text="${invoice.invoiceNote}"></p>
     </section>
 
     <section id="invoice_footer">
         <p>Thank you for your business!</p>
     </section>
-
-    <section id="invoicePaid">
-        <button type="button" onclick="payInvoice('invoicePaid')" id="payBtn">Paid</button>
-    </section>
-
-    <!-- Comment out the second link for eclipse mapping 
-         Comment out the first link for VS Code Go Live mapping -->
-    <script src="/js/invoice-creation-view.js"></script>
-    <!-- <script src="../js/invoice-creation-view.js"></script> -->
 </body>
+
+<!-- Comment out the second link for eclipse mapping 
+         Comment out the first link for VS Code Go Live mapping -->
+<script src="/js/single-invoice.js"></script>
+<!-- <script src="../js/invoice-creation-view.js"></script> -->
 
 </html>
