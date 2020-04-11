@@ -6,14 +6,14 @@
    <!-- <link rel="stylesheet" href="../css/invoice-creation-view.css"> TO USE A PROJO CSS?-->
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
+form {border: 50px solid #f1f1f1;}
 
 input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(2, 12, 4);
   box-sizing: border-box;
 }
 
@@ -21,7 +21,7 @@ button {
   background-color: #4f5357;
   color: #3a9ac1;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin: auto;
   border: none;
   cursor: pointer;
   width: 100%;
@@ -35,11 +35,13 @@ button:hover {
   width: auto;
   padding: 10px 18px;
   background-color: red;
+
 }
 
 .imgcontainer {
   text-align: center;
-  margin: 12px 0 6px 0;
+  margin: 12px 6px; 
+  /* margin for the space of the container */
 }
 
 img.logo {
@@ -48,21 +50,22 @@ img.logo {
 }
 
 .container {
-  padding: 16px;
+  text-align: justify;
+  padding: 10px 150px;
 }
 
 span.psw {
-  float: right;
-  padding-top: 16px;
+  float: left;
+  padding-top: 8px;
 }
 
 span.sup {
-  float: inline-end;
-  padding-top: 16px;
+  float: right;
+  padding-top: 8px;
 }
 
 /* styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 100px) {
   span.psw {
      display: block;
      float: none;
@@ -79,7 +82,7 @@ span.sup {
 </head>
 <body>
 
-<h2>Welcome, ProJo</h2>
+<h2>Welcome, ProJo!</h2>
 
 <form action="/action_page.php" method="post">
   <div class="imgcontainer">
@@ -101,9 +104,9 @@ span.sup {
   </div>
 
   <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
+    <!-- <button type="button" class="cancelbtn">Cancel</button> -->
     <span class="psw">Forgot <a href="#">password?</a></span>
-    <span class="sup">Don't have an account? <a href="#">Sign Up!</a></span>
+    <span class="sup">Don't have an account? <a href="#gmail.com">Sign Up!</a></span>
   </div>
 </form>
 
