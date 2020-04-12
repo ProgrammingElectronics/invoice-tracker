@@ -54,5 +54,13 @@ public class ContractorController {
 		invoiceToMarkPaid.setIsPaid(true);
 		invoiceRepo.save(invoiceToMarkPaid);
 	}
+	
+	@PutMapping("/mark-invoice-sent/{invoiceId}")
+	private void markInvoiceSent(@PathVariable(value = "invoiceId") long invoiceId){
+	
+		Invoice invoiceToSend = invoiceRepo.findById(invoiceId).get();
+		invoiceToSend.setIsSent(true);
+		invoiceRepo.save(invoiceToSend);
+	}
 
 }

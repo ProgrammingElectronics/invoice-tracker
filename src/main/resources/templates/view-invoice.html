@@ -16,9 +16,16 @@
     <section id="paid_stamp">
         <img src="/images/paid_stamp.png" alt="">
     </section>
+    <section id="sent_stamp">
+        <img src="/images/sent_stamp.png" alt="">
+    </section>
+    <!-- The box shadow is used behind the layout to create the box shadow effect -->
     <section id="box_shadow"></section>
     <section id="invoice_actions">
+        <!-- TODO: Needs code review: I think adding event listeners is
+        a better way to handle the "separation of responsibilities" -->
         <button onclick="printInvoice()" id="printBtn">Print</button>
+        <button onclick="markAsSent('true')" id="sentBtn">Mark as Sent</button>
         <button onclick="markAsPaid('true')" id="payBtn">Mark as Paid</button>
     </section>
 

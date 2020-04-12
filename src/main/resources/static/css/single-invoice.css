@@ -83,6 +83,14 @@ body {
     z-index: 1;
 }
 
+#sent_stamp {
+    display: none;
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 2 / 3;
+    padding: 2rem 2rem 0 60%;
+    z-index: 1;
+}
+
 /************************** Contractor Info ****************************/
 
 #contractor_info {
