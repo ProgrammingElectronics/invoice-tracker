@@ -36,14 +36,6 @@ public class InvoiceController {
 	@Resource
 	private CustomerRepository customerRepo;
 	
-//	@RequestMapping("submit-invoice")
-//	private void createNewInvoice(@RequestBody String body) throws JSONException {
-//		JSONObject newInvoice = new JSONObject(body);
-//		String dateOfInvoice = newInvoice.getString("invoiceDate");
-//		LocalDate localDate = LocalDate.parse(dateOfInvoice);
-//		invoiceRepo.save(new Invoice(localDate));
-//	}
-	
 	@RequestMapping("submit-invoice")
 	private void createNewInvoice(@RequestBody String body) throws JSONException {
 		JSONObject newInvoice = new JSONObject(body);
