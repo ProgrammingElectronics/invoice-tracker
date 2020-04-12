@@ -79,3 +79,33 @@ function payInvoice(divName) {
 
     }
 }
+
+//invoice total function
+var totalAmountDue;
+var tempValue;
+
+function totalAmountDue() {
+    console.log("fired");
+    var tempValue = 0;
+    var valueArray = document.getElementsByName('amountDue').values;
+    valueArray.forEach(addEmUp());
+    totalAmountDue = tempValue;
+    document.getElementById('totalAmountDue').innerHTML(totalAmountDue);
+}
+
+function addEmUp(index, item) {
+    tempValue = tempValue + item;
+}
+
+
+// for (let infoSet of serviceInfoSets) {
+//         var amountDueTemp;
+
+//         var values = infoSet.getElementsByClassName('info').getElementById('amountDue');
+//         for (value of values) {
+//             amountDueTemp = value.value + amountDueTemp;
+//         }
+//     }
+//     totalAmountDue = amountDueTemp;
+//     document.getElementById('totalAmountDue').innerHTML(totalAmountDue);
+// }
