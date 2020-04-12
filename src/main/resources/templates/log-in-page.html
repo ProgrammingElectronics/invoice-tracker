@@ -65,18 +65,18 @@ span.sup {
 }
 
 /* styles for span and cancel button on extra small screens */
-@media screen and (max-width: 100px) {
+@media screen and (max-width: 30px) {
   span.psw {
      display: block;
-     float: none;
+     float: inline-start;
   }
   span.sup {
      display: block;
-     float: none;
+     float: inline-start;
   }
-  .cancelbtn {
+  /* .cancelbtn {
      width: 100%;
-  }
+  } */
 }
 </style>
 </head>
@@ -106,7 +106,7 @@ span.sup {
   <div class="container" style="background-color:#f1f1f1">
     <!-- <button type="button" class="cancelbtn">Cancel</button> -->
     <span class="psw">Forgot <a href="#">password?</a></span>
-    <span class="sup">Don't have an account? <a href="#gmail.com">Sign Up!</a></span>
+    <span class="sup">Don't have an account? <a href="#">Sign Up!</a></span>
   </div>
 </form>
 
