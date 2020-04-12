@@ -1,39 +1,37 @@
 package com.invoicetracker.models;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "contractorId")
 public class Contractor extends User {
 
 	/************************ Field Values ****************/
 
+	@Id
+	@GeneratedValue
+	private long id;
+	
 	private String firstName;
 	private String lastName;
 	private String payPalId;
+	private int currentInvoiceNumber = 1000;
 
-	/*
-	 * CODE REVIEW NEEDED. I need to understand why this mapped 
-	 * is breaking the JPAMappingsTest shouldEstablishContractorToInvoiceImpRelationship 
-	 */
-	@OneToMany // (mappedBy = "contractor")
+	@JsonIgnore
+	@OneToMany(mappedBy = "contractor")
 	private Collection<Invoice> invoices;
-
-	@ManyToMany
-	private Collection<Agency> agencies;
-
-	@ManyToMany(mappedBy = "contractors")
-	private Collection<Customer> customers;
 
 	/************************ Getters and Setters ****************/
 
+	public long getId() {
+		return id;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -58,18 +56,32 @@ public class Contractor extends User {
 		this.payPalId = payPalId;
 	}
 
+	public int getCurrentInvoiceNumber() {
+		return currentInvoiceNumber;
+	}
+
+	public void incrementCurrentInvoiceNumber() {
+		this.currentInvoiceNumber++;
+	}
+
 	public Collection<Invoice> getInvoices() {
 		return invoices;
 	}
 
-	public Collection<Agency> getAgencies() {
-		return agencies;
+	/************************ Methods ****************/
+	
+	public void addInvoice(Invoice newInvoice) {
+		
+		getInvoices().add(newInvoice);
+		newInvoice.setContractor(this);
 	}
 
-	public Collection<Customer> getCustomers() {
-		return customers;
+	public void removeInvoice(Invoice invoiceToRemove) {
+		
+		getInvoices().remove(invoiceToRemove);
+		invoiceToRemove.setContractor(null);
 	}
-
+	
 	/************************ Constructors ****************/
 
 	public Contractor() {
@@ -79,18 +91,28 @@ public class Contractor extends User {
 		this.firstName = firstName;
 	}
 
-	public Contractor(String firstName, Agency... agencies) {
-		this.firstName = firstName;
-		this.agencies = new HashSet<>(Arrays.asList(agencies));
+	/************************ Overrides ****************/
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
 	}
 
-	public Contractor(Invoice... invoices) {
-		this.invoices = new HashSet<>(Arrays.asList(invoices));
-	}
-
-	public Contractor(String firstName, Invoice...invoices) {
-		this.firstName = firstName;
-		this.invoices = new HashSet<>(Arrays.asList(invoices));
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contractor other = (Contractor) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 }

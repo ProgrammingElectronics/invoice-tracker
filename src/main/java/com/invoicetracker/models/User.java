@@ -27,6 +27,7 @@ public abstract class User {
 	private String state;
 	private String zip;
 	private String country;
+	private String phoneNumber;
 	
 
 	/************************ Getters and Setters ****************/
@@ -91,6 +92,14 @@ public abstract class User {
 		this.country = country;
 	}
 	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
 	/************************ Constructors ****************/
 	
 	protected User() {}
@@ -122,7 +131,5 @@ public abstract class User {
 			return false;
 		return true;
 	}
-	
-	
 	
 }
