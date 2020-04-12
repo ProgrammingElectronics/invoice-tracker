@@ -173,7 +173,7 @@ public class Invoice {
 		return customerNames;
 	}
 	
-	public Object showPaymentStatus() {
+	public String getPaymentStatus() {
 		
 		String currentPaymentStatus;
 		

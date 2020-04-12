@@ -42,16 +42,14 @@ public class ContractorControllerMockMvcTest {
 
 	@Mock
 	private Invoice invoiceTwo;
-	
-	@Test
-	public void shouldGetStatusOfOkWhenNavigatingToCreateInvoice() throws Exception {
-		this.mockMvc.perform(get("/contractor/create-new-invoice")).andExpect(status().isOk())
-		.andExpect(view().name("create-invoice"));
-	}
 
 	@Test
 	public void shouldGetStatusOfOkWhenNavigatingToViewInvoice() throws Exception {
-		this.mockMvc.perform(get("/contractor/view-existing-invoice")).andExpect(status().isOk())
+		long contractorId = 1;
+		long invoiceId = 2;
+		when(contractorRepo.findById(contractorId)).thenReturn(Optional.of(contractorOne));
+		when(invoiceRepo.findById(invoiceId)).thenReturn(Optional.of(invoiceOne));
+		this.mockMvc.perform(get("/contractor/view-existing-invoice/" + contractorId + "/" + invoiceId)).andExpect(status().isOk())
 		.andExpect(view().name("view-invoice"));
 	}
 

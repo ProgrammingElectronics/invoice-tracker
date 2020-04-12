@@ -140,7 +140,7 @@ class InvoiceTest {
 		Invoice result = invoiceRepo.findById(invoiceId).get();
 		result.setIsPaid(true);
 		
-		assertEquals("Paid", result.showPaymentStatus());
+		assertEquals("Paid", result.getPaymentStatus());
 	}
 	
 	@Test
@@ -155,7 +155,7 @@ class InvoiceTest {
 		Invoice result = invoiceRepo.findById(invoiceId).get();
 		result.setIsSent(true);
 		
-		assertEquals("Sent", result.showPaymentStatus());
+		assertEquals("Sent", result.getPaymentStatus());
 	}
 	
 	@Test
@@ -169,7 +169,7 @@ class InvoiceTest {
 		entityManager.clear();
 		Invoice result = invoiceRepo.findById(invoiceId).get();
 		
-		assertEquals("Not sent", result.showPaymentStatus());
+		assertEquals("Not sent", result.getPaymentStatus());
 	}
 
 }
