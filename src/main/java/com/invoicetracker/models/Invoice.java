@@ -80,11 +80,11 @@ public class Invoice {
 		this.isPaid = isPaid;
 	}
 
-	public boolean isSent() {
+	public boolean getIsSent() {
 		return isSent;
 	}
 	
-	public void setSent(boolean isSent) {
+	public void setIsSent(boolean isSent) {
 		this.isSent = isSent;
 	}
 	

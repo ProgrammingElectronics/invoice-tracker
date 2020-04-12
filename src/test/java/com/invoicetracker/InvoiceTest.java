@@ -142,5 +142,34 @@ class InvoiceTest {
 		
 		assertEquals("Paid", result.showPaymentStatus());
 	}
+	
+	@Test
+	void shouldReturnStringSentIfInvoiceIsSent() {
+		// Arrange
+		Contractor contractor = contractorRepo.save(new Contractor());
+		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
+		long invoiceId = invoice.getId();
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+		Invoice result = invoiceRepo.findById(invoiceId).get();
+		result.setIsSent(true);
+		
+		assertEquals("Sent", result.showPaymentStatus());
+	}
+	
+	@Test
+	void shouldReturnStringNotSentIfInvoiceIsSent() {
+		// Arrange
+		Contractor contractor = contractorRepo.save(new Contractor());
+		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
+		long invoiceId = invoice.getId();
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+		Invoice result = invoiceRepo.findById(invoiceId).get();
+		
+		assertEquals("Not sent", result.showPaymentStatus());
+	}
 
 }
