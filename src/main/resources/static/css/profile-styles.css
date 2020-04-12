@@ -1,0 +1,171 @@
+/* Color Theme Swatches in Hex */
+:root {
+--background-navy_blue-hex-color: #223059; 
+--background-2-space_blue-hex-color: #465573; 
+--highlight-yellow-hex-color: #F2E205; 
+--border-gold_yellow-hex-color: #F29F05; 
+--hover-marigold-hex-color: #F28705; 
+--border-radius: 4px;
+--box-shadow: 0 0 10px -2px;
+--projo-header-width: 220px;
+}
+
+@import "../scss/content-area.css";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+a,
+button {
+    color: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    background: none;
+    cursor: pointer;
+}
+
+input {
+    -webkit-appearance: none;
+}
+
+button,
+input{
+    border: none;
+}
+
+button {
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: center;
+    font: 400 13.3333px Arial;
+}
+
+svg {
+    display: block;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+body {
+    font: 16px/1.5 "Roboto", sans-serif;
+    position: relative;
+}
+
+/*Header styling*/
+
+.projo-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding-top: 20px;
+    width: var(--projo-header-width);
+    color: white;
+    background: var(--background-navy_blue-hex-color);
+}
+
+.projo-header nav {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.projo-header .logo {
+    display: block;
+    max-width: 120px;
+    margin: 0 15px;
+}
+
+.projo-header .toggle-menu svg {
+    fill: black;
+    transition: transform 0.2s;
+}
+
+.projo-header .user-menu {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-top: 35px;
+}
+
+.projo-header .user-menu li:nth-last-child(2) {
+    margin-bottom: 35px;
+}
+
+.projo-header .user-menu li:last-child {
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+.projo-header .user-menu li > * {
+    width: 100%;
+    padding: 12px 15px;
+}
+
+.projo-header .user-menu .menu-name h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    font-size: 12px;
+    margin-top: 12px;
+    color: var(--border-gold_yellow-hex-color);
+}
+
+.projo-header .user-menu svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--background-navy_blue-hex-color);
+    margin-right: 10px;
+    transition: fill 0.2s;
+}
+
+.projo-header .user-menu a,
+.projo-header .user-menu button {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.projo-header .user-menu a:hover,
+.projo-header .user-menu a:focus,
+.projo-header .user-menu button:hover,
+.projo-header .user-menu button:focus {
+    background: var(--background-2-space_blue-hex-color);
+    color: var(--border-gold_yellow-hex-color);
+    outline: none;
+}
+
+.projo-header .user-menu a:hover svg,
+.projo-header .user-menu a:focus svg,
+.projo-header .user-menu button:hover svg,
+.projo-header .user-menu button:focus svg{
+    fill: white;
+}
+
+
+
+/*Footer*/
+footer {
+    font-size: 0.85rem;
+    text-align: right;
+    margin-top: 10px;
+}

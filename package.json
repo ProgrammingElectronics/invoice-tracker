@@ -1,0 +1,25 @@
+{
+  "name": "projo",
+  "version": "1.0.0",
+  "description": "invoice creator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TEAM-ProJo/invoice-tracker.git"
+  },
+  "keywords": [
+    "invoice"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TEAM-ProJo/invoice-tracker/issues"
+  },
+  "homepage": "https://github.com/TEAM-ProJo/invoice-tracker#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
