@@ -29,7 +29,7 @@ public class ContractorController {
 		return "view-invoice";	
 	}
 	
-	@GetMapping("/search-invoice-list/{contractorId}")
+	@GetMapping("/contractor/search-invoice-list/{contractorId}")
 	private String viewInvoiceList(@PathVariable(value="contractorId") long contractorId, Model model) {				
 		
 		Contractor contractor = contractorRepo.findById(contractorId).get();
@@ -37,5 +37,14 @@ public class ContractorController {
 		
 		return "search-invoice-list";
 	}
+	
+//	@GetMapping("/contractor/view-user-info/{contractorId}")
+//	private String viewUserInfo(@PathVariable(value="contractorId") long contractorId, Model model) {				
+//		
+//		Contractor contractor = contractorRepo.findById(contractorId).get();
+//		model.addAttribute("invoices", contractor.getInvoices());
+//		
+//		return "view-user-info";
+//	}
 
 }

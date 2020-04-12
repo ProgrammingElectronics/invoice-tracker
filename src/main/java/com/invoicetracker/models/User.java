@@ -23,7 +23,7 @@ public abstract class User {
 	
 	/* Address */
 	private String addressLineOne;
-	private String addressLineTwo;
+//	private String addressLineTwo;
 	private String city;
 	private String state;
 	private String zip;
@@ -60,13 +60,13 @@ public abstract class User {
 		this.addressLineOne = addressLineOne;
 	}
 
-	public String getAddressLineTwo() {
-		return addressLineTwo;
-	}
-
-	public void setAddressLineTwo(final String addressLineTwo) {
-		this.addressLineTwo = addressLineTwo;
-	}
+//	public String getAddressLineTwo() {
+//		return addressLineTwo;
+//	}
+//
+//	public void setAddressLineTwo(final String addressLineTwo) {
+//		this.addressLineTwo = addressLineTwo;
+//	}
 
 	public String getCity() {
 		return city;
@@ -107,7 +107,7 @@ public abstract class User {
 		this.email = email;
 		this.phone = phone;
 		this.addressLineOne = addressLineOne;
-		this.addressLineTwo = addressLineTwo;
+//		this.addressLineTwo = addressLineTwo;
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
@@ -119,9 +119,10 @@ public abstract class User {
 
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", phone=" + phone + ", addressLineOne=" + addressLineOne + ", addressLineTwo="
-				+ addressLineTwo + ", city=" + city + ", state=" + state + ", zip=" + zip + ", country=" + country
+		return "User [email=" + email + ", phone=" + phone + ", addressLineOne=" + ", city=" + city + ", state=" + state + ", zip=" + zip + ", country=" + country
 				+ "]";
+//		(after addressLineOne=" ) removed (+ addressLineOne + ", addressLineTwo=")
+		
 	}
 	
 	@Override

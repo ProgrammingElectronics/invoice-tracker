@@ -59,6 +59,12 @@ public class ContractorControllerMockMvcTest {
 		this.mockMvc.perform(get("/contractor/view-existing-invoice")).andExpect(status().isOk())
 		.andExpect(view().name("view-invoice"));
 	}
+	
+//	@Test
+//	public void shouldGetStatusOfOkWhenNavigatingToUserInfo() throws Exception {
+//		this.mockMvc.perform(get("/contractor/view-user-info")).andExpect(status().isOk())
+//		.andExpect(view().name("view-user-info"));
+//	}
 
 	
 	@Test

@@ -65,14 +65,14 @@ span.sup {
 }
 
 /* styles for span and cancel button on extra small screens */
-@media screen and (max-width: 30px) {
+@media screen and (max-width: 100px) {
   span.psw {
      display: block;
-     float: inline-start;
+     float: none;
   }
   span.sup {
      display: block;
-     float: inline-start;
+     float: none;
   }
   /* .cancelbtn {
      width: 100%;
@@ -97,7 +97,7 @@ span.sup {
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
 
-    <button type="loginButton">Login</button>
+    <a href= "https://amazon.com" target= _blank><button type="loginButton">Login</button></a>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>
