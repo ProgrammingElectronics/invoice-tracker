@@ -47,6 +47,10 @@ public class ContractorController {
 		return "search-invoice-list";
 	}
 
+	/*
+	 * TODO Needs Code Review:
+	 * I do not think a @PutMapping is right, but it is working. 
+	 */
 	@PutMapping("/mark-invoice-paid/{invoiceId}")
 	private void markInvoicePaid(@PathVariable(value = "invoiceId") long invoiceId){
 	
@@ -55,6 +59,10 @@ public class ContractorController {
 		invoiceRepo.save(invoiceToMarkPaid);
 	}
 	
+	/*
+	 * TODO Needs Code Review:
+	 * I do not think a @PutMapping is right, but it is working. 
+	 */
 	@PutMapping("/mark-invoice-sent/{invoiceId}")
 	private void markInvoiceSent(@PathVariable(value = "invoiceId") long invoiceId){
 	

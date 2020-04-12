@@ -3,6 +3,7 @@ package com.invoicetracker;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import java.util.Optional;
@@ -77,9 +78,19 @@ public class ContractorControllerMockMvcTest {
 				.andExpect(view().name("search-invoice-list"));
 	}
 
+	/*
+	 * TODO: These tests need fixed.   
+	 */
 	@Test
 	public void MarkPaidEndPointWillMarkAnInvoicePaid() throws Exception {
-		this.mockMvc.perform(post("/contractor/mark-invoice-paid")).andExpect(status().isOk());
+		long invoiceId = 1;
+		this.mockMvc.perform(put("/contractor/mark-invoice-paid/" + invoiceId)).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void MarkSentEndPointWillMarkAnInvoiceSent() throws Exception {
+		long invoiceId = 1;
+		this.mockMvc.perform(put("/contractor/mark-invoice-sent/" + invoiceId)).andExpect(status().isOk());
 	}
 
 }

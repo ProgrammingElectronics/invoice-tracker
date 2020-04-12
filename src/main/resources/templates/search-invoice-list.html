@@ -8,8 +8,9 @@
     <!-- Comment out the second link for eclipse mapping 
     Comment out the first link for VS Code Go Live mapping -->
     <link rel="stylesheet" href="/css/search-invoices.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <!-- <link rel="stylesheet" href="../static/css/search-invoices.css"> -->
-
+    <!-- <link rel="stylesheet" href="../static/css/footer.css"> -->
 </head>
 
 <body>
@@ -43,7 +44,7 @@
             <tr th:each="invoice : ${invoices}">
                 <td>
                     <a th:href="@{/contractor/view-existing-invoice/{contractorId}/{invoiceId}(contractorId = ${contractor.id}, invoiceId = ${invoice.id})}"
-                        th:text="${invoice.invoiceNumber}" target="_blank"></a>
+                        th:text="${invoice.invoiceNumber}"></a>
                 </td>
                 <td th:text="${invoice.dateOfInvoice}"></td>
                 <td th:text="${invoice.CustomerNamePreviewAsString}"></td>
@@ -61,6 +62,12 @@
         <a href="http://localhost:8080/contractor/create-new-invoice">Create Invoice</a>
         <a href="http://localhost:8080/contractor/profile">Profile</a>
     </nav>
+
+    <!------------------------------------ Footer ------------------------------------------------->
+    <footer id="site_wide_footer">
+        <span>Powered by</span>
+        <img src="/images/projo.png" alt="">
+    </footer>
 
 
 </body>

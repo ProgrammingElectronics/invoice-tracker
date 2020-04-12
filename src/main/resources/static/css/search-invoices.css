@@ -1,4 +1,4 @@
-*{
+* {
   font-family: sans-serif;
   line-height: 1.618em;
   box-sizing: border-box;
@@ -13,13 +13,33 @@ h1 {
 
 html {
   background-color: #EDE7F6;
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 
-table#centerTable {
-    width:70%; 
-    margin-left:15%; 
-    margin-right:15%;
+body {
+  display: grid;
+  grid-template-columns: 0.2fr [table-start] minmax(200px, 1fr) [table-stop] 0.2fr;
+  grid-template-rows: repeat(5, auto);
+}
+
+header {
+  grid-column: table-start / table-stop;
+}
+
+footer {
+  grid-column: table-start / table-stop;
+}
+
+/*********************** Invoice List Section ************************/
+
+/* table#centerTable {
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+} */
+
+table {
+  grid-column: table-start / table-stop;
 }
 
 table {
@@ -48,21 +68,19 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-
   display: flex;
   flex-flow: row;
   justify-content: center;
-
   background: #2E343F;
 }
 
 tbody tr:nth-child(0) {
-   font-size: 50px;
+  font-size: 50px;
 }
 
 thead {
   background-color: #2E343F;
-  color: #ffffff;  
+  color: #ffffff;
 }
 
 tfoot {
@@ -94,6 +112,6 @@ tfoot th:only-child {
 }
 
 tbody tr:nth-child(even) {
-    background: #3a9ac1;
-    /* box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; */
+  background: #3a9ac1;
+  /* box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; */
 }
