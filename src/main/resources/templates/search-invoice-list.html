@@ -4,22 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Invoice List</title>
-
-    <link rel="stylesheet" href="../css/invoice-creation-view.css">
+    <title>My Invoices</title>
+    <!-- Comment out the second link for eclipse mapping 
+    Comment out the first link for VS Code Go Live mapping -->
+    <link rel="stylesheet" href="/css/search-invoices.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <!-- <link rel="stylesheet" href="../static/css/search-invoices.css"> -->
+    <!-- <link rel="stylesheet" href="../static/css/footer.css"> -->
 </head>
 
 <body>
 
     <header>
-        <h1>Search Invoice List</h1>
+        <h1>My Invoices</h1>
     </header>
 
-    <ul>
-        <li th:each="invoice: ${invoices}">
-            <a th:text="${invoice.id}"></a>
-        </li>
-    </ul>
+    <!------------------------------------ Invoice List ------------------------------------------------->
+    <table id="centerTable">
+        <thead>
+            <tr>&nbsp;</tr>
+            <tr>
+                <th>Invoice #</th>
+                <th>Date</th>
+                <th>Service Items</th>
+                <th>Total Amount Due</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>&nbsp;</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr th:each="invoice : ${invoices}">
+                <td>
+                    <a th:href="@{/contractor/view-existing-invoice/{contractorId}/{invoiceId}(contractorId = ${contractor.id}, invoiceId = ${invoice.id})}"
+                        th:text="${invoice.invoiceNumber}"></a>
+                </td>
+                <td th:text="${invoice.dateOfInvoice}"></td>
+                <td th:text="${invoice.CustomerNamePreviewAsString}"></td>
+                <td th:text="${invoice.TotalAmountDueAsCurrencyString}"></td>
+                <td th:text="${invoice.PaymentStatus}"></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <!------------------------------------ NAV ------------------------------------------------->
+    <nav>
+        <a th:href="@{/contractor/search-invoice-list/{contractorId}(contractorId = ${contractor.id})}">My
+            Invoices</a>
+        <a href="http://localhost:8080/contractor/create-new-invoice">Create Invoice</a>
+        <a href="http://localhost:8080/contractor/profile">Profile</a>
+    </nav>
+
+    <!------------------------------------ Footer ------------------------------------------------->
+    <footer id="site_wide_footer">
+        <span>Powered by</span>
+        <img src="/images/projo.png" alt="">
+    </footer>
 
 
 </body>

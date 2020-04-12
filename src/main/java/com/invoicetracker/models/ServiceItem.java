@@ -1,11 +1,15 @@
 package com.invoicetracker.models;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ServiceItem {
@@ -16,16 +20,13 @@ public class ServiceItem {
 	@GeneratedValue
 	private long id;
 
+	private LocalDate dateOfService;
+	private float amountDue;
+	private String serviceDescription; 
+
+	@JsonIgnore
 	@ManyToOne
 	private Invoice invoice;
-
-	@ManyToOne
-	private Customer customer;
-
-	private LocalDate dateOfService;
-	private float hourlyPayRate;
-	private float serviceHours;
-	private float amountDue;
 
 	/************************ Getters and Setters ****************/
 
@@ -33,73 +34,58 @@ public class ServiceItem {
 		return id;
 	}
 
-	public Invoice getInvoice() {
-		return invoice;
-	}
-
-	public void setInvoice(Invoice invoice) {
-		this.invoice = invoice;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
 	public LocalDate getDateOfService() {
 		return dateOfService;
 	}
-
+	
 	public void setDateOfService(LocalDate dateOfService) {
 		this.dateOfService = dateOfService;
 	}
-
-	public float getPayRateOfAService() {
-		return hourlyPayRate;
-	}
-
-	public void setPayRateOfAService(float payRateOfAService) {
-		this.hourlyPayRate = payRateOfAService;
-	}
-
-	public float getServiceHours() {
-		return serviceHours;
-	}
-
-	public void setServiceHours(float serviceHours) {
-		this.serviceHours = serviceHours;
-	}
-
+	
 	public float getAmountDue() {
 		return amountDue;
 	}
-
+	
 	public void setAmountDue(float amountDue) {
 		this.amountDue = amountDue;
 	}
-
+	
+	public String getServiceDescription() {
+		return serviceDescription;
+	}
+	
+	public void setServiceDescription(String serviceDescription) {
+		this.serviceDescription = serviceDescription;
+	}
+	
+	public Invoice getInvoice() {
+		return invoice;
+	}
+	
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
+	}
+	
 	/********************* Constructors ****************/
 
 	public ServiceItem() {
 	}
-
-	public ServiceItem(LocalDate dateOfService) {
-		this.dateOfService = dateOfService;
-	}
-
-	public ServiceItem(LocalDate dateOfService, Invoice invoice) {
-		this.dateOfService = dateOfService;
+	
+	public ServiceItem(Invoice invoice) {
 		this.invoice = invoice;
 	}
 
-	public ServiceItem(LocalDate dateOfService, Customer customer) {
-		this.dateOfService = dateOfService;
-		this.customer = customer;
-	}
+	/************************ Methods ****************/
+	
+	public Object getAmountDueAsCurrencyString() {
+		NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+		String currency = format.format(amountDue);
+		// TODO: Requires Code Review
+		// I am auto down casting here, format expects a double...Is that bad?
 
+		return currency;
+	}
+	
 	/************************ Overrides ****************/
 
 	@Override
@@ -124,4 +110,5 @@ public class ServiceItem {
 		return true;
 	}
 
+	
 }
