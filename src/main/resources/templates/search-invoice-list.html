@@ -27,11 +27,13 @@
                 <th>Date</th>
                 <th>Service Items</th>
                 <th>Total Amount Due</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
                 <th>&nbsp;</th>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -46,6 +48,7 @@
                 <td th:text="${invoice.dateOfInvoice}"></td>
                 <td th:text="${invoice.CustomerNamePreviewAsString}"></td>
                 <td th:text="${invoice.TotalAmountDueAsCurrencyString}"></td>
+                <td th:text="${invoice.isPaid}"></td>
             </tr>
 
         </tbody>

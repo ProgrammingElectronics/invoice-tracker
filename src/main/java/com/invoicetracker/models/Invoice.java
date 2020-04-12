@@ -26,6 +26,7 @@ public class Invoice {
 	private float totalAmountDue;
 	private String invoiceNote;
 	private boolean isPaid;
+	private boolean isSent;
 
 	@JsonIgnore
 	@ManyToOne
@@ -79,6 +80,14 @@ public class Invoice {
 		this.isPaid = isPaid;
 	}
 
+	public boolean isSent() {
+		return isSent;
+	}
+	
+	public void setSent(boolean isSent) {
+		this.isSent = isSent;
+	}
+	
 	public Contractor getContractor() {
 		return contractor;
 	}
@@ -163,7 +172,22 @@ public class Invoice {
 
 		return customerNames;
 	}
-
+	
+	public Object showPaymentStatus() {
+		
+		String currentPaymentStatus;
+		
+		if(isPaid) {
+			currentPaymentStatus = "Paid";	
+		} else if(isSent) {
+			currentPaymentStatus = "Sent";
+		} else {
+			currentPaymentStatus = "Not sent";
+		}
+		
+		return currentPaymentStatus;
+	}
+	
 	/************************ Overrides ****************/
 
 	@Override
@@ -187,5 +211,7 @@ public class Invoice {
 			return false;
 		return true;
 	}
+
+
 
 }

@@ -1,30 +1,29 @@
-*{
-  font-family: sans-serif;
-  
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-size: large;
+* {
+    font-family: sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: large;
 }
 
 h1 {
-  font-size: 3em;
-  line-height: 1.618em;
+    font-size: 3em;
+    line-height: 1.618em;
 }
 
 h2 {
-  font-size: 1.5em;
-  line-height: 1.618em;
+    font-size: 1.5em;
+    line-height: 1.618em;
 }
 
 html {
-  background-color: #EDE7F6;
+    background-color: #EDE7F6;
 }
 
 body {
-  display: grid;
-  grid-template-columns: 0.4fr [invoice-start] minmax(200px, 1fr) [invoice-stop] 0.4fr;
-  grid-template-rows: repeat(6, auto) 40px;
+    display: grid;
+    grid-template-columns: 0.4fr [invoice-start] minmax(200px, 1fr) [invoice-stop] 0.4fr;
+    grid-template-rows: repeat(6, auto) 40px;
 }
 
 .darker {
@@ -45,10 +44,10 @@ body {
 
 /************************** Invoice Actions ****************************/
 
-#invoice_actions{
-  grid-column: invoice-start / invoice-stop;
-  grid-row: 1 / 2;
-  padding: 1.5rem;
+#invoice_actions {
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 1 / 2;
+    padding: 1.5rem;
 }
 
 #invoice_actions {
@@ -56,24 +55,24 @@ body {
     justify-content: space-between;
 }
 
-#invoice_actions > button {
-  color: #4d6575;
-  background: rgba(0,0,0,0);
-  border: 1px solid #b2c2cd;
-  padding: 8px 20px;
-  vertical-align: middle;
-  cursor: pointer;
-  border-radius: 1em;
+#invoice_actions>button {
+    color: #4d6575;
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid #b2c2cd;
+    padding: 8px 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 1em;
 }
 
-#invoice_actions > button:hover {
-  color: #4d6575;
-  background: rgba(0,0,0,0);
-  border: 1px solid #2d6f9b;
-  padding: 8px 20px;
-  vertical-align: middle;
-  cursor: pointer;
-  border-radius: 1em;
+#invoice_actions>button:hover {
+    color: #4d6575;
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid #2d6f9b;
+    padding: 8px 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 1em;
 }
 
 #paid_stamp {
@@ -84,38 +83,38 @@ body {
     z-index: 1;
 }
 
-
 /************************** Contractor Info ****************************/
 
 #contractor_info {
-  grid-column: invoice-start / invoice-stop;
-  grid-row: 2 / 3;
-  background: #ffffff;
-  padding: 1.5rem;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  line-height: 1.2em;
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 2 / 3;
+    background: #ffffff;
+    padding: 1.5rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    line-height: 1.2em;
 }
 
 hr {
-   margin-top: 1rem; 
+    margin-top: 1rem;
 }
 
 /************************** Invoice Info ****************************/
+
 #invoice_info {
-  grid-column: invoice-start / invoice-stop;
-  grid-row: 3 / 4;
-  background: #ffffff;
-  padding: 2rem;
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 3 / 4;
+    background: #ffffff;
+    padding: 2rem;
 }
 
-#invoice_info  div {
+#invoice_info div {
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
 }
 
-#invoice_info  p {
+#invoice_info p {
     padding-right: 1rem;
 }
 
@@ -134,38 +133,38 @@ hr {
 /************************** ServiceItem Info ****************************/
 
 #serviceItem_info {
-  grid-column: invoice-start / invoice-stop;
-  grid-row: 4 / 5;
-  background:#c3d7df;
-  justify-items: start;
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 4 / 5;
+    background: #c3d7df;
+    justify-items: start;
 }
 
-table {  
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 tbody tr, td {
-  border: 2px solid rgb(121, 122, 123);
+    border: 2px solid rgb(121, 122, 123);
 }
 
 th {
-  padding: 15px;
-  text-align: center;
+    padding: 15px;
+    text-align: center;
 }
 
 td {
-  padding: 15px;
+    padding: 15px;
 }
 
 tr #service_date {
-     text-align: center;
+    text-align: center;
 }
 
 tr #service_price {
-     text-align: right;
-     padding-right: 3rem;
+    text-align: right;
+    padding-right: 3rem;
 }
 
 .twenty_five {
@@ -187,16 +186,18 @@ tr #service_price {
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
 }
+
 .underline {
     text-decoration-line: underline;
-
 }
+
 /************************** Notes ****************************/
+
 #notes {
-  grid-column: invoice-start / invoice-stop;
-  grid-row: 5 / 6;
-  background: #ffffff;
-  padding: 2rem 1.5rem 14rem 1.5rem;
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 5 / 6;
+    background: #ffffff;
+    padding: 2rem 1.5rem 14rem 1.5rem;
 }
 
 #notes {
@@ -207,41 +208,37 @@ tr #service_price {
 /************************** Invoice Footer ****************************/
 
 #invoice_footer {
-  grid-column: invoice-start / invoice-stop;
-  grid-row: 6 / 7;
-  background: #ffffff;
-  padding: 1.5rem;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 6 / 7;
+    background: #ffffff;
+    padding: 1.5rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 
 #invoice_footer {
-   display: flex;
-   justify-content: center;
-   font-style: italic;
+    display: flex;
+    justify-content: center;
+    font-style: italic;
 }
 
-/************************** Invoice Footer ****************************/
+/************************** CSS For Printing ****************************/
 
 @media print {
-
-body {
-  display: grid;
-  grid-template-columns: 0.1fr [invoice-start] minmax(200px, 8fr) [invoice-stop] 0.1fr;
-}
-
-#invoice_actions, #box_shadow {
-    display: none;
-}
-
-  #contractor_info, #invoice_info, #serviceItem_info, #total_amount_due, #notes, #invoice_footer * {
-    visibility: visible;
-}
-
-#notes{
-    padding: 1rem 1.5rem 5rem 1.5rem;
-}
-
-#invoice_footer {
-    padding: 0.5rem;
+    body {
+        display: grid;
+        grid-template-columns: 0.1fr [invoice-start] minmax(200px, 8fr) [invoice-stop] 0.1fr;
+    }
+    #invoice_actions, #box_shadow {
+        display: none;
+    }
+    #contractor_info, #invoice_info, #serviceItem_info, #total_amount_due, #notes, #invoice_footer * {
+        visibility: visible;
+    }
+    #notes {
+        padding: 1rem 1.5rem 5rem 1.5rem;
+    }
+    #invoice_footer {
+        padding: 0.5rem;
+    }
 }

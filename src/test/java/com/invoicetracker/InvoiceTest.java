@@ -20,7 +20,7 @@ class InvoiceTest {
 
 	@Resource
 	private TestEntityManager entityManager;
-	
+
 	@Resource
 	ContractorRepository contractorRepo;
 
@@ -32,7 +32,7 @@ class InvoiceTest {
 
 	@Test
 	void shouldSumServiceItemsAmountDue() {
-		//Arrange
+		// Arrange
 		Contractor contractor = contractorRepo.save(new Contractor());
 		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
 		ServiceItem serviceItemOne = serviceItemRepo.save(new ServiceItem(invoice));
@@ -51,7 +51,7 @@ class InvoiceTest {
 
 	@Test
 	void shouldRemoveServiceItem() {
-		//Arrange
+		// Arrange
 		Contractor contractor = contractorRepo.save(new Contractor());
 		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
 		@SuppressWarnings("unused")
@@ -64,13 +64,13 @@ class InvoiceTest {
 		entityManager.clear();
 		Invoice result = invoiceRepo.findById(invoiceId).get();
 		result.removeServiceItem(serviceItemTwo);
-		
+
 		assertEquals(1, result.getServiceItems().size());
 	}
 
 	@Test
 	void shouldReturnThreeServiceItemCustomerNamesAsACommaSeparatedString() {
-		//Arrange
+		// Arrange
 		Contractor contractor = contractorRepo.save(new Contractor());
 		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
 		ServiceItem serviceItemOne = serviceItemRepo.save(new ServiceItem(invoice));
@@ -83,13 +83,13 @@ class InvoiceTest {
 		entityManager.flush();
 		entityManager.clear();
 		Invoice result = invoiceRepo.findById(invoiceId).get();
-		
+
 		assertEquals("bill, ted", result.getCustomerNamePreviewAsString());
 	}
 
 	@Test
 	void shouldClipNumberOfServiceItemCustomerNamesOver3() {
-		//Arrange
+		// Arrange
 		Contractor contractor = contractorRepo.save(new Contractor());
 		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
 		ServiceItem serviceItemOne = serviceItemRepo.save(new ServiceItem(invoice));
@@ -106,13 +106,13 @@ class InvoiceTest {
 		entityManager.flush();
 		entityManager.clear();
 		Invoice result = invoiceRepo.findById(invoiceId).get();
-		
-		assertEquals("bill, ted ... plus 2 more", result.getCustomerNamePreviewAsString());		
+
+		assertEquals("bill, ted ... plus 2 more", result.getCustomerNamePreviewAsString());
 	}
-	
+
 	@Test
 	void shouldFormatTotalAmountDueAsCurrency() {
-		//Arrange
+		// Arrange
 		Contractor contractor = contractorRepo.save(new Contractor());
 		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
 		ServiceItem serviceItemOne = serviceItemRepo.save(new ServiceItem(invoice));
@@ -123,8 +123,24 @@ class InvoiceTest {
 		// Act
 		entityManager.flush();
 		entityManager.clear();
-		Invoice result = invoiceRepo.findById(invoiceId).get();		
-		
+		Invoice result = invoiceRepo.findById(invoiceId).get();
+
 		assertEquals("$700.00", result.getTotalAmountDueAsCurrencyString());
 	}
+
+	@Test
+	void shouldReturnStringPaidIfInvoiceIsPaid() {
+		// Arrange
+		Contractor contractor = contractorRepo.save(new Contractor());
+		Invoice invoice = invoiceRepo.save(new Invoice(contractor));
+		long invoiceId = invoice.getId();
+		// Act
+		entityManager.flush();
+		entityManager.clear();
+		Invoice result = invoiceRepo.findById(invoiceId).get();
+		result.setIsPaid(true);
+		
+		assertEquals("Paid", result.showPaymentStatus());
+	}
+
 }
