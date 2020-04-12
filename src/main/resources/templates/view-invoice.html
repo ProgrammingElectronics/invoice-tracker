@@ -36,6 +36,7 @@
     </section>
 
     <section id="invoice_info">
+        <input id="invoice_id" hidden th:value="${invoice.id}">
         <div class="container">
             <p class="darker">Invoice Number: </p>
             <p th:text="${invoice.invoiceNumber}"></p>
@@ -85,9 +86,12 @@
     </section>
 </body>
 
-<!-- Comment out the second link for eclipse mapping 
-         Comment out the first link for VS Code Go Live mapping -->
+<!-- Uncomment below when using Eclipse -->
 <script src="/js/single-invoice.js"></script>
+<script src="/js/api/api-actions.js"></script>
+
+<!-- Uncomment below when using VSCODE GoLive -->
 <!-- <script src="../js/invoice-creation-view.js"></script> -->
+<!-- <script src="../static/js/api/api-actions.js"></script> -->
 
 </html>
