@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // **** this function of a for/of loop allows iteration of a html collection ****
 // **** this example also prints to the console each DOM's id                ****
 // var list = document.getElementsByClassName('events');
@@ -9,8 +8,6 @@
 // the commented out console.log() throughout this document where used in testing
 // as the page was built.
 
-=======
->>>>>>> dev
 function submitInvoice() {
 
     var contractorName = document.getElementById('contractorName').value;
