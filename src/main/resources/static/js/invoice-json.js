@@ -1,26 +1,3 @@
-// **** this function of a for/of loop allows iteration of a html collection ****
-// **** this example also prints to the console each DOM's id                ****
-// var list = document.getElementsByClassName('events');
-// for (let item of list) {
-//     console.log(item.id);
-// }
-
-// the commented out console.log() throughout this document where used in testing
-// as the page was built.
-
-
-// function submitInvoice() {
-//     var invoiceNumber = document.getElementById('invoiceNumber').value;
-//     var invoiceDate = document.getElementById('invoiceDate').value;
-//     var invoiceTerm = document.getElementById('invoiceTerm').value;
-//     var invoiceJson = {
-//         'invoiceNumber': invoiceNumber,
-//         'invoiceDate': invoiceDate,
-//         'invoiceTerm': invoiceTerm
-//     }
-//     return invoiceJson;
-// }
-
 function submitInvoice() {
 
     // ***information from the upper half of the html doc***

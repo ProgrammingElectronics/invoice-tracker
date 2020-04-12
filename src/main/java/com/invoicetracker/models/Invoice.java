@@ -1,21 +1,18 @@
 package com.invoicetracker.models;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-
+import java.util.Locale;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Invoice {
 
 	/************************ Field Values ****************/
@@ -23,40 +20,24 @@ public class Invoice {
 	@Id
 	@GeneratedValue
 	private long id;
-	
-	private int invoiceNumber;
+
 	private LocalDate dateOfInvoice;
-	private boolean isPaid;
+	private int invoiceNumber;
 	private float totalAmountDue;
-	
-	@ManyToOne
-	Contractor contractor;
+	private String invoiceNote;
+	private boolean isPaid;
+	private boolean isSent;
 
+	@JsonIgnore
 	@ManyToOne
-	Agency agency;
+	private Contractor contractor;
 
-	@OneToMany
+	@OneToMany(mappedBy = "invoice")
 	private Collection<ServiceItem> serviceItems;
 
 	/************************ Getters and Setter ****************/
 	public long getId() {
 		return id;
-	}
-
-	public int getInvoiceNumber() {
-		return invoiceNumber;
-	}
-
-	public void setInvoiceNumber(int invoiceNumber) {
-		this.invoiceNumber = invoiceNumber;
-	}
-
-	public boolean isPaid() {
-		return isPaid;
-	}
-
-	public void setPaid(boolean isPaid) {
-		this.isPaid = isPaid;
 	}
 
 	public LocalDate getDateOfInvoice() {
@@ -67,45 +48,148 @@ public class Invoice {
 		this.dateOfInvoice = dateOfInvoice;
 	}
 
+	public int getInvoiceNumber() {
+		return invoiceNumber;
+	}
+
+	public void setInvoiceNumber(int invoiceNumber) {
+		this.invoiceNumber = invoiceNumber;
+	}
+
 	public float getTotalAmountDue() {
 		return totalAmountDue;
+	}
+
+	public void setTotalAmountDue(float totalAmountDue) {
+		this.totalAmountDue = totalAmountDue;
+	}
+
+	public String getInvoiceNote() {
+		return invoiceNote;
+	}
+
+	public void setInvoiceNote(String invoiceNote) {
+		this.invoiceNote = invoiceNote;
+	}
+
+	public boolean getIsPaid() {
+		return isPaid;
+	}
+
+	public void setIsPaid(boolean isPaid) {
+		this.isPaid = isPaid;
+	}
+
+	public boolean getIsSent() {
+		return isSent;
+	}
+	
+	public void setIsSent(boolean isSent) {
+		this.isSent = isSent;
 	}
 	
 	public Contractor getContractor() {
 		return contractor;
 	}
 
-	public Agency getAgency() {
-		return agency;
+	public void setContractor(Contractor contractor) {
+		this.contractor = contractor;
 	}
 
 	public Collection<ServiceItem> getServiceItems() {
 		return serviceItems;
 	}
 
-	/************************ Constructors ****************/
+	public void setServiceItems(Collection<ServiceItem> serviceItems) {
+		this.serviceItems = serviceItems;
+	}
 
+	/************************ Constructors ****************/
 
 	public Invoice() {
 	}
 
-	public Invoice(LocalDate dateOfInvoice) {
-		this.dateOfInvoice = dateOfInvoice;
+	public Invoice(Contractor contractor) {
+		
+		this.contractor = contractor;
+		this.contractor.incrementCurrentInvoiceNumber();
+		this.invoiceNumber = contractor.getCurrentInvoiceNumber();
 	}
 
-	public Invoice(LocalDate dateOfInvoice, ServiceItem...serviceItems) {
-		this.dateOfInvoice = dateOfInvoice;
-		this.serviceItems = new HashSet<>(Arrays.asList(serviceItems));
-	}
 	/************************ Methods ****************/
-	
-	public void addServiceItem(ServiceItem serviceItem) {
-		this.serviceItems.add(serviceItem);
+
+	public void removeServiceItem(ServiceItem serviceItemToRemove) {
+
+		getServiceItems().remove(serviceItemToRemove);
+		serviceItemToRemove.setInvoice(null);
+	}
+
+	public String getTotalAmountDueAsCurrencyString() {
+
+		float amount = calculateTotalAmountDueFromAllServiceItemsOnInvoice();
+		NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+		String currency = format.format(amount);
+		// TODO: Requires Code Review
+		// I am auto down casting here, format expects a double...Is that bad?
+
+		return currency;
+	}
+
+	public float calculateTotalAmountDueFromAllServiceItemsOnInvoice() {
+
+		float runningTotal = 0;
+
+		for (ServiceItem item : this.serviceItems) {
+			runningTotal += item.getAmountDue();
+		}
+
+		return runningTotal;
+	}
+
+	// TODO This function is an abomination and needs fixed.
+	public String getCustomerNamePreviewAsString() {
+
+		/* Test and then remove this */
+		// ArrayList<ServiceItem> serviceItemsArray = new
+		// ArrayList<>(this.serviceItems);
+		String customerNames = "";
+
+		int count = 0;
+		for (ServiceItem serviceItem : serviceItems) {
+
+			if (count == 0) {
+				customerNames += serviceItem.getServiceDescription();
+			}
+			if (count == 1) {
+				customerNames += ", " + serviceItem.getServiceDescription();
+			}
+			if (count == 2) {
+				customerNames += " ... plus " + (Math.abs(serviceItems.size() - 2)) + " more";
+			}
+
+			count++;
+		}
+
+		return customerNames;
 	}
 	
+	public String getPaymentStatus() {
+		
+		String currentPaymentStatus;
+		
+		if(isPaid) {
+			currentPaymentStatus = "Paid";	
+		} else if(isSent) {
+			currentPaymentStatus = "Sent";
+		} else {
+			currentPaymentStatus = "Not sent";
+		}
+		
+		return currentPaymentStatus;
+	}
 	
 	/************************ Overrides ****************/
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -127,5 +211,7 @@ public class Invoice {
 			return false;
 		return true;
 	}
+
+
 
 }
