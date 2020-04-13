@@ -13,12 +13,14 @@ h1 {
 
 html {
   background-color: #EDE7F6;
+  height: 100%;
 }
 
 body {
   display: grid;
   grid-template-columns: [left] 1fr [table-start] minmax(200px, 8fr) [table-stop] 1fr [right];
-  grid-template-rows: [top] auto [row1-end] auto [row2-end] auto [row3-end] auto [bottom];
+  grid-template-rows: [top] auto [row1-end] auto [row2-end] auto [row3-end] 1fr [row4-end] auto [bottom];
+  height: 100%;
 }
 
 #box_shadow {
@@ -124,5 +126,5 @@ tbody tr:nth-child(even) {
 
 #footer_section {
   grid-column: table-start / table-stop;
-  grid-row: row3-end / bottom;
+  grid-row: row4-end / bottom;
 }
