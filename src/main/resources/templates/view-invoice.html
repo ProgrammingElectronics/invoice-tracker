@@ -44,6 +44,8 @@
 
     <section id="invoice_info">
         <input id="invoice_id" hidden th:value="${invoice.id}">
+        <input id="is_paid" hidden th:value="${invoice.isPaid}">
+        <input id="is_sent" hidden th:value="${invoice.isSent}">
         <div class="container">
             <p class="darker">Invoice Number: </p>
             <p th:text="${invoice.invoiceNumber}"></p>
