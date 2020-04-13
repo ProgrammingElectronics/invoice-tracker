@@ -21,10 +21,10 @@ public class ContractorController {
 	private ContractorRepository contractorRepo;
 
 	@GetMapping("/create-new-invoice")
-	private String createInvoice() {
+	private String createInvoice(Model model) {
 		return "create-invoice";
 	}
-
+	
 	@Resource
 	private InvoiceRepository invoiceRepo;
 

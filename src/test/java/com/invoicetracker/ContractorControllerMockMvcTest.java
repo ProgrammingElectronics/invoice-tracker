@@ -78,6 +78,11 @@ public class ContractorControllerMockMvcTest {
 				.andExpect(view().name("search-invoice-list"));
 	}
 
+	@Test
+	public void shouldGetStatusOfOkWhenNavigatingToCreateNewInvoice() throws Exception {
+		this.mockMvc.perform(get("/contractor/create-new-invoice")).andExpect(status().isOk());
+	}
+	
 	/*
 	 * TODO: These tests need fixed.   
 	 */
