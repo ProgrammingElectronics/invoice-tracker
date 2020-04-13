@@ -9,5 +9,6 @@
 }
 
 img#logo {
-    width: 5%
+    width: 75px;
+    margin-bottom: 0.3em;
 }

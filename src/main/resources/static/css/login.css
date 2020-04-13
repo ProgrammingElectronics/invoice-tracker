@@ -1,0 +1,114 @@
+ * {
+     font-family: sans-serif;
+     line-height: 1.618em;
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+     font-size: large;
+ }
+
+ html, body {
+     background-color: #EDE7F6;
+     height: 100%;
+ }
+
+ body {
+     display: grid;
+     grid-template-columns: [left] 1fr [login-start] minmax(200px, 600px) [login-stop] 1fr [right];
+     grid-template-rows: [top] auto [row1-end] auto [row2-end] 1fr [row3-end] auto [bottom];
+ }
+
+ body {
+     background-image: url(/images/login_background3.png);
+     /* Full height */
+     height: 100%;
+     /* Center and scale the image nicely */
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+ }
+
+ #header_section {
+     grid-column: login-start / login-stop;
+     grid-row: top / row1-end;
+ }
+
+ #form_section {
+     grid-column: login-start / login-stop;
+     grid-row: row1-end / row2-end;
+ }
+
+ #footer_section {
+     grid-column: login-start / login-stop;
+     grid-row: row3-end / bottom;
+ }
+
+ form {
+     background-color: #ffffff;
+     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
+     border-radius: 1em;
+     /* margin: 2em; */
+ }
+
+ input[type=text], input[type=password] {
+     width: 100%;
+     padding: 12px 20px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid rgb(2, 12, 4);
+     box-sizing: border-box;
+     border-radius: 1em;
+ }
+
+ button {
+     font-size: 2em;
+     background-color: #4f5357;
+     color: #3a9ac1;
+     padding: 7px 20px;
+     margin: auto;
+     border: none;
+     cursor: pointer;
+     width: 100%;
+     border-radius: 1em;
+ }
+
+ button:hover {
+     opacity: 0.8;
+ }
+
+ .imgcontainer {
+     text-align: center;
+     margin: 12px 6px;
+     /* margin for the space of the container */
+ }
+
+ .container {
+     text-align: justify;
+     padding: 10px 50px;
+ }
+
+ span.psw {
+     float: left;
+     padding-top: 8px;
+ }
+
+ span.sup {
+     float: right;
+     padding-top: 8px;
+ }
+
+ /* styles for span and cancel button on extra small screens */
+
+ @media screen and (max-width: 100px) {
+     span.psw {
+         display: block;
+         float: none;
+     }
+     span.sup {
+         display: block;
+         float: none;
+     }
+     /* .cancelbtn {
+     width: 100%;
+  } */
+ }

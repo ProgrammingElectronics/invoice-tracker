@@ -4,103 +4,18 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome, ProJo!</title>
-    <!-- <link rel="stylesheet" href="../css/invoice-creation-view.css"> TO USE A PROJO CSS?-->
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        form {
-            border: 50px solid #f1f1f1;
-        }
-
-        input[type=text],
-        input[type=password] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid rgb(2, 12, 4);
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #4f5357;
-            color: #3a9ac1;
-            padding: 14px 20px;
-            margin: auto;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        button:hover {
-            opacity: 0.8;
-        }
-
-        .cancelbtn {
-            width: auto;
-            padding: 10px 18px;
-            background-color: red;
-
-        }
-
-        .imgcontainer {
-            text-align: center;
-            margin: 12px 6px;
-            /* margin for the space of the container */
-        }
-
-        img.logo {
-            width: 20%;
-            border-radius: 15%;
-        }
-
-        .container {
-            text-align: justify;
-            padding: 10px 150px;
-        }
-
-        span.psw {
-            float: left;
-            padding-top: 8px;
-        }
-
-        span.sup {
-            float: right;
-            padding-top: 8px;
-        }
-
-        /* styles for span and cancel button on extra small screens */
-        @media screen and (max-width: 100px) {
-            span.psw {
-                display: block;
-                float: none;
-            }
-
-            span.sup {
-                display: block;
-                float: none;
-            }
-
-            /* .cancelbtn {
-     width: 100%;
-  } */
-        }
-    </style>
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 
 <body>
 
-    <h2>Welcome, ProJo!</h2>
+    <header id="header_section" class="imgcontainer">
+        <img src="/images/projo.png" alt="ProJo - Login" class="logo">
+    </header>
 
-    <form action="/action_page.php" method="post">
-        <div class="imgcontainer">
-            <img src="C:\Users\WeCanCodeIT\wcci\code\invoice-tracker\src\main\resources\images\projo.png"
-                alt="ProJo - Login" class="logo">
-
-        </div>
-
+    <!------------------------------------ Login Form ------------------------------------------------>
+    <form action="/contractor/search-invoice-list/1" id="form_section">
         <div class="container">
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
@@ -108,19 +23,18 @@
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
 
-            <a href="https://amazon.com" target=_blank><button type="loginButton">Login</button></a>
-            <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
-        </div>
-
-        <div class="container" style="background-color:#f1f1f1">
-            <!-- <button type="button" class="cancelbtn">Cancel</button> -->
-            <span class="psw">Forgot <a href="#">password?</a></span>
-            <span class="sup">Don't have an account? <a href="#">Sign Up!</a></span>
+            <a><button type="submit" id="login_button">Login</button></a>
         </div>
     </form>
 
+    <!------------------------------------ Footer ------------------------------------------------->
+    <footer id="footer_section">
+        <span>Powered by</span>
+        <img src="/images/projo.png" id="logo" alt="">
+    </footer>
+
 </body>
+
+<script src="/js/login.js"></script>
 
 </html>
