@@ -9,68 +9,80 @@
 // as the page was built.
 
 function submitInvoice() {
-
-    var contractorName = document.getElementById('contractorName').value;
-    var invoiceNumber = document.getElementById('invoiceNumber').value;
+    var contractorId = document.getElementById("contractor_id").value;
     var invoiceDate = document.getElementById('invoiceDate').value;
-    var serviceInfoSets = document.getElementsByClassName('serviceInfoSet');
-    for (let infoSet of serviceInfoSets) {
-        //console.log(infoSet.id);
-        var innerInvoiceId = infoSet.id;
-        var serviceDate;
-        var serviceDescripton;
-        var amountDue;
-
-
-        var values = infoSet.getElementsByClassName('info');
-        for (let value of values) {
-            tempValue = value.value;
-
-            if (value.id == 'serviceName') {
-                serviceName = tempValue;
-                // console.log('test2');
-            }
-            if (value.id == 'serviceDate') {
-                serviceDate = tempValue;
-                // console.log('test3');
-            }
-            if (value.id == 'serviceDescripton') {
-                serviceDescripton = tempValue;
-                // console.log('test4');
-            }
-            if (value.id == 'amountDue') {
-                amountDue = tempValue;
-                // console.log('test6');
-            }
-        }
-
-        //console.log(innerInvoiceId, clientName, serviceName, serviceDate, serviceDescripton, hourlyRate, amountDue);
-
-        var infoSetValues = {
-            'innerInvoiceId': innerInvoiceId,
-            'serviceDate': serviceDate,
-            'serviceDescripton': serviceDescripton,
-            'amountDue': amountDue
-        }
-
-        // console.log(infoSetValues);
-        // invoiceArray.push(infoSetValues);
-
-
-
-        //the preperation of the json data for transport
-
-        var invoiceJson = {
-            'contractorName': contractorName,
-            'invoiceDate': invoiceDate,
-            'invoiceNumber': invoiceNumber,
-            infoSetValues
-        }
-        console.log(JSON.stringify(invoiceJson));
-        return invoiceJson;
-
+    var invoiceJson = {
+        'dateOfInvoice': invoiceDate,
+        'contractor': { 'id': contractorId }
     }
+    console.log(invoiceJson);
+    return invoiceJson;
 }
+
+// function submitInvoice() {
+//     var contractorId = document.getElementById("contractor_id").value;
+//     var contractorName = document.getElementById('contractorName').value;
+//     var invoiceNumber = document.getElementById('invoiceNumber').value;
+//     var invoiceDate = document.getElementById('invoiceDate').value;
+//     var serviceInfoSets = document.getElementsByClassName('serviceInfoSet');
+//     for (let infoSet of serviceInfoSets) {
+//         //console.log(infoSet.id);
+//         var innerInvoiceId = infoSet.id;
+//         var serviceDate;
+//         var serviceDescripton;
+//         var amountDue;
+
+
+//         var values = infoSet.getElementsByClassName('info');
+//         for (let value of values) {
+//             tempValue = value.value;
+
+//             if (value.id == 'serviceName') {
+//                 serviceName = tempValue;
+//                 // console.log('test2');
+//             }
+//             if (value.id == 'serviceDate') {
+//                 serviceDate = tempValue;
+//                 // console.log('test3');
+//             }
+//             if (value.id == 'serviceDescripton') {
+//                 serviceDescripton = tempValue;
+//                 // console.log('test4');
+//             }
+//             if (value.id == 'amountDue') {
+//                 amountDue = tempValue;
+//                 // console.log('test6');
+//             }
+//         }
+
+//         //console.log(innerInvoiceId, clientName, serviceName, serviceDate, serviceDescripton, hourlyRate, amountDue);
+
+//         var infoSetValues = {
+//             'innerInvoiceId': innerInvoiceId,
+//             'serviceDate': serviceDate,
+//             'serviceDescripton': serviceDescripton,
+//             'amountDue': amountDue
+//         }
+
+//         // console.log(infoSetValues);
+//         // invoiceArray.push(infoSetValues);
+
+
+
+//         //the preperation of the json data for transport
+
+//         var invoiceJson = {
+//             'id': contractorId,
+//             'contractorName': contractorName,
+//             'invoiceDate': invoiceDate,
+//             'invoiceNumber': invoiceNumber,
+//             infoSetValues
+//         }
+//         console.log(JSON.stringify(invoiceJson));
+//         return invoiceJson;
+
+//     }
+// }
 
 // function submitInvoice() {
 

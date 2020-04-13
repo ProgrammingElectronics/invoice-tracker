@@ -80,7 +80,9 @@ public class ContractorControllerMockMvcTest {
 
 	@Test
 	public void shouldGetStatusOfOkWhenNavigatingToCreateNewInvoice() throws Exception {
-		this.mockMvc.perform(get("/contractor/create-new-invoice")).andExpect(status().isOk());
+		long contractorId = 1;
+		when(contractorRepo.findById(contractorId)).thenReturn(Optional.of(contractorOne));
+		this.mockMvc.perform(get("/contractor/create-new-invoice/" + contractorId)).andExpect(status().isOk());
 	}
 	
 	/*
