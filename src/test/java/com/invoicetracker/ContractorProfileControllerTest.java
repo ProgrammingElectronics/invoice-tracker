@@ -59,7 +59,7 @@ public class ContractorProfileControllerTest {
 		Contractor updatedContractor = new Contractor("The contractor formerly known as Test");	
 		long contractorId = 1;
 		when(contractorRepo.findById(contractorId)).thenReturn(Optional.of(contractor));
-		when(contractorRepo.save(newContractor)).thenReturn(contractor);
+		when(contractorRepo.save(contractor)).thenReturn(contractor);
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		String contractorJson = mapper.writeValueAsString(updatedContractor);

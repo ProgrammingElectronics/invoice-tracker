@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.invoicetracker.models.Contractor;
 import com.invoicetracker.models.Invoice;
+import com.invoicetracker.models.ServiceItem;
 import com.invoicetracker.repositories.ContractorRepository;
 import com.invoicetracker.repositories.InvoiceRepository;
 import com.invoicetracker.repositories.ServiceItemRepository;
@@ -19,16 +20,14 @@ import com.invoicetracker.repositories.ServiceItemRepository;
 public class InvoiceRestController {
 
 	
-	
 	@Autowired
-	//@Resource
 	private InvoiceRepository invoiceRepo;
 	
 	@Autowired
 	private ContractorRepository contractorRepo;
 	
-//	@Autowired
-//	private ServiceItemRepository serviceItemRepo;
+	@Autowired
+	private ServiceItemRepository serviceItemRepo;
 
 	@GetMapping("/api/invoice/{id}")
 	public Invoice retrieveInvoice(@PathVariable Long id) {
@@ -38,6 +37,12 @@ public class InvoiceRestController {
 	
 	@PostMapping("/submit-invoice")
 	public Invoice add(@RequestBody Invoice invoiceToAdd) {
+		
+		for (ServiceItem serviceItemToAdd : invoiceToAdd.getServiceItems()) {
+			if (serviceItemToAdd.getId() == null) {
+				serviceItemRepo.save(serviceItemToAdd);
+			}
+		}
 		invoiceRepo.save(invoiceToAdd);
 		Contractor contractor = invoiceToAdd.getContractor();
 		contractorRepo.save(contractor);

@@ -25,6 +25,7 @@ public class ContractorProfileController {
 	 */
 	@PatchMapping("/update-profile/{contractorId}")
 	public Contractor update(@RequestBody Contractor update, @PathVariable long contractorId) {
+		
 		Contractor contractor = contractorRepo.findById(contractorId).get();
 
 		if (update.getFirstName() != "")
