@@ -169,6 +169,18 @@ input {
     border: solid black 3px;
 }
 
+#serviceNotes {
+    width: 90%;
+    height: 2.5em;
+}
+
+#serviceNotesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3em;
+}
+
 /* buttons */
 
 button {
