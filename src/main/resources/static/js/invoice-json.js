@@ -12,8 +12,25 @@ function submitInvoice() {
     var contractorId = document.getElementById("contractor_id").value;
     var invoiceDate = document.getElementById('invoiceDate').value;
     var invoiceJson = {
-        'dateOfInvoice': invoiceDate,
-        'contractor': { 'id': contractorId }
+        "dateOfInvoice": "2020-03-28",
+        "invoiceNumber": 1001,
+        "invoiceNote": "joMama",
+        "contractor": {
+            "id": 1,
+        },
+        "serviceItems": [
+            {
+                "dateOfService": "2020-03-11",
+                "amountDue": 100,
+            },
+            {
+                "dateOfService": "2020-02-01",
+                "amountDue": 150,
+            }
+        ],
+        "totalAmountDueAsCurrencyString": "$250.00",
+        "customerNamePreviewAsString": "Tutored Alley, Tutored Allen",
+        "paymentStatus": "Not sent"
     }
     console.log(invoiceJson);
     return invoiceJson;
