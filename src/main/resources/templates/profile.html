@@ -40,7 +40,7 @@
                                 <label for="address1">Address Line 1:</label><br>
                                 <input type="text" id="address1" th:placeholder="${contractor.addressLineOne}"><br>
                                 <label for="address">Address Line 2:</label><br>
-                                <input type="text" id="address_2" th:placeholder="${contractor.addressLineTwo}"><br>
+                                <input type="text" id="address2" th:placeholder="${contractor.addressLineTwo}"><br>
                                 <label for="city">City:</label><br>
                                 <input type="text" id="city" th:placeholder="${contractor.city}"><br>
                                 <label for="state">State:</label><br>
@@ -51,7 +51,7 @@
                                 <input type="text" id="country" th:placeholder="${contractor.country}"><br>
                                 <label for="phone">Phone number:</label><br>
                                 <input type="text" id="phone" th:placeholder="${contractor.phoneNumber}"><br>
-                                <input type="submit" value="Submit">
+                                <input type="submit" onclick="updateProfile()">
                             </form>
                         </div>
                     </div>
@@ -61,10 +61,10 @@
                         <div id="Privacy" class="w3-container w3-hide">
                             <form>
                                 <label for="email">Email:</label><br>
-                                <input type="text" id="email" email="email" th:placeholder="${contractor.email}"><br>
+                                <input type="text" id="email" th:placeholder="${contractor.email}"><br>
                                 <label for="password">Password:</label><br>
                                 <input type="password" id="pwd" name="password"><br>
-                                <input type="submit" value="Submit">
+                                <input type="submit" onclick="updateProfile()">
                             </form>
 
                         </div>
