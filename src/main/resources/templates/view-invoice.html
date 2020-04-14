@@ -99,8 +99,7 @@
     <!------------------------------------ NAV ------------------------------------------------->
     <nav id="nav_section" class="navbar">
         <img src="/images/projo.png" alt="ProJo - Login" class="logo" id="navbar_logo">
-        <a class="active"
-            th:href="@{/contractor/search-invoice-list/{contractorId}(contractorId = ${contractor.id})}"><i
+        <a th:href="@{/contractor/search-invoice-list/{contractorId}(contractorId = ${contractor.id})}"><i
                 class="fa fa-fw fa-search"></i>My Invoices</a>
         <a th:href="@{/contractor/create-new-invoice/{contractorId}(contractorId = ${contractor.id})}"><i
                 class="fa fa-fw fa-envelope"></i>Create Invoice</a>
