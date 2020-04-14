@@ -1,6 +1,14 @@
-#site_wide_footer {
+#footer_section {
     display: flex;
+    font-family: sans-serif;
+    line-height: 1.618em;
+    width: 100%;
     justify-content: center;
     align-items: center;
     font-style: italic;
+}
+
+img#logo {
+    width: 75px;
+    margin-bottom: 0.3em;
 }
