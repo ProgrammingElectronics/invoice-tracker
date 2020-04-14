@@ -49,7 +49,8 @@ public class Populator implements CommandLineRunner {
 			Invoice invoice_A1 = new Invoice(contractor_A);
 			LocalDate dateInvoice_A1 = LocalDate.of(2020, 03, 28);
 			invoice_A1.setDateOfInvoice(dateInvoice_A1);
-			invoice_A1.setInvoiceNote("Students did a great job applying themselves durring both sessions, I am very impressed with the progress!");
+			invoice_A1.setInvoiceNote(
+					"Students did a great job applying themselves durring both sessions, I am very impressed with the progress!");
 			invoice_A1.setIsPaid(false);
 			invoiceRepo.save(invoice_A1);
 			contractorRepo.save(contractor_A);
@@ -73,7 +74,8 @@ public class Populator implements CommandLineRunner {
 			Invoice invoice_A2 = new Invoice(contractor_A);
 			LocalDate dateInvoice_A2 = LocalDate.of(2020, 03, 11);
 			invoice_A2.setDateOfInvoice(dateInvoice_A2);
-			invoice_A2.setInvoiceNote("Students did a great job applying themselves durring both sessions, I am very impressed with the progress!");
+			invoice_A2.setInvoiceNote(
+					"Students did a great job applying themselves durring both sessions, I am very impressed with the progress!");
 			invoice_A2.setIsPaid(false);
 			invoiceRepo.save(invoice_A2);
 

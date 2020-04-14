@@ -20,6 +20,17 @@ public class ContractorController {
 	@Resource
 	private ContractorRepository contractorRepo;
 
+	@GetMapping("/create-new-invoice/{contractorId}")
+	private String createInvoice(@PathVariable(value = "contractorId") long contractorId, Model model) {
+		Contractor contractor = contractorRepo.findById(contractorId).get();
+		model.addAttribute("contractor", contractor);
+		model.addAttribute("contractorName", contractor.getFirstName());
+		model.addAttribute("contractorAddress", contractor.getAddressLineOne());
+		model.addAttribute("contractorAddressLineTwo", contractor.getAddressLineTwo());
+		model.addAttribute("contractorPhone", contractor.getPhoneNumber());
+		return "create-invoice";
+	}
+	
 	@Resource
 	private InvoiceRepository invoiceRepo;
 	
@@ -64,24 +75,24 @@ public class ContractorController {
 
 
 	/*
-	 * TODO Needs Code Review:
-	 * I do not think a @PutMapping is right, but it is working. 
+	 * TODO Needs Code Review: I do not think a @PutMapping is right, but it is
+	 * working.
 	 */
 	@PutMapping("/mark-invoice-paid/{invoiceId}")
-	private void markInvoicePaid(@PathVariable(value = "invoiceId") long invoiceId){
-	
+	private void markInvoicePaid(@PathVariable(value = "invoiceId") long invoiceId) {
+
 		Invoice invoiceToMarkPaid = invoiceRepo.findById(invoiceId).get();
 		invoiceToMarkPaid.setIsPaid(true);
 		invoiceRepo.save(invoiceToMarkPaid);
 	}
-	
+
 	/*
-	 * TODO Needs Code Review:
-	 * I do not think a @PutMapping is right, but it is working. 
+	 * TODO Needs Code Review: I do not think a @PutMapping is right, but it is
+	 * working.
 	 */
 	@PutMapping("/mark-invoice-sent/{invoiceId}")
-	private void markInvoiceSent(@PathVariable(value = "invoiceId") long invoiceId){
-	
+	private void markInvoiceSent(@PathVariable(value = "invoiceId") long invoiceId) {
+
 		Invoice invoiceToSend = invoiceRepo.findById(invoiceId).get();
 		invoiceToSend.setIsSent(true);
 		invoiceRepo.save(invoiceToSend);
