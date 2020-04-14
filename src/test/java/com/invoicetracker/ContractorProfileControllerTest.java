@@ -42,7 +42,7 @@ public class ContractorProfileControllerTest {
 	private ObjectMapper objectMapper;
 	
 	/*
-	 * TODO:  Need to understand all the setup methids being called and why.
+	 * TODO:  Need to understand all the setup methods being called and why.
 	 */
 	@Before
 	public void setUp() {

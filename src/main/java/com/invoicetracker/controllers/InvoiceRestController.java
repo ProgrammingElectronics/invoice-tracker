@@ -14,33 +14,39 @@ import com.invoicetracker.models.Invoice;
 import com.invoicetracker.repositories.ContractorRepository;
 import com.invoicetracker.repositories.InvoiceRepository;
 import com.invoicetracker.repositories.ServiceItemRepository;
+import com.invoicetracker.models.ServiceItem;
 
 @RestController
 public class InvoiceRestController {
 
-	
-	
 	@Autowired
-	//@Resource
 	private InvoiceRepository invoiceRepo;
-	
+
 	@Autowired
 	private ContractorRepository contractorRepo;
-	
-//	@Autowired
-//	private ServiceItemRepository serviceItemRepo;
+
+	@Autowired
+	private ServiceItemRepository serviceItemRepo;
+
+	/************ ^ Autowired Repos | v Mapping methods **************/
 
 	@GetMapping("/api/invoice/{id}")
 	public Invoice retrieveInvoice(@PathVariable Long id) {
-		
+
 		return invoiceRepo.findById(id).get();
 	}
-	
+
 	@PostMapping("/submit-invoice")
 	public Invoice add(@RequestBody Invoice invoiceToAdd) {
+
 		invoiceRepo.save(invoiceToAdd);
-		Contractor contractor = invoiceToAdd.getContractor();
-		contractorRepo.save(contractor);
+		for (ServiceItem serviceItemToAdd : invoiceToAdd.getServiceItems()) {
+			serviceItemToAdd.setInvoice(invoiceToAdd);
+			serviceItemRepo.save(serviceItemToAdd);
+		}
+
+		// contractorRepo.save(invoiceToAdd.getContractor());
+
 		return invoiceRepo.save(invoiceToAdd);
 	}
 }
