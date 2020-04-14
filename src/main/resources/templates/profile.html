@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+
+    <!--name section-->
+    <header id="header_section">
+        <h1>Update Profile</h1>
+    </header>
+
+    <!-- divider section -->
+    <div class="divider" id="profile_section">
+        <div class="container">
+            <div class="profile-block">
+                <div class="profile-settings">
+                    <div class="personal-info-divider collapsible">
+                        <button onclick="proJoFunction('Personal')" class="w3-button w3-block w3-left-align"><i
+                                class="fas fa-user-circle"></i>Personal Info</button>
+                        <div id="Personal" class="w3-container w3-hide">
+                            <form id="personal">
+                                <input id="contractor_id" hidden th:value="${contractor.id}">
+                                <label for="firstName">First Name:</label><br>
+                                <input type="text" id="firstName" th:placeholder="${contractor.firstName}"><br>
+                                <label for="lastName">Last Name:</label><br>
+                                <input type="text" id="lastName" th:placeholder="${contractor.lastName}"><br>
+                                <label for="address1">Address Line 1:</label><br>
+                                <input type="text" id="address1" th:placeholder="${contractor.addressLineOne}"><br>
+                                <label for="address">Address Line 2:</label><br>
+                                <input type="text" id="address2" th:placeholder="${contractor.addressLineTwo}"><br>
+                                <label for="city">City:</label><br>
+                                <input type="text" id="city" th:placeholder="${contractor.city}"><br>
+                                <label for="state">State:</label><br>
+                                <input type="text" id="state" th:placeholder="${contractor.state}"><br>
+                                <label for="zip">Zip Code:</label><br>
+                                <input type="text" id="zip" th:placeholder="${contractor.zip}"><br>
+                                <label for="country">Country:</label><br>
+                                <input type="text" id="country" th:placeholder="${contractor.country}"><br>
+                                <label for="phone">Phone number:</label><br>
+                                <input type="text" id="phone" th:placeholder="${contractor.phoneNumber}"><br>
+                                <input type="submit" onclick="updateProfile()">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="privacy-security-divider collapsible">
+                        <button onclick="proJoFunction('Privacy')" class="w3-button w3-block w3-left-align">
+                            <i class="fas fa-lock"></i>Privacy & Security</button>
+                        <div id="Privacy" class="w3-container w3-hide">
+                            <form>
+                                <label for="email">Email:</label><br>
+                                <input type="text" id="email" th:placeholder="${contractor.email}"><br>
+                                <label for="password">Password:</label><br>
+                                <input type="password" id="pwd" name="password"><br>
+                                <input type="submit" onclick="updateProfile()">
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="payment-settings-divider collapsible">
+                        <button onclick="proJoFunction('Payment')" class="w3-button w3-block w3-left-align">
+                            <i class="fas fa-landmark"></i>Payment Settings</button>
+                        <div id="Payment" class="w3-container w3-hide">
+                            <form>
+                                <label for="pay-pal">PayPal Id</label><br>
+                                <input type="text" id="pay-pal" name="pay-pal"
+                                    th:placeholder="${contractor.payPalId}"><br>
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="notifications-divider collapsible">
+                        <button onclick="proJoFunction('Notify')" class="w3-button w3-block w3-left-align">
+                            <i class="fas fa-bell"></i>Notifications</button>
+                        <div id="Notify" class="w3-container w3-hide">
+                            <p>Notification Preference:</p>
+                            <form>
+                                <input type="checkbox" id="e-mail" name="email" value="E-mail">
+                                <label for="e-mail"> I prefer e-mail.</label><br>
+                                <input type="checkbox" id="text" name="text" value="Text Message">
+                                <label for="vehicle2"> I prefer a text message.</label><br>
+                                <input type="checkbox" id="both" name="both" value="E-mail and Text">
+                                <label for="vehicle3"> I prefer both e-mail and text.</label><br>
+                                <input type="submit" value="Submit">
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------------ NAV ------------------------------------------------->
+    <nav id="nav_section" class="navbar">
+        <img src="/images/projo.png" alt="ProJo - Login" class="logo" id="navbar_logo">
+        <a th:href="@{/contractor/search-invoice-list/{contractorId}(contractorId = ${contractor.id})}"><i
+                class="fa fa-fw fa-search"></i>My Invoices</a>
+        <a th:href="@{/contractor/create-new-invoice/{contractorId}(contractorId = ${contractor.id})}"><i
+                class="fa fa-fw fa-envelope"></i>Create Invoice</a>
+        <a class="active"
+            th:href="@{http://localhost:8080/contractor/update-profile/{contractorId}(contractorId = ${contractor.id})}"><i
+                class="fa fa-fw fa-user"></i>User Profile</a>
+    </nav>
+
+    <!------------------------------------ Footer ------------------------------------------------->
+    <footer id="footer_section">
+        <span>Powered by</span>
+        <img src="/images/projo.png" id="logo" alt="">
+    </footer>
+
+</body>
+
+<script src="/js/profile.js"></script>
+
+</html>

@@ -13,39 +13,63 @@ h1 {
 
 html {
   background-color: #EDE7F6;
-  /* max-width: 100%; */
+  height: 100%;
 }
 
 body {
   display: grid;
-  grid-template-columns: 0.2fr [table-start] minmax(200px, 1fr) [table-stop] 0.2fr;
-  grid-template-rows: repeat(5, auto);
+  grid-template-columns: [left] 1fr [table-start] minmax(200px, 8fr) [table-stop] 1fr [right];
+  grid-template-rows: [top] auto [row1-end] auto [row2-end] auto [row3-end] 1fr [row4-end] auto [bottom];
+  height: 100%;
 }
 
-header {
+#box_shadow {
   grid-column: table-start / table-stop;
+  grid-row: row2-end / row3-end;
+  background-color: white;
+  z-index: -1;
+  margin-top: 10px;
+  border-radius: 1em;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
+  align-self: stretch;
 }
 
-footer {
-  grid-column: table-start / table-stop;
+/*********************** Nav Section ************************/
+
+#nav_section {
+  grid-column: left / right;
+  grid-row: top / span 1;
+  margin-bottom: 1em;
 }
 
-/*********************** Invoice List Section ************************/
+nav {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  background: #2E343F;
+}
 
-/* table#centerTable {
-  width: 70%;
-  margin-left: 15%;
-  margin-right: 15%;
-} */
+/*********************** Header Section ************************/
 
-table {
+#header_section {
   grid-column: table-start / table-stop;
+  grid-row: row1-end / row2-end;
+}
+
+/*********************** Table Section / Invoice List ************************/
+
+#table_section {
+  grid-column: table-start / table-stop;
+  grid-row: row2-end / row3-end;
+  align-self: end;
 }
 
 table {
   border-collapse: collapse;
-  border-spacing: 0;
-  box-shadow: 15px 15px 15px #999;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 1em;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
 }
 
 tbody tr, td {
@@ -55,23 +79,6 @@ tbody tr, td {
 th, td {
   padding: 15px;
   text-align: left;
-}
-
-header {
-  padding: 2em 1em 0 0;
-  margin-top: 1em;
-  margin-left: 15%;
-}
-
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  background: #2E343F;
 }
 
 tbody tr:nth-child(0) {
@@ -113,5 +120,11 @@ tfoot th:only-child {
 
 tbody tr:nth-child(even) {
   background: #3a9ac1;
-  /* box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; */
+}
+
+/*********************** Footer Section ************************/
+
+#footer_section {
+  grid-column: table-start / table-stop;
+  grid-row: row4-end / bottom;
 }

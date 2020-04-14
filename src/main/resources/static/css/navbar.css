@@ -1,0 +1,37 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+    line-height: 1.618em;
+    width: 100%;
+    background-color: #555;
+}
+
+.navbar a {
+    padding-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    color: white;
+    text-decoration: none;
+    font-size: larger;
+}
+
+.navbar a:hover {
+    background-color: #000;
+}
+
+img.logo {
+    width: 5%;
+    margin-right: 10rem;
+}
+
+.active {
+    background-color: #3a9ac1;
+}
+
+@media screen and (max-width: 500px) {
+    .navbar a {
+        float: none;
+        display: block;
+    }
+}

@@ -9,6 +9,8 @@
     <!-- Comment out the second link for eclipse mapping 
          Comment out the first link for VS Code Go Live mapping -->
     <link rel="stylesheet" href="/css/single-invoice.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <!-- <link rel="stylesheet" href="../static/css/single-invoice.css"> -->
 </head>
 
@@ -44,6 +46,8 @@
 
     <section id="invoice_info">
         <input id="invoice_id" hidden th:value="${invoice.id}">
+        <input id="is_paid" hidden th:value="${invoice.isPaid}">
+        <input id="is_sent" hidden th:value="${invoice.isSent}">
         <div class="container">
             <p class="darker">Invoice Number: </p>
             <p th:text="${invoice.invoiceNumber}"></p>
@@ -91,6 +95,26 @@
     <section id="invoice_footer">
         <p>Thank you for your business!</p>
     </section>
+
+    <!------------------------------------ NAV ------------------------------------------------->
+    <nav id="nav_section" class="navbar">
+        <img src="/images/projo.png" alt="ProJo - Login" class="logo" id="navbar_logo">
+        <a th:href="@{/contractor/search-invoice-list/{contractorId}(contractorId = ${contractor.id})}"><i
+                class="fa fa-fw fa-search"></i>My Invoices</a>
+        <a th:href="@{/contractor/create-new-invoice/{contractorId}(contractorId = ${contractor.id})}"><i
+                class="fa fa-fw fa-envelope"></i>Create Invoice</a>
+        <a th:href="@{http://localhost:8080/contractor/update-profile/{contractorId}(contractorId = ${contractor.id})}"><i
+                class="fa fa-fw fa-user"></i>User Profile</a>
+    </nav>
+
+    <!------------------------------------ Footer ------------------------------------------------->
+    <footer id="footer_section">
+        <span>Powered by</span>
+        <img src="/images/projo.png" id="logo" alt="">
+    </footer>
+
+
+
 </body>
 
 <!-- Uncomment below when using Eclipse -->

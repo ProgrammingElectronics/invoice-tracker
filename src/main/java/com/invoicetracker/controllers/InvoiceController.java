@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.invoicetracker.models.Invoice;
 import com.invoicetracker.models.ServiceItem;
 import com.invoicetracker.repositories.ContractorRepository;
-import com.invoicetracker.repositories.CustomerRepository;
 import com.invoicetracker.repositories.InvoiceRepository;
 import com.invoicetracker.repositories.ServiceItemRepository;
 

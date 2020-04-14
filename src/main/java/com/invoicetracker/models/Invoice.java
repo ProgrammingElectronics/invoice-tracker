@@ -28,7 +28,7 @@ public class Invoice {
 	private boolean isPaid;
 	private boolean isSent;
 
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToOne
 	private Contractor contractor;
 

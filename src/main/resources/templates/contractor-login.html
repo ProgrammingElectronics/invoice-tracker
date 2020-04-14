@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ProJo Login, welcome!</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+
+<body>
+
+    <header id="header_section" class="imgcontainer">
+        <img src="/images/projo.png" alt="ProJo - Login" class="logo">
+    </header>
+
+    <!------------------------------------ Login Form ------------------------------------------------>
+    <form action="/contractor/search-invoice-list/1" id="form_section">
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <a><button type="submit" id="login_button">Login</button></a>
+        </div>
+    </form>
+
+    <!------------------------------------ Footer ------------------------------------------------->
+    <footer id="footer_section">
+        <span>Powered by</span>
+        <img src="/images/projo.png" id="logo" alt="">
+    </footer>
+
+</body>
+
+<script src="/js/login.js"></script>
+
+</html>
