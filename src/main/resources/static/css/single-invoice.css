@@ -22,8 +22,8 @@ html {
 
 body {
     display: grid;
-    grid-template-columns: 0.4fr [invoice-start] minmax(200px, 1fr) [invoice-stop] 0.4fr;
-    grid-template-rows: repeat(6, auto) 40px;
+    grid-template-columns: [left] 0.4fr [invoice-start] minmax(200px, 1fr) [invoice-stop] 0.4fr [right];
+    grid-template-rows: repeat(8, auto) 90px [bottom];
 }
 
 .darker {
@@ -36,17 +36,25 @@ body {
 
 #box_shadow {
     grid-column: invoice-start / invoice-stop;
-    grid-row: 2 / 7;
+    grid-row: 3 / 8;
     z-index: -1;
     border-radius: 1em;
     box-shadow: 0 0px 10px 2px rgba(148, 142, 142, 0.31);
+}
+
+/************************** NavBar ****************************/
+
+#nav_section {
+    grid-column: left / right;
+    grid-row: 1 / 2;
+    margin-bottom: 1em;
 }
 
 /************************** Invoice Actions ****************************/
 
 #invoice_actions {
     grid-column: invoice-start / invoice-stop;
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
     padding: 1.5rem;
 }
 
@@ -78,7 +86,7 @@ body {
 #paid_stamp {
     display: none;
     grid-column: invoice-start / invoice-stop;
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
     padding: 2rem 2rem 0 60%;
     z-index: 1;
 }
@@ -86,7 +94,7 @@ body {
 #sent_stamp {
     display: none;
     grid-column: invoice-start / invoice-stop;
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
     padding: 2rem 2rem 0 60%;
     z-index: 1;
 }
@@ -95,7 +103,7 @@ body {
 
 #contractor_info {
     grid-column: invoice-start / invoice-stop;
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
     background: #ffffff;
     padding: 1.5rem;
     border-top-left-radius: 1rem;
@@ -111,7 +119,7 @@ hr {
 
 #invoice_info {
     grid-column: invoice-start / invoice-stop;
-    grid-row: 3 / 4;
+    grid-row: 4 / 5;
     background: #ffffff;
     padding: 2rem;
 }
@@ -142,7 +150,7 @@ hr {
 
 #serviceItem_info {
     grid-column: invoice-start / invoice-stop;
-    grid-row: 4 / 5;
+    grid-row: 5 / 6;
     background: #c3d7df;
     justify-items: start;
 }
@@ -203,7 +211,7 @@ tr #service_price {
 
 #notes {
     grid-column: invoice-start / invoice-stop;
-    grid-row: 5 / 6;
+    grid-row: 6 / 7;
     background: #ffffff;
     padding: 2rem 1.5rem 14rem 1.5rem;
 }
@@ -217,7 +225,7 @@ tr #service_price {
 
 #invoice_footer {
     grid-column: invoice-start / invoice-stop;
-    grid-row: 6 / 7;
+    grid-row: 7 / 8;
     background: #ffffff;
     padding: 1.5rem;
     border-bottom-left-radius: 1rem;
@@ -230,6 +238,13 @@ tr #service_price {
     font-style: italic;
 }
 
+/************************** Footer Section ****************************/
+
+#footer_section {
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 9 / span 1;
+}
+
 /************************** CSS For Printing ****************************/
 
 @media print {
@@ -237,7 +252,7 @@ tr #service_price {
         display: grid;
         grid-template-columns: 0.1fr [invoice-start] minmax(200px, 8fr) [invoice-stop] 0.1fr;
     }
-    #invoice_actions, #box_shadow {
+    #invoice_actions, #box_shadow, #nav_section, #footer_section {
         display: none;
     }
     #contractor_info, #invoice_info, #serviceItem_info, #total_amount_due, #notes, #invoice_footer * {

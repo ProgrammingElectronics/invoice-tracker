@@ -32,6 +32,7 @@ public class InvoiceRestController {
 
 	@GetMapping("/api/invoice/{id}")
 	public Invoice retrieveInvoice(@PathVariable Long id) {
+		
 		return invoiceRepo.findById(id).get();
 	}
 	
