@@ -24,7 +24,10 @@ public class ContractorController {
 	private String createInvoice(@PathVariable(value = "contractorId") long contractorId, Model model) {
 		Contractor contractor = contractorRepo.findById(contractorId).get();
 		model.addAttribute("contractor", contractor);
-
+		model.addAttribute("contractorName", contractor.getFirstName());
+		model.addAttribute("contractorAddress", contractor.getAddressLineOne());
+		model.addAttribute("contractorAddressLineTwo", contractor.getAddressLineTwo());
+		model.addAttribute("contractorPhone", contractor.getPhoneNumber());
 		return "create-invoice";
 	}
 	

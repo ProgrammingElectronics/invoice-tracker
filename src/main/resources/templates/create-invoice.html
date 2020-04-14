@@ -32,11 +32,12 @@ program from eclipse before pushing for a merge!!!!! -->
             <div class="container2" name="" id="topContainer">
                 <div class="container3" name="from" id="contractorInfo">
                     <label for="contractorName">Contractor</label>
-                    <input type="text" id="contractorName">
+                    <input type="text" id="contractorName" th:value="${contractor.firstName}">
                     <label for="contractorAddress">Address</label>
-                    <input type="text" id="contractorAddress">
+                    <input type="text" id="contractorAddress" th:value="${contractor.addressLineOne}">
+                    <input type="text" id="contractorAddressLineTwo" th:value="${contractor.addressLineTwo}">
                     <label for="contractorPhone">Phone</label>
-                    <input type="text" name="" id="contractorPhone">
+                    <input type="text" name="" id="contractorPhone" th:value="${contractor.phoneNumber}">
                 </div>
                 <div class="container3" id="invoiceIdandDateContainer">
                     <div class="container4">
@@ -45,7 +46,7 @@ program from eclipse before pushing for a merge!!!!! -->
                     </div>
                     <div class="container4">
                         <label for="invoiceDate">Invoice Date</label>
-                        <input type="text" id="invoiceDate">
+                        <input  type="text" id="invoiceDate" placeholder="2020-4-22">
                     </div>
                 </div>
             </div>
@@ -60,7 +61,7 @@ program from eclipse before pushing for a merge!!!!! -->
         <button type="button" onclick="addService('serviceInfo')" class="servBtnSet" id="addServBtn">Add New
             Service</button>
 
-        <div class="container" id="bottomContainer">
+        <div class="container2" id="bottomContainer">
             <div class="container5" id="serviceLables">
 
                 <label for="serviceDescription">Service</label>

@@ -27,8 +27,8 @@ public class InvoiceRestController {
 	@Autowired
 	private ContractorRepository contractorRepo;
 	
-	@Autowired
-	private ServiceItemRepository serviceItemRepo;
+//	@Autowired
+//	private ServiceItemRepository serviceItemRepo;
 
 	@GetMapping("/api/invoice/{id}")
 	public Invoice retrieveInvoice(@PathVariable Long id) {
@@ -40,7 +40,6 @@ public class InvoiceRestController {
 		invoiceRepo.save(invoiceToAdd);
 		Contractor contractor = invoiceToAdd.getContractor();
 		contractorRepo.save(contractor);
-		System.out.println("GEEEEEEEEEEEET SSSSSPAAAAACED " + contractor + "AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 		return invoiceRepo.save(invoiceToAdd);
 	}
 }
