@@ -73,6 +73,15 @@ public class ContractorControllerMockMvcTest {
 				.andExpect(view().name("search-invoice-list"));
 	}
 
+	@Test
+	public void shouldGetStatusOfOkWhenNavigatingToUpdateProfile() throws Exception {
+		long contractorId = 1;
+		when(contractorRepo.findById(contractorId)).thenReturn(Optional.of(contractorOne));
+		this.mockMvc.perform(get("/contractor/update-profile/" + contractorId)).andExpect(status().isOk())
+		.andExpect(view().name("profile"));
+	}
+	
+
 	/*
 	 * TODO: These tests need fixed.   
 	 */

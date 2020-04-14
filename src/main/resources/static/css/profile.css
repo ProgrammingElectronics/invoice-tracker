@@ -1,0 +1,107 @@
+* {
+    font-family: sans-serif;
+    line-height: 1.618em;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: large;
+}
+
+button {
+    line-height: 1.618em;
+    font-size: x-large;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+html, body {
+    background-color: #EDE7F6;
+    height: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-columns: [left] 1fr [profile-start] minmax(200px, 8fr) [profile-stop] 1fr [right];
+    grid-template-rows: [top] auto [row1-end] auto [row2-end] auto [row3-end] 1fr [row4-end] auto [bottom];
+}
+
+#nav_section {
+    grid-column: left / right;
+    grid-row: top / span 1;
+    margin-bottom: 1em;
+}
+
+#header_section {
+    grid-column: profile-start / profile-stop;
+    grid-row: row1-end / row2-end;
+}
+
+#profile_section {
+    margin-top: 15px;
+    grid-column: profile-start / profile-stop;
+    grid-row: row2-end / row3-end;
+    align-self: end;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
+}
+
+.collapsible {
+    background-color: white;
+    border: 2px solid #3a9ac1;
+    color: black;
+    border-radius: 1em;
+    padding: 20px 20px;
+    margin-bottom: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+}
+
+.divider {
+    border-radius: 1em;
+    background: white;
+    margin: auto;
+    width: 100%;
+}
+
+.profile-settings, .name-row {
+    border-radius: 1em;
+    margin: 1em;
+}
+
+.profile-settings input[type=text], input[type=password], select {
+    font-family: sans-serif;
+    line-height: 1.618em;
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #1d2951;
+    border-radius: 1em;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 20%;
+    background-color: lightgray;
+    color: black;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: darkgrey;
+}
+
+/*********************** Footer Section ************************/
+
+#footer_section {
+    grid-column: profile-start / profile-stop;
+    grid-row: row4-end / bottom;
+}

@@ -30,6 +30,13 @@ public class ContractorController {
 		return "create-invoice";
 	}
 	
+	@GetMapping("/update-profile/{contractorId}")
+	private String updateProfile(@PathVariable(value = "contractorId") long contractorId, Model model) {
+		Contractor contractor = contractorRepo.findById(contractorId).get();
+		model.addAttribute("contractor", contractor);
+		return "profile";
+	}
+	
 
 	@GetMapping("/view-existing-invoice/{contractorId}/{invoiceId}")
 	private String viewInvoice(@PathVariable(value = "contractorId") long contractorId,

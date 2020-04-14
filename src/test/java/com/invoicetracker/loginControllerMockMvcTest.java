@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.invoicetracker.models.LoginController;
+import com.invoicetracker.controllers.LoginController;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(LoginController.class)

@@ -1,4 +1,4 @@
-package com.invoicetracker.models;
+package com.invoicetracker.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
