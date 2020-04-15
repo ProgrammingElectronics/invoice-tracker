@@ -1,40 +1,68 @@
-// **** this function of a for/of loop allows iteration of a html collection ****
-// **** this example also prints to the console each DOM's id                ****
-// var list = document.getElementsByClassName('events');
-// for (let item of list) {
-//     console.log(item.id);
-// }
-
 // the commented out console.log() throughout this document where used in testing
 // as the page was built.
 
+/******************* function to create the json **********************/
+
 function submitInvoice() {
-    var contractorId = document.getElementById("contractor_id").value;
     var invoiceDate = document.getElementById('invoiceDate').value;
+    var invoiceNumber = document.getElementById('invoiceNumber').value;
+    var invoiceNote = document.getElementById('serviceNotes').value;
+    var contractor_id = document.getElementById('contractor_id').value;
+
     var invoiceJson = {
-        "dateOfInvoice": "2020-03-28",
-        "invoiceNumber": 1001,
-        "invoiceNote": "joMama",
+        "dateOfInvoice": invoiceDate,
+        "invoiceNumber": invoiceNumber,
+        "invoiceNote": invoiceNote,
         "contractor": {
-            "id": 1,
+            "id": contractor_id,
         },
-        "serviceItems": [
-            {
-                "dateOfService": "2020-03-11",
-                "amountDue": 100,
-            },
-            {
-                "dateOfService": "2020-02-01",
-                "amountDue": 150,
-            }
-        ],
-        "totalAmountDueAsCurrencyString": "$250.00",
+        "serviceItems": makeServiceItemArray(),
         "customerNamePreviewAsString": "Tutored Alley, Tutored Allen",
         "paymentStatus": "Not sent"
     }
     console.log(invoiceJson);
     return invoiceJson;
 }
+
+/***** function to create the array of service items for the json ******/
+var serviceItemsArray = [];
+
+function makeServiceItemArray() {
+    var serviceInfoSets = document.getElementsByClassName('serviceInfoSet');
+    for (let infoSet of serviceInfoSets) {
+        //console.log(infoSet.id);
+        var serviceDate;
+        var amountDue;
+        var serviceDescripton;
+
+        var values = infoSet.getElementsByClassName('info');
+        for (let value of values) {
+            tempValue = value.value;
+
+            if (value.id == 'dateOfService') {
+                serviceDate = tempValue
+            }
+            if (value.id == 'amountDue') {
+                amountDue = tempValue
+            }
+            if (value.id == 'serviceDescription') {
+                serviceDescripton = tempValue
+            }
+        }
+
+        var infoSetValues = {
+            'dateOfService': serviceDate,
+            'amountDue': amountDue,
+            'serviceDescription': serviceDescripton
+        }
+        serviceItemsArray.push(infoSetValues);
+    }
+    // console.log(infoSetValues)
+    // console.log(serviceItemsArray);
+    return serviceItemsArray;
+}
+
+/**************************** old functions ******************************/
 
 // function submitInvoice() {
 //     var contractorId = document.getElementById("contractor_id").value;
