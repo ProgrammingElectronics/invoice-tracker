@@ -20,34 +20,22 @@ public class ContractorController {
 	@Resource
 	private ContractorRepository contractorRepo;
 
-//	@GetMapping("/create-new-invoice/{contractorId}")
-//	private String createInvoice(@PathVariable(value = "contractorId") long contractorId, Model model) {
-//		Contractor contractor = contractorRepo.findById(contractorId).get();
-//		model.addAttribute("contractor", contractor);
-//		model.addAttribute("contractorName", contractor.getFirstName());
-//		model.addAttribute("contractorAddress", contractor.getAddressLineOne());
-//		model.addAttribute("contractorAddressLineTwo", contractor.getAddressLineTwo());
-//		model.addAttribute("contractorPhone", contractor.getPhoneNumber());
-//		return "create-invoice";
-//	}
-	
 	@Resource
 	private InvoiceRepository invoiceRepo;
-	
+
 	@GetMapping("/create-new-invoice/{contractorId}")
 	private String createInvoice(@PathVariable(value = "contractorId") long contractorId, Model model) {
 		Contractor contractor = contractorRepo.findById(contractorId).get();
 		model.addAttribute("contractor", contractor);
 		return "create-invoice";
 	}
-	
+
 	@GetMapping("/update-profile/{contractorId}")
 	private String updateProfile(@PathVariable(value = "contractorId") long contractorId, Model model) {
 		Contractor contractor = contractorRepo.findById(contractorId).get();
 		model.addAttribute("contractor", contractor);
 		return "profile";
 	}
-	
 
 	@GetMapping("/view-existing-invoice/{contractorId}/{invoiceId}")
 	private String viewInvoice(@PathVariable(value = "contractorId") long contractorId,
@@ -72,7 +60,6 @@ public class ContractorController {
 
 		return "search-invoice-list";
 	}
-
 
 	/*
 	 * TODO Needs Code Review: I do not think a @PutMapping is right, but it is

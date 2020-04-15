@@ -69,7 +69,7 @@
      border: none;
      cursor: pointer;
      width: 100%;
-     border-radius: 1em;
+     border-radius: .5em;
  }
 
  button:hover {
