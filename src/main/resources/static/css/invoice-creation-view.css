@@ -49,24 +49,6 @@ body {
     margin-left: 2em;
 }
 
-/*
- 
-
-#addServBtn {
-    grid-column: invoice-start / invoice-stop;
-    grid-row: 5 / 6;
-}
-
-#bottomContainer {
-    grid-column: invoice-start / invoice-stop;
-    grid-row: 7 / 8;
-}
-
-#serviceNotesContainer {
-    grid-column: invoice-start / invoice-stop;
-    grid-row: 9 / 10;
-} */
-
 #invoiceDate {
     align-self: flex-start;
     width: 30%;
@@ -125,7 +107,7 @@ input {
 
 .container4 {
     margin: 0.5em;
-    width: 30%;
+    width: 40%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -179,15 +161,20 @@ input::placeholder {
 }
 
 #totalAmountDueLabel {
-    width: 500px;
+    width: 600px;
 }
 
 #totalAmountDue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 300px;
     height: 1.5em;
     border: solid black 3px;
     margin-right: 4em;
     border-radius: .5em;
+    padding-bottom: 0.25;
+    padding-left: 0.25;
 }
 
 #serviceNotes {
