@@ -23,7 +23,7 @@ function addService(divName) {
         newServ.innerHTML = `
         <input type="text" class="info" id="serviceDescription">
         <input type="date" class="info" id="dateOfService">
-        <input type="number" class="info amountDue" id="amountDue">
+        <input type="number" class="info amountDue" oninput="totalAmountDueFunction()" id="amountDue" value="0">
         <button type='button' onclick='deleteServ(` + counter + `)' id='deleteServBtn'>X</button>
         `;
         document.getElementById(divName).appendChild(newServ);
@@ -59,11 +59,19 @@ function payInvoice(divName) {
 }
 
 //invoice total function
-var totalAmountDue;
 
-var amountDueArray = document.getElementsByClassName('amountDue');
 function totalAmountDueFunction() {
-    totalAmountDue = amnoutDueArray.reduce((a, b) => a + b, 0)
+    var totalAmountDue = 0;
+    var amountDueArray = document.getElementsByClassName('amountDue')
+    for (let serviceAmount of amountDueArray) {
+
+        totalAmountDue += parseFloat(serviceAmount.value)
+        console.log(serviceAmount.value)
+        console.log(totalAmountDue)
+    }
+
+    let totalAmountDueBlock = document.getElementById("totalAmountDue")
+    totalAmountDueBlock.innerText = totalAmountDue
     return totalAmountDue;
 }
 

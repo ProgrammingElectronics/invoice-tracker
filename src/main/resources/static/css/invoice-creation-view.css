@@ -1,60 +1,92 @@
-*{
+* {
     font-family: sans-serif;
+    line-height: 1.618em;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     font-size: large;
 }
 
 html {
-    color: #2E343F;
-    background-color: #4f5357;
+    background-color: #EDE7F6;
 }
 
-p {
-    border: rgb(255, 255, 255) solid 2px;
+h1 {
+    font-size: 3em;
+    line-height: 1.618em;
+}
+
+.darker {
+    font-weight: bold;
+}
+
+.lighter {
+    font-weight: lighter;
 }
 
 body {
-    background-color: #f2f2f2;
-    margin: 1em 1em;
-    border: 5px solid #3a9ac1;
-    border-radius: 1em 1em 1em 1em;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: space-around;
+    display: grid;
+    grid-template-columns: [left] 0.4fr [invoice-start] minmax(200px, 1fr) [invoice-stop] 0.4fr [right];
+    grid-template-rows: repeat(9, auto) 90px [bottom];
 }
 
-/* Logo */
-header {
-    /* font-size: 2em;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
-    margin-top: 2%;
-    margin-left: 2%;
-    margin-right: auto;
-    border: #3a9ac1 solid 5px;
-    border-radius: 5em;
-    width: 280px;
-    height: 130px;
-    display: flex;
-    justify-content: center;
+/***********************  Grid Layout Top to Bottom *******************/
+
+#nav_section {
+    grid-column: left / right;
+    grid-row: 1 / 2;
+    margin-bottom: 1em;
+}
+
+#header_section {
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 2 / 3;
+    margin-bottom: 1em;
+    /* padding: 1.5rem; */
+}
+
+#contractorInfo {
+    margin-left: 2em;
+}
+
+#invoiceDate {
+    align-self: flex-start;
+    width: 30%;
+    margin-left: 2em;
+}
+
+#form_section {
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 3 / 4;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
+    border-radius: 1em;
+}
+
+#submitBtn {
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 10 / 11;
     background-color: #4f5357;
     color: #3a9ac1;
+    font-size: larger;
+    font-style: italic;
+    cursor: pointer;
 }
 
-body h2 {
-    margin-left: 65%;
-    font-size: 4em;
+#submitBtn:hover {
+    background-color: #36393c;
 }
 
-p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: whitesmoke;
+#footer_section {
+    grid-column: invoice-start / invoice-stop;
+    grid-row: 11 / bottom;
+    align-self: end;
 }
+
 /* container hierarchy is dertermined outside in */
+
 .container {
-    margin: auto;
+    margin: 1em;
     padding: 2%;
     display: flex;
     flex-direction: column;
@@ -65,68 +97,38 @@ input {
     width: 80%;
 }
 
-#topContainer, #middleContainer {
-    padding: 1em;
-    display: flex;
-   
-    flex-direction: row;
-    
-}
-
-/* applies to top and middle containers sub containers */
-.container3 {
-    padding: .25em;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-#invoiceIdandDateContainer {
-    align-items: flex-end;
-    justify-content: space-around;
-}
-
-#invoiceIdandDateContainer div{
-    display: flex;
-    padding: .25em;
-}
-
-.container4 input{
+.container4 input {
     margin-left: 10%;
+    margin-right: 10%;
     width: 8.5em;
 }
 
 /* separates the right hand side of the upper section */
+
 .container4 {
     margin: 0.5em;
-    width: 30%;
-    height: 1.5em;
+    width: 40%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-/* paid button */
-#invoicePaid {
-    display: flex;
-    flex-direction: column;
-}
-
-#invoicePaid button {
-    color: black;
-    background-color: red;
-}
-
-/* in merge keep use these changes to fix field positions */
-/* .container5 is for lower section */
 .container5 {
     width: 100%;
-    margin: 0%;
     padding: 0%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    }
+}
+
+input {
+    background-color: #EDE7F6;
+    border-radius: .25em;
+}
+
+input::placeholder {
+    margin-left: 1em;
+}
 
 #serviceLables label {
     display: flex;
@@ -144,34 +146,43 @@ input {
 
 .serviceInfoSet {
     display: flex;
-    width: 90%;
+    width: 100%;
+    margin-left: 3em;
 }
 
 #serviceInfo div input {
-    margin: 0%;
-    padding: 0%;
     width: 33%;
     height: 1.5em;
 }
 
-#totalsBeforeNotes{
+#totalsBeforeNotes {
     margin-left: auto;
     margin-right: 3%;
 }
 
-#totalAmountDueLabel{
-    width: 500px;
+#totalAmountDueLabel {
+    width: 600px;
 }
 
-#totalAmountDue{
+#totalAmountDue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 300px;
     height: 1.5em;
     border: solid black 3px;
+    margin-right: 4em;
+    border-radius: .5em;
+    padding-bottom: 0.25;
+    padding-left: 0.25;
 }
 
 #serviceNotes {
     width: 90%;
-    height: 2.5em;
+    height: 4em;
+    margin-bottom: 3em;
+    background-color: #EDE7F6;
+    border-radius: .25em;
 }
 
 #serviceNotesContainer {
@@ -188,27 +199,26 @@ button {
     margin: auto;
     margin-top: .5em;
     padding: .25;
-    border-radius: .5em .5em;
+    border-radius: 1em;
 }
 
 #addServBtn {
-    margin-right: 0%;
+    margin-right: 2em;
     display: flex;
     flex-direction: row;
     justify-self: flex-end;
+    cursor: pointer;
+}
+
+#addServBtn:hover {
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid #2d6f9b;
+    cursor: pointer;
+    border-radius: 1em;
 }
 
 #deleteServBtn {
-    margin-left: 0%;
-    margin-right: -2em;
+    margin-right: 2em;
     margin-top: 0em;
     width: 2em;
-}
-
-#submitBtn {
-    
-    background-color: #4f5357;
-    color: #3a9ac1;
-    font-size: larger;
-    font-style: italic;
 }

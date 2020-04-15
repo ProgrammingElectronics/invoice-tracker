@@ -13,49 +13,41 @@ program from eclipse before pushing for a merge!!!!! -->
     <!-- <link rel="stylesheet" href="../static/css/invoice-creation-view.css"> -->
     <!-- Uncomment below when using Eclipse -->
     <link rel="stylesheet" href="/css/invoice-creation-view.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
 
 </head>
 
 <body>
 
-    <header text="ProJo">
-        <!-- Uncomment below when using VSCODE GoLive -->
-        <!-- <img src="../static/images/projo.png" alt="ProJo"> -->
-        <!-- Uncomment below when using Eclipse -->
-        <img src="/images/projo.png" alt="ProJo">
+    <header id="header_section" text="ProJo">
+        <h1>Create Invoice</h1>
     </header>
-    <input type="text" id="contractor_id" hidden th:value="${contractor.id}">
-    <h2 id="invoiceTitle">INVOICE</h2>
 
-    <form action="invoice">
-        <div class="container">
-            <div class="container2" name="" id="topContainer">
-                <div class="container3" name="from" id="contractorInfo">
-                    <label for="contractorName">Contractor</label>
-                    <input type="text" id="contractorName" th:value="${contractor.firstName}">
-                    <label for="contractorAddress">Address</label>
-                    <input type="text" id="contractorAddress" th:value="${contractor.addressLineOne}">
-                    <input type="text" id="contractorAddressLineTwo" th:value="${contractor.addressLineTwo}">
-                    <label for="contractorPhone">Phone</label>
-                    <input type="text" name="" id="contractorPhone" th:value="${contractor.phoneNumber}">
-                </div>
-                <div class="container3" id="invoiceIdandDateContainer">
-                    <div class="container4">
-                        <label for="invoiceNumber">Invoice Number</label>
-                        <input type="text" id="invoiceNumber">
-                    </div>
-                    <div class="container4">
-                        <label for="invoiceDate">Invoice Date</label>
-                        <input type="text" id="invoiceDate" placeholder="2020-4-22">
-                    </div>
-                </div>
-            </div>
-            <div class="container2" name="" id="middleContainer">
-                <div class="container3" id="invoiceIdandDateContainer">
-                    <div class="container4" id="invoiceTermsContainer">
-                    </div>
-                </div>
-            </div>
+    <form id="form_section" action="invoice">
+
+        <div class="container" id="contractorInfo">
+            <h1 id="invoiceTitle">INVOICE</h1>
+            <p id="contractor_id" hidden th:text="${contractor.id}"></p>
+            <!-- <p id="contractorName" th:text="${contractor.firstName}"></p>
+            <p id="contractorAddress" th:text="${contractor.addressLineOne}"></p>
+            <p id="contractorAddressLineTwo" th:text="${contractor.addressLineTwo}"></p>
+            <p id="contractorPhone" th:text="${contractor.phoneNumber}"></p> -->
+
+            <p class="darker" th:text="${contractor.firstName} + ' ' + ${contractor.lastName}"></p>
+            <p th:text="${contractor.addressLineOne}"></p>
+            <p th:text="${contractor.addressLineTwo}"></p>
+            <p th:text="${contractor.city} + ', ' + ${contractor.state} + ' ' + ${contractor.zip}"></p>
+            <p th:text="${contractor.country}"></p>
+            <p>&nbsp;</p>
+            <p th:text="${contractor.phoneNumber}"></p>
+            <p th:text="${contractor.email}"></p>
+            <hr>
+        </div>
+
+        <div class="container" id="invoiceDate">
+            <label for="invoiceDate">Invoice Date</label>
+            <input type="date" id="invoiceDateField" placeholder="YYYY-MM-DD">
         </div>
 
         <button type="button" onclick="addService('serviceInfo')" class="servBtnSet" id="addServBtn">Add New
@@ -73,7 +65,8 @@ program from eclipse before pushing for a merge!!!!! -->
                 <div class="serviceInfoSet" id="1">
                     <input type="text" class="info" id="serviceDescription">
                     <input type="date" class="info" id="dateOfService">
-                    <input type="number" class="info amountDue" id="amountDue" name="amountDue">
+                    <input type="number" class="info amountDue" value="0" oninput="totalAmountDueFunction()"
+                        id="amountDue" name="amountDue">
                     <button type="button" onclick="deleteServ(1)" id="deleteServBtn">X</button>
                 </div>
             </div>
@@ -93,6 +86,25 @@ program from eclipse before pushing for a merge!!!!! -->
 
 
     <button type="submit" id="submitBtn" onclick="submitInvoiceButton()">SUBMIT</button>
+
+    <!------------------------------------ NAV ------------------------------------------------->
+    <nav id="nav_section" class="navbar">
+        <img src="/images/projo.png" alt="ProJo - Login" class="logo" id="navbar_logo">
+        <a th:href="@{/contractor/search-invoice-list/{contractorId}(contractorId = ${contractor.id})}"><i
+                class="fa fa-fw fa-search"></i>My Invoices</a>
+        <a class="active" th:href="@{/contractor/create-new-invoice/{contractorId}(contractorId = ${contractor.id})}"><i
+                class="fa fa-fw fa-envelope"></i>Create Invoice</a>
+        <a th:href="@{http://localhost:8080/contractor/update-profile/{contractorId}(contractorId = ${contractor.id})}"><i
+                class="fa fa-fw fa-user"></i>User Profile</a>
+    </nav>
+
+    <!------------------------------------ Footer ------------------------------------------------->
+    <footer id="footer_section">
+        <span>Powered by</span>
+        <img src="/images/projo.png" id="logo" alt="">
+    </footer>
+
+
 
     <!-- Uncomment below when using Eclipse -->
     <script src="/js/invoice-creation-view.js"></script>
