@@ -38,6 +38,9 @@ public class InvoiceRestController {
 	@PostMapping("/submit-invoice")
 	public Invoice add(@RequestBody Invoice invoiceToAdd) {
 		invoiceRepo.save(invoiceToAdd);
+		invoiceToAdd.getContractor().incrementCurrentInvoiceNumber();
+		invoiceToAdd.setInvoiceNumber(invoiceToAdd.getContractor().getCurrentInvoiceNumber());
+		
 		for (ServiceItem serviceItemToAdd : invoiceToAdd.getServiceItems()) {
 			serviceItemToAdd.setInvoice(invoiceToAdd);
 			serviceItemRepo.save(serviceItemToAdd);

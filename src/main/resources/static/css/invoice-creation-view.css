@@ -45,10 +45,11 @@ body {
     /* padding: 1.5rem; */
 }
 
-/* #contractorInfo {
-    grid-column: invoice-start / invoice-stop;
-    grid-row: 3 / 4;
+#contractorInfo {
+    margin-left: 2em;
 }
+
+/*
  
 
 #addServBtn {
@@ -69,6 +70,7 @@ body {
 #invoiceDate {
     align-self: flex-start;
     width: 50%;
+    margin-left: 2em;
 }
 
 #form_section {
@@ -76,6 +78,7 @@ body {
     grid-row: 3 / 4;
     background-color: #ffffff;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
+    border-radius: 1em;
 }
 
 #submitBtn {
@@ -125,7 +128,8 @@ input {
 
 .container5 {
     width: 100%;
-    margin: 0%;
+    /* margin: 0%; */
+    /* margin-right: 1em; */
     padding: 0%;
     display: flex;
     flex-direction: row;
@@ -157,7 +161,8 @@ input::placeholder {
 
 .serviceInfoSet {
     display: flex;
-    width: 90%;
+    width: 100%;
+    margin-left: 3em;
 }
 
 #serviceInfo div input {
@@ -165,6 +170,7 @@ input::placeholder {
     padding: 0%; */
     width: 33%;
     height: 1.5em;
+    /* margin-right: 0.25em; */
 }
 
 #totalsBeforeNotes {
@@ -181,6 +187,7 @@ input::placeholder {
     height: 1.5em;
     border: solid black 3px;
     margin-right: 4em;
+    border-radius: .5em;
 }
 
 #serviceNotes {

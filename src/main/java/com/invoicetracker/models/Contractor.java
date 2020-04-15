@@ -20,7 +20,7 @@ public class Contractor extends User {
 	private String firstName;
 	private String lastName;
 	private String payPalId;
-	private int currentInvoiceNumber = 1000;
+	private static int currentInvoiceNumber = 1000;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "contractor")

@@ -9,14 +9,17 @@
 // as the page was built.
 
 function submitInvoice() {
-    var contractorId = document.getElementById("contractor_id").value;
-    var invoiceDate = document.getElementById('invoiceDate').value;
+    var contractorId = document.getElementById("contractor_id").innerText;
+    var dateOfInvoice = document.getElementById('invoiceDateField').value;
+    var invoiceNote = document.getElementById('serviceNotes').value;
+
+
+
     var invoiceJson = {
-        "dateOfInvoice": "2020-03-28",
-        "invoiceNumber": 1001,
-        "invoiceNote": "joMama",
+        "dateOfInvoice": dateOfInvoice,
+        "invoiceNote": invoiceNote,
         "contractor": {
-            "id": 1,
+            "id": contractorId,
         },
         "serviceItems": [
             {
@@ -28,9 +31,6 @@ function submitInvoice() {
                 "amountDue": 150,
             }
         ],
-        "totalAmountDueAsCurrencyString": "$250.00",
-        "customerNamePreviewAsString": "Tutored Alley, Tutored Allen",
-        "paymentStatus": "Not sent"
     }
     console.log(invoiceJson);
     return invoiceJson;
