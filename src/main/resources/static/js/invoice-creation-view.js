@@ -71,7 +71,7 @@ function totalAmountDueFunction() {
     }
 
     let totalAmountDueBlock = document.getElementById("totalAmountDue")
-    totalAmountDueBlock.innerText = totalAmountDue
+    totalAmountDueBlock.innerText = "$" + totalAmountDue
     return totalAmountDue;
 }
 
