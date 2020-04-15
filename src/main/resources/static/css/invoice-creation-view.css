@@ -69,7 +69,7 @@ body {
 
 #invoiceDate {
     align-self: flex-start;
-    width: 50%;
+    width: 30%;
     margin-left: 2em;
 }
 
@@ -88,6 +88,11 @@ body {
     color: #3a9ac1;
     font-size: larger;
     font-style: italic;
+    cursor: pointer;
+}
+
+#submitBtn:hover {
+    background-color: #36393c;
 }
 
 #footer_section {
@@ -128,8 +133,6 @@ input {
 
 .container5 {
     width: 100%;
-    /* margin: 0%; */
-    /* margin-right: 1em; */
     padding: 0%;
     display: flex;
     flex-direction: row;
@@ -166,11 +169,8 @@ input::placeholder {
 }
 
 #serviceInfo div input {
-    /* margin: 0%;
-    padding: 0%; */
     width: 33%;
     height: 1.5em;
-    /* margin-right: 0.25em; */
 }
 
 #totalsBeforeNotes {
@@ -220,6 +220,14 @@ button {
     display: flex;
     flex-direction: row;
     justify-self: flex-end;
+    cursor: pointer;
+}
+
+#addServBtn:hover {
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid #2d6f9b;
+    cursor: pointer;
+    border-radius: 1em;
 }
 
 #deleteServBtn {
