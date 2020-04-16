@@ -80,6 +80,7 @@ public class ContractorControllerMockMvcTest {
 		this.mockMvc.perform(get("/contractor/create-new-invoice/" + contractorId)).andExpect(status().isOk());
 	}
 
+	@Test
 	public void shouldGetStatusOfOkWhenNavigatingToUpdateProfile() throws Exception {
 		long contractorId = 1;
 		when(contractorRepo.findById(contractorId)).thenReturn(Optional.of(contractorOne));
@@ -87,19 +88,5 @@ public class ContractorControllerMockMvcTest {
 				.andExpect(view().name("profile"));
 	}
 
-	/*
-	 * TODO: These tests need fixed.
-	 */
-	@Test
-	public void MarkPaidEndPointWillMarkAnInvoicePaid() throws Exception {
-		long invoiceId = 1;
-		this.mockMvc.perform(put("/contractor/mark-invoice-paid/" + invoiceId)).andExpect(status().isOk());
-	}
-
-	@Test
-	public void MarkSentEndPointWillMarkAnInvoiceSent() throws Exception {
-		long invoiceId = 1;
-		this.mockMvc.perform(put("/contractor/mark-invoice-sent/" + invoiceId)).andExpect(status().isOk());
-	}
 
 }

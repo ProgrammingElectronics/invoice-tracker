@@ -37,8 +37,8 @@ function getProfileJson() {
         'zip': document.getElementById('zip').value,
         'country': document.getElementById('country').value,
         'phoneNumber': document.getElementById('phone').value,
-        'email': document.getElementById('email').value,
-        'payPalId': document.getElementById('pay-pal').value,
+        'email': document.getElementById('email').value
+        //'payPalId': document.getElementById('pay-pal').value,
     }
 
     return profileJson;
